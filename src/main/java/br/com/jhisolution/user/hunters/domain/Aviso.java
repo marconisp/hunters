@@ -1,0 +1,146 @@
+package br.com.jhisolution.user.hunters.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import java.time.LocalDate;
+import javax.persistence.*;
+import javax.validation.constraints.*;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+/**
+ * A Aviso.
+ */
+@Entity
+@Table(name = "aviso")
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+public class Aviso implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
+    @Column(name = "id")
+    private Long id;
+
+    @NotNull
+    @Column(name = "data", nullable = false)
+    private LocalDate data;
+
+    @NotNull
+    @Size(min = 1, max = 40)
+    @Column(name = "titulo", length = 40, nullable = false)
+    private String titulo;
+
+    @NotNull
+    @Size(min = 1, max = 1000)
+    @Column(name = "conteudo", length = 1000, nullable = false)
+    private String conteudo;
+
+    @ManyToOne
+    @JsonIgnoreProperties(
+        value = {
+            "estadoCivil", "raca", "religiao", "foto", "fotoAvatar", "fotoIcon", "mensagems", "avisos", "documentos", "enderecos", "user",
+        },
+        allowSetters = true
+    )
+    private DadosPessoais dadosPessoais;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public Long getId() {
+        return this.id;
+    }
+
+    public Aviso id(Long id) {
+        this.setId(id);
+        return this;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public LocalDate getData() {
+        return this.data;
+    }
+
+    public Aviso data(LocalDate data) {
+        this.setData(data);
+        return this;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
+    public String getTitulo() {
+        return this.titulo;
+    }
+
+    public Aviso titulo(String titulo) {
+        this.setTitulo(titulo);
+        return this;
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
+
+    public String getConteudo() {
+        return this.conteudo;
+    }
+
+    public Aviso conteudo(String conteudo) {
+        this.setConteudo(conteudo);
+        return this;
+    }
+
+    public void setConteudo(String conteudo) {
+        this.conteudo = conteudo;
+    }
+
+    public DadosPessoais getDadosPessoais() {
+        return this.dadosPessoais;
+    }
+
+    public void setDadosPessoais(DadosPessoais dadosPessoais) {
+        this.dadosPessoais = dadosPessoais;
+    }
+
+    public Aviso dadosPessoais(DadosPessoais dadosPessoais) {
+        this.setDadosPessoais(dadosPessoais);
+        return this;
+    }
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Aviso)) {
+            return false;
+        }
+        return id != null && id.equals(((Aviso) o).id);
+    }
+
+    @Override
+    public int hashCode() {
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        return getClass().hashCode();
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+        return "Aviso{" +
+            "id=" + getId() +
+            ", data='" + getData() + "'" +
+            ", titulo='" + getTitulo() + "'" +
+            ", conteudo='" + getConteudo() + "'" +
+            "}";
+    }
+}

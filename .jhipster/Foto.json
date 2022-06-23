@@ -1,0 +1,23 @@
+{
+  "applications": ["hunterapp"],
+  "changelogDate": "20220623125814",
+  "clientRootFolder": "foto",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "foto",
+  "fields": [
+    {
+      "fieldName": "conteudo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Foto",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

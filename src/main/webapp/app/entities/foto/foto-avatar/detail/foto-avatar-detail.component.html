@@ -1,0 +1,41 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fotoAvatar">
+      <h2 data-cy="fotoAvatarDetailsHeading"><span jhiTranslate="hunterappApp.fotoFotoAvatar.detail.title">Foto Avatar</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fotoAvatar.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.fotoFotoAvatar.conteudo">Conteudo</span></dt>
+        <dd>
+          <div *ngIf="fotoAvatar.conteudo">
+            <a (click)="openFile(fotoAvatar.conteudo, fotoAvatar.conteudoContentType)">
+              <img
+                [src]="'data:' + fotoAvatar.conteudoContentType + ';base64,' + fotoAvatar.conteudo"
+                style="max-width: 100%"
+                alt="fotoAvatar image"
+              />
+            </a>
+            {{ fotoAvatar.conteudoContentType }}, {{ byteSize(fotoAvatar.conteudo) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/foto-avatar', fotoAvatar.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

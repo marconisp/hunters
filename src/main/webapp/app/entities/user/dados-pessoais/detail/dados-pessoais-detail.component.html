@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dadosPessoais">
+      <h2 data-cy="dadosPessoaisDetailsHeading"><span jhiTranslate="hunterappApp.userDadosPessoais.detail.title">Dados Pessoais</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ dadosPessoais.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.nome">Nome</span></dt>
+        <dd>
+          <span>{{ dadosPessoais.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.sobreNome">Sobre Nome</span></dt>
+        <dd>
+          <span>{{ dadosPessoais.sobreNome }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.pai">Pai</span></dt>
+        <dd>
+          <span>{{ dadosPessoais.pai }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.mae">Mae</span></dt>
+        <dd>
+          <span>{{ dadosPessoais.mae }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.telefone">Telefone</span></dt>
+        <dd>
+          <span>{{ dadosPessoais.telefone }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.celular">Celular</span></dt>
+        <dd>
+          <span>{{ dadosPessoais.celular }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.whatsapp">Whatsapp</span></dt>
+        <dd>
+          <span>{{ dadosPessoais.whatsapp }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.email">Email</span></dt>
+        <dd>
+          <span>{{ dadosPessoais.email }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.estadoCivil">Estado Civil</span></dt>
+        <dd>
+          <div *ngIf="dadosPessoais.estadoCivil">
+            <a [routerLink]="['/estado-civil', dadosPessoais.estadoCivil?.id, 'view']">{{ dadosPessoais.estadoCivil?.codigo }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.raca">Raca</span></dt>
+        <dd>
+          <div *ngIf="dadosPessoais.raca">
+            <a [routerLink]="['/raca', dadosPessoais.raca?.id, 'view']">{{ dadosPessoais.raca?.codigo }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.religiao">Religiao</span></dt>
+        <dd>
+          <div *ngIf="dadosPessoais.religiao">
+            <a [routerLink]="['/religiao', dadosPessoais.religiao?.id, 'view']">{{ dadosPessoais.religiao?.codigo }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.foto">Foto</span></dt>
+        <dd>
+          <div *ngIf="dadosPessoais.foto">
+            <a [routerLink]="['/foto', dadosPessoais.foto?.id, 'view']">{{ dadosPessoais.foto?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.fotoAvatar">Foto Avatar</span></dt>
+        <dd>
+          <div *ngIf="dadosPessoais.fotoAvatar">
+            <a [routerLink]="['/foto-avatar', dadosPessoais.fotoAvatar?.id, 'view']">{{ dadosPessoais.fotoAvatar?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.fotoIcon">Foto Icon</span></dt>
+        <dd>
+          <div *ngIf="dadosPessoais.fotoIcon">
+            <a [routerLink]="['/foto-icon', dadosPessoais.fotoIcon?.id, 'view']">{{ dadosPessoais.fotoIcon?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userDadosPessoais.user">User</span></dt>
+        <dd>
+          <div *ngIf="dadosPessoais.user">
+            <a [routerLink]="['/user-1', dadosPessoais.user?.id, 'view']">{{ dadosPessoais.user?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dados-pessoais', dadosPessoais.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

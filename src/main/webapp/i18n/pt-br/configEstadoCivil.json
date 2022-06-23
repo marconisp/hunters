@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "configEstadoCivil": {
+      "home": {
+        "title": "Estado Civils",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Estado Civil",
+        "createOrEditLabel": "Criar ou editar Estado Civil",
+        "notFound": "Nenhum Estado Civil encontrado"
+      },
+      "created": "Um novo Estado Civil foi criado com o identificador {{ param }}",
+      "updated": "Um Estado Civil foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Estado Civil foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Estado Civil {{ id }}?"
+      },
+      "detail": {
+        "title": "Estado Civil"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "descricao": "Descricao"
+    }
+  }
+}

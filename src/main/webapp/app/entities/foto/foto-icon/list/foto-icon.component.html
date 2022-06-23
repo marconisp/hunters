@@ -1,0 +1,107 @@
+<div>
+  <h2 id="page-heading" data-cy="FotoIconHeading">
+    <span jhiTranslate="hunterappApp.fotoFotoIcon.home.title">Foto Icons</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hunterappApp.fotoFotoIcon.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-foto-icon"
+        [routerLink]="['/foto-icon/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hunterappApp.fotoFotoIcon.home.createLabel"> Create a new Foto Icon </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="fotoIcons?.length === 0">
+    <span jhiTranslate="hunterappApp.fotoFotoIcon.home.notFound">No fotoIcons found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="fotoIcons && fotoIcons.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="conteudo">
+            <span jhiTranslate="hunterappApp.fotoFotoIcon.conteudo">Conteudo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fotoIcon of fotoIcons; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/foto-icon', fotoIcon.id, 'view']">{{ fotoIcon.id }}</a>
+          </td>
+          <td>
+            <a *ngIf="fotoIcon.conteudo" (click)="openFile(fotoIcon.conteudo, fotoIcon.conteudoContentType)">
+              <img
+                [src]="'data:' + fotoIcon.conteudoContentType + ';base64,' + fotoIcon.conteudo"
+                style="max-height: 30px"
+                alt="fotoIcon image"
+              />
+            </a>
+            <span *ngIf="fotoIcon.conteudo">{{ fotoIcon.conteudoContentType }}, {{ byteSize(fotoIcon.conteudo) }}</span>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/foto-icon', fotoIcon.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/foto-icon', fotoIcon.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(fotoIcon)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="fotoIcons && fotoIcons.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

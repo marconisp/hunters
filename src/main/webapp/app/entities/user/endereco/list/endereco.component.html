@@ -1,0 +1,148 @@
+<div>
+  <h2 id="page-heading" data-cy="EnderecoHeading">
+    <span jhiTranslate="hunterappApp.userEndereco.home.title">Enderecos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hunterappApp.userEndereco.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-endereco"
+        [routerLink]="['/endereco/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hunterappApp.userEndereco.home.createLabel"> Create a new Endereco </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="enderecos?.length === 0">
+    <span jhiTranslate="hunterappApp.userEndereco.home.notFound">No enderecos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="enderecos && enderecos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="cep"><span jhiTranslate="hunterappApp.userEndereco.cep">Cep</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="logradouro">
+            <span jhiTranslate="hunterappApp.userEndereco.logradouro">Logradouro</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="complemento1">
+            <span jhiTranslate="hunterappApp.userEndereco.complemento1">Complemento 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="complemento2">
+            <span jhiTranslate="hunterappApp.userEndereco.complemento2">Complemento 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="numero">
+            <span jhiTranslate="hunterappApp.userEndereco.numero">Numero</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="bairro">
+            <span jhiTranslate="hunterappApp.userEndereco.bairro">Bairro</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="localidade">
+            <span jhiTranslate="hunterappApp.userEndereco.localidade">Localidade</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="uf"><span jhiTranslate="hunterappApp.userEndereco.uf">Uf</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="unidade">
+            <span jhiTranslate="hunterappApp.userEndereco.unidade">Unidade</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ibge">
+            <span jhiTranslate="hunterappApp.userEndereco.ibge">Ibge</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="gia"><span jhiTranslate="hunterappApp.userEndereco.gia">Gia</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="latitude">
+            <span jhiTranslate="hunterappApp.userEndereco.latitude">Latitude</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="longitude">
+            <span jhiTranslate="hunterappApp.userEndereco.longitude">Longitude</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dadosPessoais.id">
+            <span jhiTranslate="hunterappApp.userEndereco.dadosPessoais">Dados Pessoais</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let endereco of enderecos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/endereco', endereco.id, 'view']">{{ endereco.id }}</a>
+          </td>
+          <td>{{ endereco.cep }}</td>
+          <td>{{ endereco.logradouro }}</td>
+          <td>{{ endereco.complemento1 }}</td>
+          <td>{{ endereco.complemento2 }}</td>
+          <td>{{ endereco.numero }}</td>
+          <td>{{ endereco.bairro }}</td>
+          <td>{{ endereco.localidade }}</td>
+          <td>{{ endereco.uf }}</td>
+          <td>{{ endereco.unidade }}</td>
+          <td>{{ endereco.ibge }}</td>
+          <td>{{ endereco.gia }}</td>
+          <td>{{ endereco.latitude }}</td>
+          <td>{{ endereco.longitude }}</td>
+          <td>
+            <div *ngIf="endereco.dadosPessoais">
+              <a [routerLink]="['/dados-pessoais', endereco.dadosPessoais?.id, 'view']">{{ endereco.dadosPessoais?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/endereco', endereco.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/endereco', endereco.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(endereco)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="enderecos && enderecos.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

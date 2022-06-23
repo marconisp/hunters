@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "configRaca": {
+      "home": {
+        "title": "Racas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Raca",
+        "createOrEditLabel": "Create or edit a Raca",
+        "notFound": "No Racas found"
+      },
+      "created": "A new Raca is created with identifier {{ param }}",
+      "updated": "A Raca is updated with identifier {{ param }}",
+      "deleted": "A Raca is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Raca {{ id }}?"
+      },
+      "detail": {
+        "title": "Raca"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "descricao": "Descricao"
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "applications": ["hunterapp"],
+  "changelogDate": "20220623125714",
+  "clientRootFolder": "user",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "documento",
+  "fields": [
+    {
+      "fieldName": "descricao",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "1"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Documento",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "fotoDocumento",
+      "otherEntityRelationshipName": "documento",
+      "relationshipName": "foto",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dadosPessoais",
+      "otherEntityRelationshipName": "documento",
+      "relationshipName": "dadosPessoais",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

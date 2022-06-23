@@ -1,0 +1,86 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="endereco">
+      <h2 data-cy="enderecoDetailsHeading"><span jhiTranslate="hunterappApp.userEndereco.detail.title">Endereco</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ endereco.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.cep">Cep</span></dt>
+        <dd>
+          <span>{{ endereco.cep }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.logradouro">Logradouro</span></dt>
+        <dd>
+          <span>{{ endereco.logradouro }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.complemento1">Complemento 1</span></dt>
+        <dd>
+          <span>{{ endereco.complemento1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.complemento2">Complemento 2</span></dt>
+        <dd>
+          <span>{{ endereco.complemento2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.numero">Numero</span></dt>
+        <dd>
+          <span>{{ endereco.numero }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.bairro">Bairro</span></dt>
+        <dd>
+          <span>{{ endereco.bairro }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.localidade">Localidade</span></dt>
+        <dd>
+          <span>{{ endereco.localidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.uf">Uf</span></dt>
+        <dd>
+          <span>{{ endereco.uf }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.unidade">Unidade</span></dt>
+        <dd>
+          <span>{{ endereco.unidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.ibge">Ibge</span></dt>
+        <dd>
+          <span>{{ endereco.ibge }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.gia">Gia</span></dt>
+        <dd>
+          <span>{{ endereco.gia }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.latitude">Latitude</span></dt>
+        <dd>
+          <span>{{ endereco.latitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.longitude">Longitude</span></dt>
+        <dd>
+          <span>{{ endereco.longitude }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userEndereco.dadosPessoais">Dados Pessoais</span></dt>
+        <dd>
+          <div *ngIf="endereco.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais', endereco.dadosPessoais?.id, 'view']">{{ endereco.dadosPessoais?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/endereco', endereco.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

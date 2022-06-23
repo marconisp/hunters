@@ -1,0 +1,27 @@
+{
+  "hunterappApp": {
+    "userAviso": {
+      "home": {
+        "title": "Avisos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Aviso",
+        "createOrEditLabel": "Criar ou editar Aviso",
+        "notFound": "Nenhum Aviso encontrado"
+      },
+      "created": "Um novo Aviso foi criado com o identificador {{ param }}",
+      "updated": "Um Aviso foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Aviso foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Aviso {{ id }}?"
+      },
+      "detail": {
+        "title": "Aviso"
+      },
+      "id": "ID",
+      "data": "Data",
+      "titulo": "Titulo",
+      "conteudo": "Conteudo",
+      "dadosPessoais": "Dados Pessoais"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "applications": ["hunterapp"],
+  "changelogDate": "20220623130114",
+  "clientRootFolder": "foto",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "foto_documento",
+  "fields": [
+    {
+      "fieldName": "conteudo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FotoDocumento",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "documento",
+      "otherEntityRelationshipName": "foto",
+      "relationshipName": "documento",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

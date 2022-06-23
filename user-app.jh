@@ -1,0 +1,140 @@
+application {
+  config {
+    baseName hunterapp,
+    packageName br.com.jhisolution.user.hunters,
+    applicationType monolith,
+    authenticationType jwt,
+    prodDatabaseType mariadb,
+    nativeLanguage pt-br,
+    languages [pt-br, en, es],
+    clientTheme darkly,
+    clientThemeVariant light,
+    cacheProvider ehcache,
+    clientFramework angularX,
+    clientThemeVariant dark,
+    enableSwaggerCodegen true
+  }
+  entities *
+}
+ 
+@clientRootFolder(user)
+entity User1 {
+    firstName String required minlength(1) maxlength(20),
+    lastName  String required minlength(1) maxlength(40),
+    email     String required minlength(1) maxlength(60)
+}
+
+@clientRootFolder(user)
+entity DadosPessoais {
+    nome        String required minlength(1) maxlength(20),
+    sobreNome   String required minlength(1) maxlength(50),
+    pai         String          minlength(1) maxlength(50),
+    mae         String required minlength(1) maxlength(50),
+    telefone    String          minlength(8) maxlength(20), 
+    celular     String required minlength(8) maxlength(20),
+    whatsapp    String          minlength(8) maxlength(20),
+    email       String required minlength(9) maxlength(50)
+ }
+
+@clientRootFolder(user)
+entity Endereco {
+    cep          String required minlength(8)  maxlength(10),
+    logradouro   String required minlength(1)  maxlength(50),
+    complemento1 String required minlength(1)  maxlength(50),
+    complemento2 String required minlength(1)  maxlength(50),
+    numero       String required minlength(1)  maxlength(10),
+    bairro       String required minlength(1)  maxlength(50),
+    localidade   String required minlength(1)  maxlength(50),
+    uf           String required minlength(1)  maxlength(50),
+    unidade      String required minlength(1)  maxlength(20),
+    ibge         String required minlength(10) maxlength(20),
+    gia          String required minlength(10) maxlength(20),
+    latitude     Float  required,
+    longitude    Float  required
+}
+
+@clientRootFolder(user)
+entity Mensagem {
+	data         LocalDate    required,
+    titulo       String       required minlength(1) maxlength(40),
+    conteudo     String       required minlength(1) maxlength(1000)
+}
+
+@clientRootFolder(user)
+entity Aviso {
+	data         LocalDate    required,
+    titulo       String       required minlength(1) maxlength(40),
+    conteudo     String       required minlength(1) maxlength(1000)
+}
+
+@clientRootFolder(user)
+entity Documento {
+   descricao String required minlength(1) maxlength(50)
+}
+
+@clientRootFolder(foto)
+entity Foto {
+    conteudo ImageBlob required
+}
+
+@clientRootFolder(foto)
+entity FotoAvatar {
+    conteudo ImageBlob required
+}
+
+@clientRootFolder(foto)
+entity FotoIcon {
+    conteudo ImageBlob required
+}
+
+@clientRootFolder(foto)
+entity FotoDocumento {
+    conteudo ImageBlob required
+}
+
+@clientRootFolder(config)
+entity TipoMensagem {
+	codigo    String required minlength(1) maxlength(20),
+    nome      String required minlength(1) maxlength(50),
+    descricao String minlength(1) maxlength(100)
+}
+
+@clientRootFolder(config)
+entity Raca {
+	codigo    String required minlength(1) maxlength(20),
+    descricao String required minlength(1) maxlength(50)
+}
+
+@clientRootFolder(config)
+entity Religiao {
+	codigo    String required minlength(1) maxlength(20),
+    descricao String required minlength(1) maxlength(50)
+}
+
+@clientRootFolder(config)
+entity EstadoCivil {
+	codigo    String required minlength(1) maxlength(20),
+	descricao String required minlength(1) maxlength(50)
+}    
+
+relationship OneToOne {
+	DadosPessoais{estadoCivil(codigo) required} to EstadoCivil,
+    DadosPessoais{raca(codigo)        required} to Raca,
+    DadosPessoais{religiao(codigo)    required} to Religiao,
+	DadosPessoais{foto}                         to Foto,
+	DadosPessoais{fotoAvatar}                   to FotoAvatar,
+	DadosPessoais{fotoIcon}                     to FotoIcon,
+	Mensagem{tipo(codigo) required}             to TipoMensagem
+}
+
+relationship OneToMany {
+    User1{dadosPessoais} to DadosPessoais{user},
+    DadosPessoais{mensagem}  to Mensagem,
+	DadosPessoais{aviso}     to Aviso,
+	DadosPessoais{documento} to Documento,
+	DadosPessoais{endereco}  to Endereco,
+	Documento{foto}          to FotoDocumento
+}
+
+paginate all with pagination
+service all with serviceImpl

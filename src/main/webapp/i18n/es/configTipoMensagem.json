@@ -1,0 +1,26 @@
+{
+  "hunterappApp": {
+    "configTipoMensagem": {
+      "home": {
+        "title": "Tipo Mensagems",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Tipo Mensagem",
+        "createOrEditLabel": "Crear o editar Tipo Mensagem",
+        "notFound": "Ningún Tipo Mensagems encontrado"
+      },
+      "created": "Un nuevo Tipo Mensagem ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tipo Mensagem ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tipo Mensagem ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Mensagem {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Mensagem"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "nome": "Nome",
+      "descricao": "Descricao"
+    }
+  }
+}

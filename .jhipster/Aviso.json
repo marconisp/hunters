@@ -1,0 +1,43 @@
+{
+  "applications": ["hunterapp"],
+  "changelogDate": "20220623125614",
+  "clientRootFolder": "user",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "aviso",
+  "fields": [
+    {
+      "fieldName": "data",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "titulo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "40",
+      "fieldValidateRulesMinlength": "1"
+    },
+    {
+      "fieldName": "conteudo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "1000",
+      "fieldValidateRulesMinlength": "1"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Aviso",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "dadosPessoais",
+      "otherEntityRelationshipName": "aviso",
+      "relationshipName": "dadosPessoais",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

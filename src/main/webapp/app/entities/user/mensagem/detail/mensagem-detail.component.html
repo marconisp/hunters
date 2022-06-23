@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="mensagem">
+      <h2 data-cy="mensagemDetailsHeading"><span jhiTranslate="hunterappApp.userMensagem.detail.title">Mensagem</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ mensagem.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userMensagem.data">Data</span></dt>
+        <dd>
+          <span>{{ mensagem.data | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userMensagem.titulo">Titulo</span></dt>
+        <dd>
+          <span>{{ mensagem.titulo }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userMensagem.conteudo">Conteudo</span></dt>
+        <dd>
+          <span>{{ mensagem.conteudo }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userMensagem.tipo">Tipo</span></dt>
+        <dd>
+          <div *ngIf="mensagem.tipo">
+            <a [routerLink]="['/tipo-mensagem', mensagem.tipo?.id, 'view']">{{ mensagem.tipo?.codigo }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userMensagem.dadosPessoais">Dados Pessoais</span></dt>
+        <dd>
+          <div *ngIf="mensagem.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais', mensagem.dadosPessoais?.id, 'view']">{{ mensagem.dadosPessoais?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mensagem', mensagem.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

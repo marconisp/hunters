@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "configReligiao": {
+      "home": {
+        "title": "Religiaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Religiao",
+        "createOrEditLabel": "Create or edit a Religiao",
+        "notFound": "No Religiaos found"
+      },
+      "created": "A new Religiao is created with identifier {{ param }}",
+      "updated": "A Religiao is updated with identifier {{ param }}",
+      "deleted": "A Religiao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Religiao {{ id }}?"
+      },
+      "detail": {
+        "title": "Religiao"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "descricao": "Descricao"
+    }
+  }
+}

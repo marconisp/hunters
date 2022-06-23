@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity DadosPessoais.
+    -->
+    <changeSet id="20220623125314-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="estado_civil_id"
+                                 baseTableName="dados_pessoais"
+                                 constraintName="fk_dados_pessoais__estado_civil_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estado_civil"/>
+
+        <addForeignKeyConstraint baseColumnNames="raca_id"
+                                 baseTableName="dados_pessoais"
+                                 constraintName="fk_dados_pessoais__raca_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="raca"/>
+
+        <addForeignKeyConstraint baseColumnNames="religiao_id"
+                                 baseTableName="dados_pessoais"
+                                 constraintName="fk_dados_pessoais__religiao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="religiao"/>
+
+        <addForeignKeyConstraint baseColumnNames="foto_id"
+                                 baseTableName="dados_pessoais"
+                                 constraintName="fk_dados_pessoais__foto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="foto"/>
+
+        <addForeignKeyConstraint baseColumnNames="foto_avatar_id"
+                                 baseTableName="dados_pessoais"
+                                 constraintName="fk_dados_pessoais__foto_avatar_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="foto_avatar"/>
+
+        <addForeignKeyConstraint baseColumnNames="foto_icon_id"
+                                 baseTableName="dados_pessoais"
+                                 constraintName="fk_dados_pessoais__foto_icon_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="foto_icon"/>
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="dados_pessoais"
+                                 constraintName="fk_dados_pessoais__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_1"/>
+    </changeSet>
+</databaseChangeLog>

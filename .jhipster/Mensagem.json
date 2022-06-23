@@ -1,0 +1,52 @@
+{
+  "applications": ["hunterapp"],
+  "changelogDate": "20220623125514",
+  "clientRootFolder": "user",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "mensagem",
+  "fields": [
+    {
+      "fieldName": "data",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "titulo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "40",
+      "fieldValidateRulesMinlength": "1"
+    },
+    {
+      "fieldName": "conteudo",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "1000",
+      "fieldValidateRulesMinlength": "1"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Mensagem",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "tipoMensagem",
+      "otherEntityRelationshipName": "mensagem",
+      "ownerSide": true,
+      "relationshipName": "tipo",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "dadosPessoais",
+      "otherEntityRelationshipName": "mensagem",
+      "relationshipName": "dadosPessoais",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

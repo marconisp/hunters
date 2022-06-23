@@ -1,0 +1,152 @@
+{
+  "applications": ["hunterapp"],
+  "changelogDate": "20220623125314",
+  "clientRootFolder": "user",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "dados_pessoais",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "20",
+      "fieldValidateRulesMinlength": "1"
+    },
+    {
+      "fieldName": "sobreNome",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "1"
+    },
+    {
+      "fieldName": "pai",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "1"
+    },
+    {
+      "fieldName": "mae",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "1"
+    },
+    {
+      "fieldName": "telefone",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "20",
+      "fieldValidateRulesMinlength": "8"
+    },
+    {
+      "fieldName": "celular",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "20",
+      "fieldValidateRulesMinlength": "8"
+    },
+    {
+      "fieldName": "whatsapp",
+      "fieldType": "String",
+      "fieldValidateRules": ["minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "20",
+      "fieldValidateRulesMinlength": "8"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "minlength", "maxlength"],
+      "fieldValidateRulesMaxlength": "50",
+      "fieldValidateRulesMinlength": "9"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DadosPessoais",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "estadoCivil",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "ownerSide": true,
+      "relationshipName": "estadoCivil",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "raca",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "ownerSide": true,
+      "relationshipName": "raca",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "codigo",
+      "otherEntityName": "religiao",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "ownerSide": true,
+      "relationshipName": "religiao",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "foto",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "ownerSide": true,
+      "relationshipName": "foto",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "fotoAvatar",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "ownerSide": true,
+      "relationshipName": "fotoAvatar",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "fotoIcon",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "ownerSide": true,
+      "relationshipName": "fotoIcon",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "mensagem",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "relationshipName": "mensagem",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "aviso",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "relationshipName": "aviso",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "documento",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "relationshipName": "documento",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "endereco",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "relationshipName": "endereco",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "user1",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "relationshipName": "user",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
