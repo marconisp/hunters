@@ -8,6 +8,8 @@ import { of, Subject, from } from 'rxjs';
 
 import { DadosPessoaisService } from '../service/dados-pessoais.service';
 import { IDadosPessoais, DadosPessoais } from '../dados-pessoais.model';
+import { ITipoPessoa } from 'app/entities/config/tipo-pessoa/tipo-pessoa.model';
+import { TipoPessoaService } from 'app/entities/config/tipo-pessoa/service/tipo-pessoa.service';
 import { IEstadoCivil } from 'app/entities/config/estado-civil/estado-civil.model';
 import { EstadoCivilService } from 'app/entities/config/estado-civil/service/estado-civil.service';
 import { IRaca } from 'app/entities/config/raca/raca.model';
@@ -30,6 +32,7 @@ describe('DadosPessoais Management Update Component', () => {
   let fixture: ComponentFixture<DadosPessoaisUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let dadosPessoaisService: DadosPessoaisService;
+  let tipoPessoaService: TipoPessoaService;
   let estadoCivilService: EstadoCivilService;
   let racaService: RacaService;
   let religiaoService: ReligiaoService;
@@ -58,6 +61,7 @@ describe('DadosPessoais Management Update Component', () => {
     fixture = TestBed.createComponent(DadosPessoaisUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     dadosPessoaisService = TestBed.inject(DadosPessoaisService);
+    tipoPessoaService = TestBed.inject(TipoPessoaService);
     estadoCivilService = TestBed.inject(EstadoCivilService);
     racaService = TestBed.inject(RacaService);
     religiaoService = TestBed.inject(ReligiaoService);
@@ -70,6 +74,24 @@ describe('DadosPessoais Management Update Component', () => {
   });
 
   describe('ngOnInit', () => {
+    it('Should call tipoPessoa query and add missing value', () => {
+      const dadosPessoais: IDadosPessoais = { id: 456 };
+      const tipoPessoa: ITipoPessoa = { id: 5731 };
+      dadosPessoais.tipoPessoa = tipoPessoa;
+
+      const tipoPessoaCollection: ITipoPessoa[] = [{ id: 41894 }];
+      jest.spyOn(tipoPessoaService, 'query').mockReturnValue(of(new HttpResponse({ body: tipoPessoaCollection })));
+      const expectedCollection: ITipoPessoa[] = [tipoPessoa, ...tipoPessoaCollection];
+      jest.spyOn(tipoPessoaService, 'addTipoPessoaToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ dadosPessoais });
+      comp.ngOnInit();
+
+      expect(tipoPessoaService.query).toHaveBeenCalled();
+      expect(tipoPessoaService.addTipoPessoaToCollectionIfMissing).toHaveBeenCalledWith(tipoPessoaCollection, tipoPessoa);
+      expect(comp.tipoPessoasCollection).toEqual(expectedCollection);
+    });
+
     it('Should call estadoCivil query and add missing value', () => {
       const dadosPessoais: IDadosPessoais = { id: 456 };
       const estadoCivil: IEstadoCivil = { id: 96595 };
@@ -199,6 +221,8 @@ describe('DadosPessoais Management Update Component', () => {
 
     it('Should update editForm', () => {
       const dadosPessoais: IDadosPessoais = { id: 456 };
+      const tipoPessoa: ITipoPessoa = { id: 79706 };
+      dadosPessoais.tipoPessoa = tipoPessoa;
       const estadoCivil: IEstadoCivil = { id: 3663 };
       dadosPessoais.estadoCivil = estadoCivil;
       const raca: IRaca = { id: 58775 };
@@ -218,6 +242,7 @@ describe('DadosPessoais Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(dadosPessoais));
+      expect(comp.tipoPessoasCollection).toContain(tipoPessoa);
       expect(comp.estadoCivilsCollection).toContain(estadoCivil);
       expect(comp.racasCollection).toContain(raca);
       expect(comp.religiaosCollection).toContain(religiao);
@@ -293,6 +318,14 @@ describe('DadosPessoais Management Update Component', () => {
   });
 
   describe('Tracking relationships identifiers', () => {
+    describe('trackTipoPessoaById', () => {
+      it('Should return tracked TipoPessoa primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackTipoPessoaById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
     describe('trackEstadoCivilById', () => {
       it('Should return tracked EstadoCivil primary key', () => {
         const entity = { id: 123 };

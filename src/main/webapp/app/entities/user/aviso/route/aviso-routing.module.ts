@@ -6,6 +6,7 @@ import { AvisoComponent } from '../list/aviso.component';
 import { AvisoDetailComponent } from '../detail/aviso-detail.component';
 import { AvisoUpdateComponent } from '../update/aviso-update.component';
 import { AvisoRoutingResolveService } from './aviso-routing-resolve.service';
+import { AvisoRoutingResolvePessoaService } from './aviso-routing-resolve-pessoa.service';
 
 const avisoRoute: Routes = [
   {
@@ -13,6 +14,17 @@ const avisoRoute: Routes = [
     component: AvisoComponent,
     data: {
       defaultSort: 'id,asc',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'dadospessoais/:idDadospessoais',
+    component: AvisoComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
+    resolve: {
+      dadosPessoais: AvisoRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },
@@ -29,6 +41,15 @@ const avisoRoute: Routes = [
     component: AvisoUpdateComponent,
     resolve: {
       aviso: AvisoRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'new/dadospessoais/:idDadospessoais',
+    component: AvisoUpdateComponent,
+    resolve: {
+      aviso: AvisoRoutingResolveService,
+      dadosPessoais: AvisoRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },

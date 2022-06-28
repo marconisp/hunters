@@ -6,6 +6,7 @@ import { FotoDocumentoComponent } from '../list/foto-documento.component';
 import { FotoDocumentoDetailComponent } from '../detail/foto-documento-detail.component';
 import { FotoDocumentoUpdateComponent } from '../update/foto-documento-update.component';
 import { FotoDocumentoRoutingResolveService } from './foto-documento-routing-resolve.service';
+import { FotoDocumentoRoutingResolvePessoaService } from './foto-documento-routing-resolve-personal.service';
 
 const fotoDocumentoRoute: Routes = [
   {
@@ -13,6 +14,17 @@ const fotoDocumentoRoute: Routes = [
     component: FotoDocumentoComponent,
     data: {
       defaultSort: 'id,asc',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'documento/:idDocumento',
+    component: FotoDocumentoComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
+    resolve: {
+      documento: FotoDocumentoRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },
@@ -29,6 +41,15 @@ const fotoDocumentoRoute: Routes = [
     component: FotoDocumentoUpdateComponent,
     resolve: {
       fotoDocumento: FotoDocumentoRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'new/documento/:idDocumento',
+    component: FotoDocumentoUpdateComponent,
+    resolve: {
+      fotoDocumento: FotoDocumentoRoutingResolveService,
+      documento: FotoDocumentoRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },

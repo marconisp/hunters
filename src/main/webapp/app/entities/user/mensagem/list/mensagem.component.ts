@@ -10,6 +10,8 @@ import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants
 import { MensagemService } from '../service/mensagem.service';
 import { MensagemDeleteDialogComponent } from '../delete/mensagem-delete-dialog.component';
 
+import { IDadosPessoais, DadosPessoais } from '../../dados-pessoais/dados-pessoais.model';
+
 @Component({
   selector: 'jhi-mensagem',
   templateUrl: './mensagem.component.html',
@@ -23,6 +25,7 @@ export class MensagemComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  dadosPessoais?: IDadosPessoais;
 
   constructor(
     protected mensagemService: MensagemService,
@@ -34,9 +37,9 @@ export class MensagemComponent implements OnInit {
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
-
+    const id = this.dadosPessoais?.id;
     this.mensagemService
-      .query({
+      .findAllByPessoaId(id ?? 0, {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
@@ -54,6 +57,9 @@ export class MensagemComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ dadosPessoais }) => {
+      this.dadosPessoais = dadosPessoais ?? new DadosPessoais();
+    });
     this.handleNavigation();
   }
 

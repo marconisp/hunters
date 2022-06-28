@@ -10,8 +10,7 @@ import { FotoDocumentoService } from '../service/foto-documento.service';
 import { AlertError } from 'app/shared/alert/alert-error.model';
 import { EventManager, EventWithContent } from 'app/core/util/event-manager.service';
 import { DataUtils, FileLoadError } from 'app/core/util/data-util.service';
-import { IDocumento } from 'app/entities/user/documento/documento.model';
-import { DocumentoService } from 'app/entities/user/documento/service/documento.service';
+import { IDocumento, Documento } from 'app/entities/user/documento/documento.model';
 
 @Component({
   selector: 'jhi-foto-documento-update',
@@ -20,30 +19,27 @@ import { DocumentoService } from 'app/entities/user/documento/service/documento.
 export class FotoDocumentoUpdateComponent implements OnInit {
   isSaving = false;
 
-  documentosSharedCollection: IDocumento[] = [];
+  documento?: IDocumento;
 
   editForm = this.fb.group({
     id: [],
     conteudo: [null, [Validators.required]],
     conteudoContentType: [],
-    documento: [],
   });
 
   constructor(
     protected dataUtils: DataUtils,
     protected eventManager: EventManager,
     protected fotoDocumentoService: FotoDocumentoService,
-    protected documentoService: DocumentoService,
     protected elementRef: ElementRef,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ fotoDocumento }) => {
+    this.activatedRoute.data.subscribe(({ fotoDocumento, documento }) => {
       this.updateForm(fotoDocumento);
-
-      this.loadRelationshipsOptions();
+      this.documento = documento ?? new Documento();
     });
   }
 
@@ -79,6 +75,8 @@ export class FotoDocumentoUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const fotoDocumento = this.createFromForm();
+
+    fotoDocumento.documento = this.documento;
     if (fotoDocumento.id !== undefined) {
       this.subscribeToSaveResponse(this.fotoDocumentoService.update(fotoDocumento));
     } else {
@@ -114,25 +112,7 @@ export class FotoDocumentoUpdateComponent implements OnInit {
       id: fotoDocumento.id,
       conteudo: fotoDocumento.conteudo,
       conteudoContentType: fotoDocumento.conteudoContentType,
-      documento: fotoDocumento.documento,
     });
-
-    this.documentosSharedCollection = this.documentoService.addDocumentoToCollectionIfMissing(
-      this.documentosSharedCollection,
-      fotoDocumento.documento
-    );
-  }
-
-  protected loadRelationshipsOptions(): void {
-    this.documentoService
-      .query()
-      .pipe(map((res: HttpResponse<IDocumento[]>) => res.body ?? []))
-      .pipe(
-        map((documentos: IDocumento[]) =>
-          this.documentoService.addDocumentoToCollectionIfMissing(documentos, this.editForm.get('documento')!.value)
-        )
-      )
-      .subscribe((documentos: IDocumento[]) => (this.documentosSharedCollection = documentos));
   }
 
   protected createFromForm(): IFotoDocumento {
@@ -141,7 +121,6 @@ export class FotoDocumentoUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       conteudoContentType: this.editForm.get(['conteudoContentType'])!.value,
       conteudo: this.editForm.get(['conteudo'])!.value,
-      documento: this.editForm.get(['documento'])!.value,
     };
   }
 }

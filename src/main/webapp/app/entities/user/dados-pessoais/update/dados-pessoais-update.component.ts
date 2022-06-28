@@ -1,26 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
+import { IFoto, Foto } from '../../../foto/foto/foto.model';
 import { IDadosPessoais, DadosPessoais } from '../dados-pessoais.model';
 import { DadosPessoaisService } from '../service/dados-pessoais.service';
-import { IEstadoCivil } from 'app/entities/config/estado-civil/estado-civil.model';
-import { EstadoCivilService } from 'app/entities/config/estado-civil/service/estado-civil.service';
-import { IRaca } from 'app/entities/config/raca/raca.model';
-import { RacaService } from 'app/entities/config/raca/service/raca.service';
-import { IReligiao } from 'app/entities/config/religiao/religiao.model';
-import { ReligiaoService } from 'app/entities/config/religiao/service/religiao.service';
-import { IFoto } from 'app/entities/foto/foto/foto.model';
-import { FotoService } from 'app/entities/foto/foto/service/foto.service';
-import { IFotoAvatar } from 'app/entities/foto/foto-avatar/foto-avatar.model';
-import { FotoAvatarService } from 'app/entities/foto/foto-avatar/service/foto-avatar.service';
-import { IFotoIcon } from 'app/entities/foto/foto-icon/foto-icon.model';
-import { FotoIconService } from 'app/entities/foto/foto-icon/service/foto-icon.service';
-import { IUser1 } from 'app/entities/user/user-1/user-1.model';
-import { User1Service } from 'app/entities/user/user-1/service/user-1.service';
+import { IEstadoCivil } from '../../../config/estado-civil/estado-civil.model';
+import { EstadoCivilService } from '../../../config/estado-civil/service/estado-civil.service';
+import { IRaca } from '../../../config/raca/raca.model';
+import { RacaService } from '../../../config/raca/service/raca.service';
+import { IReligiao } from '../../../config/religiao/religiao.model';
+import { ReligiaoService } from '../../../config/religiao/service/religiao.service';
+import { TipoPessoaService } from '../../../config/tipo-pessoa/service/tipo-pessoa.service';
+
+import { AlertError } from '../../../../shared/alert/alert-error.model';
+import { DataUtils, FileLoadError } from '../../../../core/util/data-util.service';
+import { EventManager, EventWithContent } from '../../../../core/util/event-manager.service';
+import { ITipoPessoa } from '../../../config/tipo-pessoa/tipo-pessoa.model';
 
 @Component({
   selector: 'jhi-dados-pessoais-update',
@@ -28,14 +27,12 @@ import { User1Service } from 'app/entities/user/user-1/service/user-1.service';
 })
 export class DadosPessoaisUpdateComponent implements OnInit {
   isSaving = false;
+  isFotoChange = false;
 
   estadoCivilsCollection: IEstadoCivil[] = [];
   racasCollection: IRaca[] = [];
   religiaosCollection: IReligiao[] = [];
-  fotosCollection: IFoto[] = [];
-  fotoAvatarsCollection: IFotoAvatar[] = [];
-  fotoIconsCollection: IFotoIcon[] = [];
-  user1sSharedCollection: IUser1[] = [];
+  tipoPessoasCollection: ITipoPessoa[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -47,25 +44,25 @@ export class DadosPessoaisUpdateComponent implements OnInit {
     celular: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(20)]],
     whatsapp: [null, [Validators.minLength(8), Validators.maxLength(20)]],
     email: [null, [Validators.required, Validators.minLength(9), Validators.maxLength(50)]],
+    tipoPessoa: [null, Validators.required],
     estadoCivil: [null, Validators.required],
     raca: [null, Validators.required],
     religiao: [null, Validators.required],
-    foto: [],
-    fotoAvatar: [],
-    fotoIcon: [],
-    user: [],
+    idFoto: [],
+    conteudo: [],
+    conteudoContentType: [],
   });
 
   constructor(
     protected dadosPessoaisService: DadosPessoaisService,
+    protected tipoPessoaService: TipoPessoaService,
     protected estadoCivilService: EstadoCivilService,
     protected racaService: RacaService,
     protected religiaoService: ReligiaoService,
-    protected fotoService: FotoService,
-    protected fotoAvatarService: FotoAvatarService,
-    protected fotoIconService: FotoIconService,
-    protected user1Service: User1Service,
     protected activatedRoute: ActivatedRoute,
+    protected dataUtils: DataUtils,
+    protected eventManager: EventManager,
+    protected elementRef: ElementRef,
     protected fb: FormBuilder
   ) {}
 
@@ -84,11 +81,20 @@ export class DadosPessoaisUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const dadosPessoais = this.createFromForm();
+
+    if (this.isFotoChange) {
+      dadosPessoais.foto = this.createFromFoto();
+    }
+
     if (dadosPessoais.id !== undefined) {
       this.subscribeToSaveResponse(this.dadosPessoaisService.update(dadosPessoais));
     } else {
       this.subscribeToSaveResponse(this.dadosPessoaisService.create(dadosPessoais));
     }
+  }
+
+  trackTipoPessoaById(_index: number, item: ITipoPessoa): number {
+    return item.id!;
   }
 
   trackEstadoCivilById(_index: number, item: IEstadoCivil): number {
@@ -103,20 +109,35 @@ export class DadosPessoaisUpdateComponent implements OnInit {
     return item.id!;
   }
 
-  trackFotoById(_index: number, item: IFoto): number {
-    return item.id!;
+  byteSize(base64String: string): string {
+    return this.dataUtils.byteSize(base64String);
   }
 
-  trackFotoAvatarById(_index: number, item: IFotoAvatar): number {
-    return item.id!;
+  openFile(base64String: string, contentType: string | null | undefined): void {
+    this.dataUtils.openFile(base64String, contentType);
   }
 
-  trackFotoIconById(_index: number, item: IFotoIcon): number {
-    return item.id!;
+  setFileData(event: Event, field: string, isImage: boolean): void {
+    this.isFotoChange = true;
+    this.dataUtils.loadFileToForm(event, this.editForm, field, isImage).subscribe({
+      error: (err: FileLoadError) => this.errorSetFileData(err),
+    });
   }
 
-  trackUser1ById(_index: number, item: IUser1): number {
-    return item.id!;
+  clearInputImage(field: string, fieldContentType: string, idInput: string): void {
+    this.editForm.patchValue({
+      [field]: null,
+      [fieldContentType]: null,
+    });
+    if (idInput && this.elementRef.nativeElement.querySelector('#' + idInput)) {
+      this.elementRef.nativeElement.querySelector('#' + idInput).value = null;
+    }
+    this.isFotoChange = true;
+  }
+
+  protected errorSetFileData(err: FileLoadError): void {
+    this.eventManager.broadcast(new EventWithContent<AlertError>('userApp.error', { ...err, key: 'error.file.' + err.key }));
+    this.isFotoChange = false;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IDadosPessoais>>): void {
@@ -149,31 +170,38 @@ export class DadosPessoaisUpdateComponent implements OnInit {
       celular: dadosPessoais.celular,
       whatsapp: dadosPessoais.whatsapp,
       email: dadosPessoais.email,
+      tipoPessoa: dadosPessoais.tipoPessoa,
       estadoCivil: dadosPessoais.estadoCivil,
       raca: dadosPessoais.raca,
       religiao: dadosPessoais.religiao,
-      foto: dadosPessoais.foto,
-      fotoAvatar: dadosPessoais.fotoAvatar,
-      fotoIcon: dadosPessoais.fotoIcon,
-      user: dadosPessoais.user,
+      idFoto: dadosPessoais.foto ? dadosPessoais.foto.id : null,
+      conteudo: dadosPessoais.foto ? dadosPessoais.foto.conteudo : [null, [Validators.required]],
+      conteudoContentType: dadosPessoais.foto ? dadosPessoais.foto.conteudoContentType : [],
     });
 
+    this.tipoPessoasCollection = this.tipoPessoaService.addTipoPessoaToCollectionIfMissing(
+      this.tipoPessoasCollection,
+      dadosPessoais.tipoPessoa
+    );
     this.estadoCivilsCollection = this.estadoCivilService.addEstadoCivilToCollectionIfMissing(
       this.estadoCivilsCollection,
       dadosPessoais.estadoCivil
     );
     this.racasCollection = this.racaService.addRacaToCollectionIfMissing(this.racasCollection, dadosPessoais.raca);
     this.religiaosCollection = this.religiaoService.addReligiaoToCollectionIfMissing(this.religiaosCollection, dadosPessoais.religiao);
-    this.fotosCollection = this.fotoService.addFotoToCollectionIfMissing(this.fotosCollection, dadosPessoais.foto);
-    this.fotoAvatarsCollection = this.fotoAvatarService.addFotoAvatarToCollectionIfMissing(
-      this.fotoAvatarsCollection,
-      dadosPessoais.fotoAvatar
-    );
-    this.fotoIconsCollection = this.fotoIconService.addFotoIconToCollectionIfMissing(this.fotoIconsCollection, dadosPessoais.fotoIcon);
-    this.user1sSharedCollection = this.user1Service.addUser1ToCollectionIfMissing(this.user1sSharedCollection, dadosPessoais.user);
   }
 
   protected loadRelationshipsOptions(): void {
+    this.tipoPessoaService
+      .query({ filter: 'tipoPessoa-is-null' })
+      .pipe(map((res: HttpResponse<ITipoPessoa[]>) => res.body ?? []))
+      .pipe(
+        map((tipoPessoas: ITipoPessoa[]) =>
+          this.tipoPessoaService.addTipoPessoaToCollectionIfMissing(tipoPessoas, this.editForm.get('tipoPessoa')!.value)
+        )
+      )
+      .subscribe((tipoPessoas: ITipoPessoa[]) => (this.tipoPessoasCollection = tipoPessoas));
+
     this.estadoCivilService
       .query({ filter: 'dadospessoais-is-null' })
       .pipe(map((res: HttpResponse<IEstadoCivil[]>) => res.body ?? []))
@@ -199,38 +227,6 @@ export class DadosPessoaisUpdateComponent implements OnInit {
         )
       )
       .subscribe((religiaos: IReligiao[]) => (this.religiaosCollection = religiaos));
-
-    this.fotoService
-      .query({ filter: 'dadospessoais-is-null' })
-      .pipe(map((res: HttpResponse<IFoto[]>) => res.body ?? []))
-      .pipe(map((fotos: IFoto[]) => this.fotoService.addFotoToCollectionIfMissing(fotos, this.editForm.get('foto')!.value)))
-      .subscribe((fotos: IFoto[]) => (this.fotosCollection = fotos));
-
-    this.fotoAvatarService
-      .query({ filter: 'dadospessoais-is-null' })
-      .pipe(map((res: HttpResponse<IFotoAvatar[]>) => res.body ?? []))
-      .pipe(
-        map((fotoAvatars: IFotoAvatar[]) =>
-          this.fotoAvatarService.addFotoAvatarToCollectionIfMissing(fotoAvatars, this.editForm.get('fotoAvatar')!.value)
-        )
-      )
-      .subscribe((fotoAvatars: IFotoAvatar[]) => (this.fotoAvatarsCollection = fotoAvatars));
-
-    this.fotoIconService
-      .query({ filter: 'dadospessoais-is-null' })
-      .pipe(map((res: HttpResponse<IFotoIcon[]>) => res.body ?? []))
-      .pipe(
-        map((fotoIcons: IFotoIcon[]) =>
-          this.fotoIconService.addFotoIconToCollectionIfMissing(fotoIcons, this.editForm.get('fotoIcon')!.value)
-        )
-      )
-      .subscribe((fotoIcons: IFotoIcon[]) => (this.fotoIconsCollection = fotoIcons));
-
-    this.user1Service
-      .query()
-      .pipe(map((res: HttpResponse<IUser1[]>) => res.body ?? []))
-      .pipe(map((user1s: IUser1[]) => this.user1Service.addUser1ToCollectionIfMissing(user1s, this.editForm.get('user')!.value)))
-      .subscribe((user1s: IUser1[]) => (this.user1sSharedCollection = user1s));
   }
 
   protected createFromForm(): IDadosPessoais {
@@ -245,13 +241,19 @@ export class DadosPessoaisUpdateComponent implements OnInit {
       celular: this.editForm.get(['celular'])!.value,
       whatsapp: this.editForm.get(['whatsapp'])!.value,
       email: this.editForm.get(['email'])!.value,
+      tipoPessoa: this.editForm.get(['tipoPessoa'])!.value,
       estadoCivil: this.editForm.get(['estadoCivil'])!.value,
       raca: this.editForm.get(['raca'])!.value,
       religiao: this.editForm.get(['religiao'])!.value,
-      foto: this.editForm.get(['foto'])!.value,
-      fotoAvatar: this.editForm.get(['fotoAvatar'])!.value,
-      fotoIcon: this.editForm.get(['fotoIcon'])!.value,
-      user: this.editForm.get(['user'])!.value,
+    };
+  }
+
+  protected createFromFoto(): IFoto {
+    return {
+      ...new Foto(),
+      id: this.editForm.get(['idFoto'])!.value,
+      conteudo: this.editForm.get(['conteudo'])!.value,
+      conteudoContentType: this.editForm.get(['conteudoContentType'])!.value,
     };
   }
 }

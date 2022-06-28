@@ -44,7 +44,18 @@ public class User1 implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(
         value = {
-            "estadoCivil", "raca", "religiao", "foto", "fotoAvatar", "fotoIcon", "mensagems", "avisos", "documentos", "enderecos", "user",
+            "tipoPessoa",
+            "estadoCivil",
+            "raca",
+            "religiao",
+            "foto",
+            "fotoAvatar",
+            "fotoIcon",
+            "mensagems",
+            "avisos",
+            "documentos",
+            "enderecos",
+            "user",
         },
         allowSetters = true
     )
@@ -106,62 +117,5 @@ public class User1 implements Serializable {
 
     public Set<DadosPessoais> getDadosPessoais() {
         return this.dadosPessoais;
-    }
-
-    public void setDadosPessoais(Set<DadosPessoais> dadosPessoais) {
-        if (this.dadosPessoais != null) {
-            this.dadosPessoais.forEach(i -> i.setUser(null));
-        }
-        if (dadosPessoais != null) {
-            dadosPessoais.forEach(i -> i.setUser(this));
-        }
-        this.dadosPessoais = dadosPessoais;
-    }
-
-    public User1 dadosPessoais(Set<DadosPessoais> dadosPessoais) {
-        this.setDadosPessoais(dadosPessoais);
-        return this;
-    }
-
-    public User1 addDadosPessoais(DadosPessoais dadosPessoais) {
-        this.dadosPessoais.add(dadosPessoais);
-        dadosPessoais.setUser(this);
-        return this;
-    }
-
-    public User1 removeDadosPessoais(DadosPessoais dadosPessoais) {
-        this.dadosPessoais.remove(dadosPessoais);
-        dadosPessoais.setUser(null);
-        return this;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof User1)) {
-            return false;
-        }
-        return id != null && id.equals(((User1) o).id);
-    }
-
-    @Override
-    public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
-        return getClass().hashCode();
-    }
-
-    // prettier-ignore
-    @Override
-    public String toString() {
-        return "User1{" +
-            "id=" + getId() +
-            ", firstName='" + getFirstName() + "'" +
-            ", lastName='" + getLastName() + "'" +
-            ", email='" + getEmail() + "'" +
-            "}";
     }
 }

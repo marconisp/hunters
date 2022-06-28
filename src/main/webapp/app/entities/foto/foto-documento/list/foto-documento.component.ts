@@ -5,6 +5,7 @@ import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IFotoDocumento } from '../foto-documento.model';
+import { IDocumento, Documento } from 'app/entities/user/documento/documento.model';
 
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { FotoDocumentoService } from '../service/foto-documento.service';
@@ -24,6 +25,7 @@ export class FotoDocumentoComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  documento?: IDocumento;
 
   constructor(
     protected fotoDocumentoService: FotoDocumentoService,
@@ -36,9 +38,9 @@ export class FotoDocumentoComponent implements OnInit {
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
-
+    const id = this.documento?.id;
     this.fotoDocumentoService
-      .query({
+      .findAllByPessoaId(id ?? 0, {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
@@ -56,6 +58,9 @@ export class FotoDocumentoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ documento }) => {
+      this.documento = documento ?? new Documento();
+    });
     this.handleNavigation();
   }
 

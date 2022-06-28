@@ -34,7 +34,9 @@
       "TipoMensagem",
       "Raca",
       "Religiao",
-      "EstadoCivil"
+      "EstadoCivil",
+      "TipoPessoa",
+      "TipoDocumento"
     ],
     "entitySuffix": "",
     "gradleEnterpriseHost": "",
@@ -42,7 +44,7 @@
     "jhipsterVersion": "7.8.1",
     "jwtSecretKey": "N2ZhOWVhMmQyMjA3OTlhMGMxOWZlOWQyZWU3OTgyZWNlNTg1MzYxYTE5ZWI4ZTNhYTNkMmQwZmExZGJkNWQ3MmY2MDcxYTYyYTU3NGEwN2I1NWZjNWQyOWY5YTI2ODdiNTAzNjdjYzNmZjgzYjU5MTUyMTYyNDRjM2UxZTYwMGI=",
     "languages": ["pt-br", "en", "es"],
-    "lastLiquibaseTimestamp": 1655989514000,
+    "lastLiquibaseTimestamp": 1655993145000,
     "messageBroker": false,
     "nativeLanguage": "pt-br",
     "otherModules": [],

@@ -5,17 +5,15 @@
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="hunterappApp.userDocumento.home.refreshListLabel">Refresh List</span>
       </button>
 
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-documento"
-        [routerLink]="['/documento/new']"
+        [routerLink]="['/documento/new/dadospessoais/', dadosPessoais?.id]"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="hunterappApp.userDocumento.home.createLabel"> Create a new Documento </span>
       </button>
     </div>
   </h2>
@@ -36,10 +34,9 @@
           <th scope="col" jhiSortBy="descricao">
             <span jhiTranslate="hunterappApp.userDocumento.descricao">Descricao</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="dadosPessoais.id">
-            <span jhiTranslate="hunterappApp.userDocumento.dadosPessoais">Dados Pessoais</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="tipoDocumento.id">
+            <span jhiTranslate="hunterappApp.userDocumento.tipoDocumento">Tipo Documento</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -49,12 +46,21 @@
           </td>
           <td>{{ documento.descricao }}</td>
           <td>
-            <div *ngIf="documento.dadosPessoais">
-              <a [routerLink]="['/dados-pessoais', documento.dadosPessoais?.id, 'view']">{{ documento.dadosPessoais?.id }}</a>
+            <div *ngIf="documento.tipoDocumento">
+              {{ documento.tipoDocumento?.codigo }}
             </div>
           </td>
           <td class="text-end">
             <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/foto-documento/documento', documento.id]"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="camera"></fa-icon>
+              </button>
+
               <button
                 type="submit"
                 [routerLink]="['/documento', documento.id, 'view']"
@@ -62,7 +68,6 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
               <button
@@ -72,12 +77,10 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
               </button>
 
               <button type="submit" (click)="delete(documento)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
               </button>
             </div>
           </td>

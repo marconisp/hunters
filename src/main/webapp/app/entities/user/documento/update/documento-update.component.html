@@ -48,24 +48,24 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDocumento.dadosPessoais" for="field_dadosPessoais">Dados Pessoais</label>
+          <label class="form-label" jhiTranslate="hunterappApp.userDocumento.tipoDocumento" for="field_tipoDocumento">Tipo Documento</label>
           <select
             class="form-control"
-            id="field_dadosPessoais"
-            data-cy="dadosPessoais"
-            name="dadosPessoais"
-            formControlName="dadosPessoais"
+            id="field_tipoDocumento"
+            data-cy="tipoDocumento"
+            name="tipoDocumento"
+            formControlName="tipoDocumento"
           >
             <option [ngValue]="null"></option>
             <option
               [ngValue]="
-                dadosPessoaisOption.id === editForm.get('dadosPessoais')!.value?.id
-                  ? editForm.get('dadosPessoais')!.value
-                  : dadosPessoaisOption
+                tipoDocumentoOption.id === editForm.get('tipoDocumento')!.value?.id
+                  ? editForm.get('tipoDocumento')!.value
+                  : tipoDocumentoOption
               "
-              *ngFor="let dadosPessoaisOption of dadosPessoaisSharedCollection; trackBy: trackDadosPessoaisById"
+              *ngFor="let tipoDocumentoOption of tipoDocumentosCollection; trackBy: trackTipoDocumentoById"
             >
-              {{ dadosPessoaisOption.id }}
+              {{ tipoDocumentoOption.codigo }}
             </option>
           </select>
         </div>

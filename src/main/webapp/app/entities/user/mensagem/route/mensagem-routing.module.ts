@@ -6,6 +6,7 @@ import { MensagemComponent } from '../list/mensagem.component';
 import { MensagemDetailComponent } from '../detail/mensagem-detail.component';
 import { MensagemUpdateComponent } from '../update/mensagem-update.component';
 import { MensagemRoutingResolveService } from './mensagem-routing-resolve.service';
+import { MensagemRoutingResolvePessoaService } from './mensagem-routing-resolve-pessoa.service';
 
 const mensagemRoute: Routes = [
   {
@@ -13,6 +14,17 @@ const mensagemRoute: Routes = [
     component: MensagemComponent,
     data: {
       defaultSort: 'id,asc',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'dadospessoais/:idDadospessoais',
+    component: MensagemComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
+    resolve: {
+      dadosPessoais: MensagemRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },
@@ -29,6 +41,15 @@ const mensagemRoute: Routes = [
     component: MensagemUpdateComponent,
     resolve: {
       mensagem: MensagemRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'new/dadospessoais/:idDadospessoais',
+    component: MensagemUpdateComponent,
+    resolve: {
+      mensagem: MensagemRoutingResolveService,
+      dadosPessoais: MensagemRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },

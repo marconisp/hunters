@@ -36,6 +36,11 @@ export class FotoDocumentoService {
     return this.http.get<IFotoDocumento>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findAllByPessoaId(id: number, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IFotoDocumento[]>(`${this.resourceUrl}/documento/${id}`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IFotoDocumento[]>(this.resourceUrl, { params: options, observe: 'response' });

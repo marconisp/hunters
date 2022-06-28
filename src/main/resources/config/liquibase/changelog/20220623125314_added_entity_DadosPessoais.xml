@@ -38,14 +38,17 @@
             <column name="email" type="varchar(50)">
                 <constraints nullable="false" />
             </column>
+            <column name="tipo_pessoa_id" type="bigint">
+                <constraints nullable="false" unique="false" />
+            </column>
             <column name="estado_civil_id" type="bigint">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_dados_pessoais__estado_civil_id" />
+                <constraints nullable="false" unique="false" />
             </column>
             <column name="raca_id" type="bigint">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_dados_pessoais__raca_id" />
+                <constraints nullable="false" unique="false" />
             </column>
             <column name="religiao_id" type="bigint">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_dados_pessoais__religiao_id" />
+                <constraints nullable="false" unique="false" />
             </column>
             <column name="foto_id" type="bigint">
                 <constraints nullable="true" unique="true" uniqueConstraintName="ux_dados_pessoais__foto_id" />
@@ -88,6 +91,7 @@
             <column name="celular" type="string"/>
             <column name="whatsapp" type="string"/>
             <column name="email" type="string"/>
+            <column name="tipo_pessoa_id" type="numeric"/>
             <column name="estado_civil_id" type="numeric"/>
             <column name="raca_id" type="numeric"/>
             <column name="religiao_id" type="numeric"/>

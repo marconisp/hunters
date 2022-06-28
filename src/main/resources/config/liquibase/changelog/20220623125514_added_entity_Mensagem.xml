@@ -24,7 +24,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="tipo_id" type="bigint">
-                <constraints nullable="false" unique="true" uniqueConstraintName="ux_mensagem__tipo_id" />
+                <constraints nullable="false" unique="false" />
             </column>
             <column name="dados_pessoais_id" type="bigint">
                 <constraints nullable="true" />

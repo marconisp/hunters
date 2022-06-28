@@ -1,7 +1,11 @@
 package br.com.jhisolution.user.hunters.repository;
 
+import br.com.jhisolution.user.hunters.domain.Documento;
 import br.com.jhisolution.user.hunters.domain.FotoDocumento;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +13,11 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface FotoDocumentoRepository extends JpaRepository<FotoDocumento, Long> {}
+public interface FotoDocumentoRepository extends JpaRepository<FotoDocumento, Long> {
+    default Page<FotoDocumento> findAllFotoDocumentosByDocumentoId(Long id, Pageable pageable) {
+        return this.findAllFotoByDocumentoId(id, pageable);
+    }
+
+    @Query("select DISTINCT documento.fotos from Documento documento join documento.fotos where documento.id =:id")
+    Page<FotoDocumento> findAllFotoByDocumentoId(@Param("id") Long id, Pageable pageable);
+}

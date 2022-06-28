@@ -1,8 +1,11 @@
 package br.com.jhisolution.user.hunters.service.impl;
 
+import br.com.jhisolution.user.hunters.domain.DadosPessoais;
 import br.com.jhisolution.user.hunters.domain.Endereco;
+import br.com.jhisolution.user.hunters.repository.DadosPessoaisRepository;
 import br.com.jhisolution.user.hunters.repository.EnderecoRepository;
 import br.com.jhisolution.user.hunters.service.EnderecoService;
+import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +24,22 @@ public class EnderecoServiceImpl implements EnderecoService {
     private final Logger log = LoggerFactory.getLogger(EnderecoServiceImpl.class);
 
     private final EnderecoRepository enderecoRepository;
+    private final DadosPessoaisRepository dadosPessoaisRepository;
 
-    public EnderecoServiceImpl(EnderecoRepository enderecoRepository) {
+    public EnderecoServiceImpl(EnderecoRepository enderecoRepository, DadosPessoaisRepository dadosPessoaisRepository) {
         this.enderecoRepository = enderecoRepository;
+        this.dadosPessoaisRepository = dadosPessoaisRepository;
     }
 
     @Override
     public Endereco save(Endereco endereco) {
         log.debug("Request to save Endereco : {}", endereco);
+
+        if (Objects.nonNull(endereco.getDadosPessoais()) && Objects.nonNull(endereco.getDadosPessoais().getId())) {
+            DadosPessoais dadosPessoais = dadosPessoaisRepository.findById(endereco.getDadosPessoais().getId()).get();
+            endereco.setDadosPessoais(dadosPessoais);
+        }
+
         return enderecoRepository.save(endereco);
     }
 
@@ -95,6 +106,13 @@ public class EnderecoServiceImpl implements EnderecoService {
     public Page<Endereco> findAll(Pageable pageable) {
         log.debug("Request to get all Enderecos");
         return enderecoRepository.findAll(pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Endereco> findAllByDadosPessoaisId(Long id, Pageable pageable) {
+        log.debug("Request to get all Enderecos by DadoPessoal id");
+        return enderecoRepository.findAllByDadosPessoaisId(id, pageable);
     }
 
     @Override

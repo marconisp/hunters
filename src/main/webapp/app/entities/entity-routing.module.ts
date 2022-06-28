@@ -74,6 +74,16 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'hunterappApp.configEstadoCivil.home.title' },
         loadChildren: () => import('./config/estado-civil/estado-civil.module').then(m => m.EstadoCivilModule),
       },
+      {
+        path: 'tipo-pessoa',
+        data: { pageTitle: 'hunterappApp.configTipoPessoa.home.title' },
+        loadChildren: () => import('./config/tipo-pessoa/tipo-pessoa.module').then(m => m.TipoPessoaModule),
+      },
+      {
+        path: 'tipo-documento',
+        data: { pageTitle: 'hunterappApp.configTipoDocumento.home.title' },
+        loadChildren: () => import('./config/tipo-documento/tipo-documento.module').then(m => m.TipoDocumentoModule),
+      },
       /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
     ]),
   ],

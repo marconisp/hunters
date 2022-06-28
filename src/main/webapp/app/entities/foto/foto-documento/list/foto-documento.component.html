@@ -5,17 +5,15 @@
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="hunterappApp.fotoFotoDocumento.home.refreshListLabel">Refresh List</span>
       </button>
 
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-foto-documento"
-        [routerLink]="['/foto-documento/new']"
+        [routerLink]="['/foto-documento/new/documento', documento?.id]"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="hunterappApp.fotoFotoDocumento.home.createLabel"> Create a new Foto Documento </span>
       </button>
     </div>
   </h2>
@@ -36,9 +34,6 @@
           <th scope="col" jhiSortBy="conteudo">
             <span jhiTranslate="hunterappApp.fotoFotoDocumento.conteudo">Conteudo</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="documento.id">
-            <span jhiTranslate="hunterappApp.fotoFotoDocumento.documento">Documento</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -57,11 +52,6 @@
             </a>
             <span *ngIf="fotoDocumento.conteudo">{{ fotoDocumento.conteudoContentType }}, {{ byteSize(fotoDocumento.conteudo) }}</span>
           </td>
-          <td>
-            <div *ngIf="fotoDocumento.documento">
-              <a [routerLink]="['/documento', fotoDocumento.documento?.id, 'view']">{{ fotoDocumento.documento?.id }}</a>
-            </div>
-          </td>
           <td class="text-end">
             <div class="btn-group">
               <button
@@ -71,7 +61,6 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
               <button
@@ -81,12 +70,10 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
               </button>
 
               <button type="submit" (click)="delete(fotoDocumento)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
               </button>
             </div>
           </td>

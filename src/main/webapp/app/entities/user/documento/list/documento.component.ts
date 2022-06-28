@@ -5,6 +5,7 @@ import { combineLatest } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { IDocumento } from '../documento.model';
+import { IDadosPessoais, DadosPessoais } from '../../dados-pessoais/dados-pessoais.model';
 
 import { ASC, DESC, ITEMS_PER_PAGE, SORT } from 'app/config/pagination.constants';
 import { DocumentoService } from '../service/documento.service';
@@ -23,6 +24,7 @@ export class DocumentoComponent implements OnInit {
   predicate!: string;
   ascending!: boolean;
   ngbPaginationPage = 1;
+  dadosPessoais?: IDadosPessoais;
 
   constructor(
     protected documentoService: DocumentoService,
@@ -34,9 +36,9 @@ export class DocumentoComponent implements OnInit {
   loadPage(page?: number, dontNavigate?: boolean): void {
     this.isLoading = true;
     const pageToLoad: number = page ?? this.page ?? 1;
-
+    const id = this.dadosPessoais?.id;
     this.documentoService
-      .query({
+      .findAllByPessoaId(id ?? 0, {
         page: pageToLoad - 1,
         size: this.itemsPerPage,
         sort: this.sort(),
@@ -54,6 +56,9 @@ export class DocumentoComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ dadosPessoais }) => {
+      this.dadosPessoais = dadosPessoais ?? new DadosPessoais();
+    });
     this.handleNavigation();
   }
 

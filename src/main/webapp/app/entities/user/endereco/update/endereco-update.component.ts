@@ -7,8 +7,7 @@ import { finalize, map } from 'rxjs/operators';
 
 import { IEndereco, Endereco } from '../endereco.model';
 import { EnderecoService } from '../service/endereco.service';
-import { IDadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
-import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/dados-pessoais.service';
+import { IDadosPessoais, DadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
 
 @Component({
   selector: 'jhi-endereco-update',
@@ -17,7 +16,7 @@ import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/d
 export class EnderecoUpdateComponent implements OnInit {
   isSaving = false;
 
-  dadosPessoaisSharedCollection: IDadosPessoais[] = [];
+  dadosPessoais?: IDadosPessoais;
 
   editForm = this.fb.group({
     id: [],
@@ -34,21 +33,14 @@ export class EnderecoUpdateComponent implements OnInit {
     gia: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(20)]],
     latitude: [null, [Validators.required]],
     longitude: [null, [Validators.required]],
-    dadosPessoais: [],
   });
 
-  constructor(
-    protected enderecoService: EnderecoService,
-    protected dadosPessoaisService: DadosPessoaisService,
-    protected activatedRoute: ActivatedRoute,
-    protected fb: FormBuilder
-  ) {}
+  constructor(protected enderecoService: EnderecoService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ endereco }) => {
+    this.activatedRoute.data.subscribe(({ endereco, dadosPessoais }) => {
+      this.dadosPessoais = dadosPessoais ?? new DadosPessoais();
       this.updateForm(endereco);
-
-      this.loadRelationshipsOptions();
     });
   }
 
@@ -59,15 +51,12 @@ export class EnderecoUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const endereco = this.createFromForm();
+    endereco.dadosPessoais = this.dadosPessoais;
     if (endereco.id !== undefined) {
       this.subscribeToSaveResponse(this.enderecoService.update(endereco));
     } else {
       this.subscribeToSaveResponse(this.enderecoService.create(endereco));
     }
-  }
-
-  trackDadosPessoaisById(_index: number, item: IDadosPessoais): number {
-    return item.id!;
   }
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IEndereco>>): void {
@@ -105,25 +94,7 @@ export class EnderecoUpdateComponent implements OnInit {
       gia: endereco.gia,
       latitude: endereco.latitude,
       longitude: endereco.longitude,
-      dadosPessoais: endereco.dadosPessoais,
     });
-
-    this.dadosPessoaisSharedCollection = this.dadosPessoaisService.addDadosPessoaisToCollectionIfMissing(
-      this.dadosPessoaisSharedCollection,
-      endereco.dadosPessoais
-    );
-  }
-
-  protected loadRelationshipsOptions(): void {
-    this.dadosPessoaisService
-      .query()
-      .pipe(map((res: HttpResponse<IDadosPessoais[]>) => res.body ?? []))
-      .pipe(
-        map((dadosPessoais: IDadosPessoais[]) =>
-          this.dadosPessoaisService.addDadosPessoaisToCollectionIfMissing(dadosPessoais, this.editForm.get('dadosPessoais')!.value)
-        )
-      )
-      .subscribe((dadosPessoais: IDadosPessoais[]) => (this.dadosPessoaisSharedCollection = dadosPessoais));
   }
 
   protected createFromForm(): IEndereco {
@@ -143,7 +114,6 @@ export class EnderecoUpdateComponent implements OnInit {
       gia: this.editForm.get(['gia'])!.value,
       latitude: this.editForm.get(['latitude'])!.value,
       longitude: this.editForm.get(['longitude'])!.value,
-      dadosPessoais: this.editForm.get(['dadosPessoais'])!.value,
     };
   }
 }

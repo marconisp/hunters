@@ -40,13 +40,23 @@ public class Mensagem implements Serializable {
 
     @OneToOne(optional = false)
     @NotNull
-    @JoinColumn(unique = true)
     private TipoMensagem tipo;
 
     @ManyToOne
     @JsonIgnoreProperties(
         value = {
-            "estadoCivil", "raca", "religiao", "foto", "fotoAvatar", "fotoIcon", "mensagems", "avisos", "documentos", "enderecos", "user",
+            "tipoPessoa",
+            "estadoCivil",
+            "raca",
+            "religiao",
+            "foto",
+            "fotoAvatar",
+            "fotoIcon",
+            "mensagems",
+            "avisos",
+            "documentos",
+            "enderecos",
+            "user",
         },
         allowSetters = true
     )

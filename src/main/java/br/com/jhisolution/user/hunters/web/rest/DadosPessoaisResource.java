@@ -1,7 +1,10 @@
 package br.com.jhisolution.user.hunters.web.rest;
 
 import br.com.jhisolution.user.hunters.domain.DadosPessoais;
+import br.com.jhisolution.user.hunters.domain.User;
 import br.com.jhisolution.user.hunters.repository.DadosPessoaisRepository;
+import br.com.jhisolution.user.hunters.repository.UserRepository;
+import br.com.jhisolution.user.hunters.security.SecurityUtils;
 import br.com.jhisolution.user.hunters.service.DadosPessoaisService;
 import br.com.jhisolution.user.hunters.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
@@ -17,9 +20,17 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
@@ -40,10 +51,15 @@ public class DadosPessoaisResource {
     private String applicationName;
 
     private final DadosPessoaisService dadosPessoaisService;
-
     private final DadosPessoaisRepository dadosPessoaisRepository;
+    private final UserRepository userRepository;
 
-    public DadosPessoaisResource(DadosPessoaisService dadosPessoaisService, DadosPessoaisRepository dadosPessoaisRepository) {
+    public DadosPessoaisResource(
+        UserRepository userRepository,
+        DadosPessoaisService dadosPessoaisService,
+        DadosPessoaisRepository dadosPessoaisRepository
+    ) {
+        this.userRepository = userRepository;
         this.dadosPessoaisService = dadosPessoaisService;
         this.dadosPessoaisRepository = dadosPessoaisRepository;
     }
@@ -61,6 +77,11 @@ public class DadosPessoaisResource {
         if (dadosPessoais.getId() != null) {
             throw new BadRequestAlertException("A new dadosPessoais cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        User user = this.getUserLogin().orElse(new User());
+
+        dadosPessoais.setUser(user);
+
         DadosPessoais result = dadosPessoaisService.save(dadosPessoais);
         return ResponseEntity
             .created(new URI("/api/dados-pessoais/" + result.getId()))
@@ -94,6 +115,10 @@ public class DadosPessoaisResource {
         if (!dadosPessoaisRepository.existsById(id)) {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
+
+        User user = this.getUserLogin().orElse(new User());
+
+        dadosPessoais.setUser(user);
 
         DadosPessoais result = dadosPessoaisService.update(dadosPessoais);
         return ResponseEntity
@@ -152,10 +177,11 @@ public class DadosPessoaisResource {
     ) {
         log.debug("REST request to get a page of DadosPessoais");
         Page<DadosPessoais> page;
+        User user = this.getUserLogin().orElse(new User());
         if (eagerload) {
-            page = dadosPessoaisService.findAllWithEagerRelationships(pageable);
+            page = dadosPessoaisService.findAllByUser(pageable, user);
         } else {
-            page = dadosPessoaisService.findAll(pageable);
+            page = dadosPessoaisService.findAllByUser(pageable, user);
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -188,5 +214,9 @@ public class DadosPessoaisResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    private Optional<User> getUserLogin() {
+        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin);
     }
 }

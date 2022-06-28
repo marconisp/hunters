@@ -40,7 +40,7 @@ public interface EnderecoService {
      * @return the list of entities.
      */
     Page<Endereco> findAll(Pageable pageable);
-
+    Page<Endereco> findAllByDadosPessoaisId(Long id, Pageable pageable);
     /**
      * Get the "id" endereco.
      *

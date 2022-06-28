@@ -5,7 +5,6 @@
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="hunterappApp.userDadosPessoais.home.refreshListLabel">Refresh List</span>
       </button>
 
       <button
@@ -15,7 +14,6 @@
         [routerLink]="['/dados-pessoais/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="hunterappApp.userDadosPessoais.home.createLabel"> Create a new Dados Pessoais </span>
       </button>
     </div>
   </h2>
@@ -39,44 +37,8 @@
           <th scope="col" jhiSortBy="sobreNome">
             <span jhiTranslate="hunterappApp.userDadosPessoais.sobreNome">Sobre Nome</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="pai">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.pai">Pai</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="mae">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.mae">Mae</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="telefone">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.telefone">Telefone</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="celular">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.celular">Celular</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="whatsapp">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.whatsapp">Whatsapp</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="email">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.email">Email</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="estadoCivil.codigo">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.estadoCivil">Estado Civil</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="raca.codigo">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.raca">Raca</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="religiao.codigo">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.religiao">Religiao</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="foto.id">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.foto">Foto</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="fotoAvatar.id">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.fotoAvatar">Foto Avatar</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="fotoIcon.id">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.fotoIcon">Foto Icon</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="user.id">
-            <span jhiTranslate="hunterappApp.userDadosPessoais.user">User</span> <fa-icon icon="sort"></fa-icon>
+          <th scope="col" jhiSortBy="tipoPessoa.codigo">
+            <span jhiTranslate="hunterappApp.userDadosPessoais.tipoPessoa">Tipo Pessoa</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -88,49 +50,45 @@
           </td>
           <td>{{ dadosPessoais.nome }}</td>
           <td>{{ dadosPessoais.sobreNome }}</td>
-          <td>{{ dadosPessoais.pai }}</td>
-          <td>{{ dadosPessoais.mae }}</td>
-          <td>{{ dadosPessoais.telefone }}</td>
-          <td>{{ dadosPessoais.celular }}</td>
-          <td>{{ dadosPessoais.whatsapp }}</td>
-          <td>{{ dadosPessoais.email }}</td>
-          <td>
-            <div *ngIf="dadosPessoais.estadoCivil">
-              <a [routerLink]="['/estado-civil', dadosPessoais.estadoCivil?.id, 'view']">{{ dadosPessoais.estadoCivil?.codigo }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="dadosPessoais.raca">
-              <a [routerLink]="['/raca', dadosPessoais.raca?.id, 'view']">{{ dadosPessoais.raca?.codigo }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="dadosPessoais.religiao">
-              <a [routerLink]="['/religiao', dadosPessoais.religiao?.id, 'view']">{{ dadosPessoais.religiao?.codigo }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="dadosPessoais.foto">
-              <a [routerLink]="['/foto', dadosPessoais.foto?.id, 'view']">{{ dadosPessoais.foto?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="dadosPessoais.fotoAvatar">
-              <a [routerLink]="['/foto-avatar', dadosPessoais.fotoAvatar?.id, 'view']">{{ dadosPessoais.fotoAvatar?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="dadosPessoais.fotoIcon">
-              <a [routerLink]="['/foto-icon', dadosPessoais.fotoIcon?.id, 'view']">{{ dadosPessoais.fotoIcon?.id }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="dadosPessoais.user">
-              <a [routerLink]="['/user-1', dadosPessoais.user?.id, 'view']">{{ dadosPessoais.user?.id }}</a>
-            </div>
-          </td>
+          <td>{{ dadosPessoais.tipoPessoa?.codigo }}</td>
           <td class="text-end">
             <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/endereco/dadospessoais/', dadosPessoais.id]"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="home"></fa-icon>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/documento/dadospessoais/', dadosPessoais.id]"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="align-justify"></fa-icon>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/mensagem/dadospessoais/', dadosPessoais.id]"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="envelope"></fa-icon>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/aviso/dadospessoais/', dadosPessoais.id]"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="comments"></fa-icon>
+              </button>
+
               <button
                 type="submit"
                 [routerLink]="['/dados-pessoais', dadosPessoais.id, 'view']"
@@ -138,7 +96,6 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
               <button
@@ -148,12 +105,10 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
               </button>
 
               <button type="submit" (click)="delete(dadosPessoais)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
               </button>
             </div>
           </td>

@@ -1,5 +1,6 @@
 package br.com.jhisolution.user.hunters.service;
 
+import br.com.jhisolution.user.hunters.domain.Documento;
 import br.com.jhisolution.user.hunters.domain.Mensagem;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -40,7 +41,7 @@ public interface MensagemService {
      * @return the list of entities.
      */
     Page<Mensagem> findAll(Pageable pageable);
-
+    Page<Mensagem> findAllByDadosPessoaisId(Long id, Pageable pageable);
     /**
      * Get all the mensagems with eager load of many-to-many relationships.
      *

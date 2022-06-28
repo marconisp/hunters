@@ -8,6 +8,8 @@ import { of, Subject, from } from 'rxjs';
 
 import { DocumentoService } from '../service/documento.service';
 import { IDocumento, Documento } from '../documento.model';
+import { ITipoDocumento } from 'app/entities/config/tipo-documento/tipo-documento.model';
+import { TipoDocumentoService } from 'app/entities/config/tipo-documento/service/tipo-documento.service';
 import { IDadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
 import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/dados-pessoais.service';
 
@@ -18,6 +20,7 @@ describe('Documento Management Update Component', () => {
   let fixture: ComponentFixture<DocumentoUpdateComponent>;
   let activatedRoute: ActivatedRoute;
   let documentoService: DocumentoService;
+  let tipoDocumentoService: TipoDocumentoService;
   let dadosPessoaisService: DadosPessoaisService;
 
   beforeEach(() => {
@@ -40,12 +43,31 @@ describe('Documento Management Update Component', () => {
     fixture = TestBed.createComponent(DocumentoUpdateComponent);
     activatedRoute = TestBed.inject(ActivatedRoute);
     documentoService = TestBed.inject(DocumentoService);
+    tipoDocumentoService = TestBed.inject(TipoDocumentoService);
     dadosPessoaisService = TestBed.inject(DadosPessoaisService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
+    it('Should call tipoDocumento query and add missing value', () => {
+      const documento: IDocumento = { id: 456 };
+      const tipoDocumento: ITipoDocumento = { id: 36411 };
+      documento.tipoDocumento = tipoDocumento;
+
+      const tipoDocumentoCollection: ITipoDocumento[] = [{ id: 80877 }];
+      jest.spyOn(tipoDocumentoService, 'query').mockReturnValue(of(new HttpResponse({ body: tipoDocumentoCollection })));
+      const expectedCollection: ITipoDocumento[] = [tipoDocumento, ...tipoDocumentoCollection];
+      jest.spyOn(tipoDocumentoService, 'addTipoDocumentoToCollectionIfMissing').mockReturnValue(expectedCollection);
+
+      activatedRoute.data = of({ documento });
+      comp.ngOnInit();
+
+      expect(tipoDocumentoService.query).toHaveBeenCalled();
+      expect(tipoDocumentoService.addTipoDocumentoToCollectionIfMissing).toHaveBeenCalledWith(tipoDocumentoCollection, tipoDocumento);
+      expect(comp.tipoDocumentosCollection).toEqual(expectedCollection);
+    });
+
     it('Should call DadosPessoais query and add missing value', () => {
       const documento: IDocumento = { id: 456 };
       const dadosPessoais: IDadosPessoais = { id: 90485 };
@@ -70,6 +92,8 @@ describe('Documento Management Update Component', () => {
 
     it('Should update editForm', () => {
       const documento: IDocumento = { id: 456 };
+      const tipoDocumento: ITipoDocumento = { id: 4819 };
+      documento.tipoDocumento = tipoDocumento;
       const dadosPessoais: IDadosPessoais = { id: 50451 };
       documento.dadosPessoais = dadosPessoais;
 
@@ -77,6 +101,7 @@ describe('Documento Management Update Component', () => {
       comp.ngOnInit();
 
       expect(comp.editForm.value).toEqual(expect.objectContaining(documento));
+      expect(comp.tipoDocumentosCollection).toContain(tipoDocumento);
       expect(comp.dadosPessoaisSharedCollection).toContain(dadosPessoais);
     });
   });
@@ -146,6 +171,14 @@ describe('Documento Management Update Component', () => {
   });
 
   describe('Tracking relationships identifiers', () => {
+    describe('trackTipoDocumentoById', () => {
+      it('Should return tracked TipoDocumento primary key', () => {
+        const entity = { id: 123 };
+        const trackResult = comp.trackTipoDocumentoById(0, entity);
+        expect(trackResult).toEqual(entity.id);
+      });
+    });
+
     describe('trackDadosPessoaisById', () => {
       it('Should return tracked DadosPessoais primary key', () => {
         const entity = { id: 123 };

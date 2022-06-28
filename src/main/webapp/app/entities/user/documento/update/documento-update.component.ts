@@ -7,8 +7,9 @@ import { finalize, map } from 'rxjs/operators';
 
 import { IDocumento, Documento } from '../documento.model';
 import { DocumentoService } from '../service/documento.service';
-import { IDadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
-import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/dados-pessoais.service';
+import { ITipoDocumento } from 'app/entities/config/tipo-documento/tipo-documento.model';
+import { TipoDocumentoService } from 'app/entities/config/tipo-documento/service/tipo-documento.service';
+import { IDadosPessoais, DadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
 
 @Component({
   selector: 'jhi-documento-update',
@@ -17,25 +18,26 @@ import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/d
 export class DocumentoUpdateComponent implements OnInit {
   isSaving = false;
 
-  dadosPessoaisSharedCollection: IDadosPessoais[] = [];
+  tipoDocumentosCollection: ITipoDocumento[] = [];
+  dadosPessoais?: IDadosPessoais;
 
   editForm = this.fb.group({
     id: [],
     descricao: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    dadosPessoais: [],
+    tipoDocumento: [],
   });
 
   constructor(
     protected documentoService: DocumentoService,
-    protected dadosPessoaisService: DadosPessoaisService,
+    protected tipoDocumentoService: TipoDocumentoService,
     protected activatedRoute: ActivatedRoute,
     protected fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ documento }) => {
+    this.activatedRoute.data.subscribe(({ documento, dadosPessoais }) => {
+      this.dadosPessoais = dadosPessoais ?? new DadosPessoais();
       this.updateForm(documento);
-
       this.loadRelationshipsOptions();
     });
   }
@@ -47,6 +49,7 @@ export class DocumentoUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const documento = this.createFromForm();
+    documento.dadosPessoais = this.dadosPessoais;
     if (documento.id !== undefined) {
       this.subscribeToSaveResponse(this.documentoService.update(documento));
     } else {
@@ -54,7 +57,7 @@ export class DocumentoUpdateComponent implements OnInit {
     }
   }
 
-  trackDadosPessoaisById(_index: number, item: IDadosPessoais): number {
+  trackTipoDocumentoById(_index: number, item: ITipoDocumento): number {
     return item.id!;
   }
 
@@ -81,25 +84,25 @@ export class DocumentoUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: documento.id,
       descricao: documento.descricao,
-      dadosPessoais: documento.dadosPessoais,
+      tipoDocumento: documento.tipoDocumento,
     });
 
-    this.dadosPessoaisSharedCollection = this.dadosPessoaisService.addDadosPessoaisToCollectionIfMissing(
-      this.dadosPessoaisSharedCollection,
-      documento.dadosPessoais
+    this.tipoDocumentosCollection = this.tipoDocumentoService.addTipoDocumentoToCollectionIfMissing(
+      this.tipoDocumentosCollection,
+      documento.tipoDocumento
     );
   }
 
   protected loadRelationshipsOptions(): void {
-    this.dadosPessoaisService
-      .query()
-      .pipe(map((res: HttpResponse<IDadosPessoais[]>) => res.body ?? []))
+    this.tipoDocumentoService
+      .query({ filter: 'documento-is-null' })
+      .pipe(map((res: HttpResponse<ITipoDocumento[]>) => res.body ?? []))
       .pipe(
-        map((dadosPessoais: IDadosPessoais[]) =>
-          this.dadosPessoaisService.addDadosPessoaisToCollectionIfMissing(dadosPessoais, this.editForm.get('dadosPessoais')!.value)
+        map((tipoDocumentos: ITipoDocumento[]) =>
+          this.tipoDocumentoService.addTipoDocumentoToCollectionIfMissing(tipoDocumentos, this.editForm.get('tipoDocumento')!.value)
         )
       )
-      .subscribe((dadosPessoais: IDadosPessoais[]) => (this.dadosPessoaisSharedCollection = dadosPessoais));
+      .subscribe((tipoDocumentos: ITipoDocumento[]) => (this.tipoDocumentosCollection = tipoDocumentos));
   }
 
   protected createFromForm(): IDocumento {
@@ -107,7 +110,7 @@ export class DocumentoUpdateComponent implements OnInit {
       ...new Documento(),
       id: this.editForm.get(['id'])!.value,
       descricao: this.editForm.get(['descricao'])!.value,
-      dadosPessoais: this.editForm.get(['dadosPessoais'])!.value,
+      tipoDocumento: this.editForm.get(['tipoDocumento'])!.value,
     };
   }
 }

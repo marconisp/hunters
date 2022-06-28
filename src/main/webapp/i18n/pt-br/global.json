@@ -21,6 +21,8 @@
         "configRaca": "Raca",
         "configReligiao": "Religiao",
         "configEstadoCivil": "Estado Civil",
+        "configTipoPessoa": "Tipo Pessoa",
+        "configTipoDocumento": "Tipo Documento",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

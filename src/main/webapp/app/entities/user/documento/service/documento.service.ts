@@ -36,6 +36,11 @@ export class DocumentoService {
     return this.http.get<IDocumento>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findAllByPessoaId(id: number, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IDocumento[]>(`${this.resourceUrl}/dadospessoais/${id}`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IDocumento[]>(this.resourceUrl, { params: options, observe: 'response' });

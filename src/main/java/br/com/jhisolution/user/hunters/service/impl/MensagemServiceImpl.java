@@ -1,8 +1,12 @@
 package br.com.jhisolution.user.hunters.service.impl;
 
+import br.com.jhisolution.user.hunters.domain.Aviso;
+import br.com.jhisolution.user.hunters.domain.DadosPessoais;
 import br.com.jhisolution.user.hunters.domain.Mensagem;
+import br.com.jhisolution.user.hunters.repository.DadosPessoaisRepository;
 import br.com.jhisolution.user.hunters.repository.MensagemRepository;
 import br.com.jhisolution.user.hunters.service.MensagemService;
+import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +25,22 @@ public class MensagemServiceImpl implements MensagemService {
     private final Logger log = LoggerFactory.getLogger(MensagemServiceImpl.class);
 
     private final MensagemRepository mensagemRepository;
+    private final DadosPessoaisRepository dadosPessoaisRepository;
 
-    public MensagemServiceImpl(MensagemRepository mensagemRepository) {
+    public MensagemServiceImpl(MensagemRepository mensagemRepository, DadosPessoaisRepository dadosPessoaisRepository) {
         this.mensagemRepository = mensagemRepository;
+        this.dadosPessoaisRepository = dadosPessoaisRepository;
     }
 
     @Override
     public Mensagem save(Mensagem mensagem) {
         log.debug("Request to save Mensagem : {}", mensagem);
+
+        if (Objects.nonNull(mensagem.getDadosPessoais()) && Objects.nonNull(mensagem.getDadosPessoais().getId())) {
+            DadosPessoais dadosPessoais = dadosPessoaisRepository.findById(mensagem.getDadosPessoais().getId()).get();
+            mensagem.setDadosPessoais(dadosPessoais);
+        }
+
         return mensagemRepository.save(mensagem);
     }
 
@@ -65,6 +77,13 @@ public class MensagemServiceImpl implements MensagemService {
     public Page<Mensagem> findAll(Pageable pageable) {
         log.debug("Request to get all Mensagems");
         return mensagemRepository.findAll(pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Mensagem> findAllByDadosPessoaisId(Long id, Pageable pageable) {
+        log.debug("Request to get all Enderecos by DadoPessoal id");
+        return mensagemRepository.findAllByDadosPessoaisId(id, pageable);
     }
 
     public Page<Mensagem> findAllWithEagerRelationships(Pageable pageable) {

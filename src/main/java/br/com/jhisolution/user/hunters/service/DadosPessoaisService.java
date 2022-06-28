@@ -1,6 +1,7 @@
 package br.com.jhisolution.user.hunters.service;
 
 import br.com.jhisolution.user.hunters.domain.DadosPessoais;
+import br.com.jhisolution.user.hunters.domain.User;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,6 +41,14 @@ public interface DadosPessoaisService {
      * @return the list of entities.
      */
     Page<DadosPessoais> findAll(Pageable pageable);
+
+    /**
+     * Get all the dadosPessoais by User.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<DadosPessoais> findAllByUser(Pageable pageable, User user);
 
     /**
      * Get all the dadosPessoais with eager load of many-to-many relationships.

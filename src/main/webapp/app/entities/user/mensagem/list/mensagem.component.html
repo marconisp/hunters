@@ -5,17 +5,15 @@
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="hunterappApp.userMensagem.home.refreshListLabel">Refresh List</span>
       </button>
 
       <button
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-mensagem"
-        [routerLink]="['/mensagem/new']"
+        [routerLink]="['/mensagem/new/dadospessoais/', dadosPessoais?.id]"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="hunterappApp.userMensagem.home.createLabel"> Create a new Mensagem </span>
       </button>
     </div>
   </h2>
@@ -39,14 +37,8 @@
           <th scope="col" jhiSortBy="titulo">
             <span jhiTranslate="hunterappApp.userMensagem.titulo">Titulo</span> <fa-icon icon="sort"></fa-icon>
           </th>
-          <th scope="col" jhiSortBy="conteudo">
-            <span jhiTranslate="hunterappApp.userMensagem.conteudo">Conteudo</span> <fa-icon icon="sort"></fa-icon>
-          </th>
           <th scope="col" jhiSortBy="tipo.codigo">
             <span jhiTranslate="hunterappApp.userMensagem.tipo">Tipo</span> <fa-icon icon="sort"></fa-icon>
-          </th>
-          <th scope="col" jhiSortBy="dadosPessoais.id">
-            <span jhiTranslate="hunterappApp.userMensagem.dadosPessoais">Dados Pessoais</span> <fa-icon icon="sort"></fa-icon>
           </th>
           <th scope="col"></th>
         </tr>
@@ -56,17 +48,11 @@
           <td>
             <a [routerLink]="['/mensagem', mensagem.id, 'view']">{{ mensagem.id }}</a>
           </td>
-          <td>{{ mensagem.data | formatMediumDate }}</td>
+          <td>{{ mensagem.data }}</td>
           <td>{{ mensagem.titulo }}</td>
-          <td>{{ mensagem.conteudo }}</td>
           <td>
             <div *ngIf="mensagem.tipo">
-              <a [routerLink]="['/tipo-mensagem', mensagem.tipo?.id, 'view']">{{ mensagem.tipo?.codigo }}</a>
-            </div>
-          </td>
-          <td>
-            <div *ngIf="mensagem.dadosPessoais">
-              <a [routerLink]="['/dados-pessoais', mensagem.dadosPessoais?.id, 'view']">{{ mensagem.dadosPessoais?.id }}</a>
+              {{ mensagem.tipo?.codigo }}
             </div>
           </td>
           <td class="text-end">
@@ -78,7 +64,6 @@
                 data-cy="entityDetailsButton"
               >
                 <fa-icon icon="eye"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
               </button>
 
               <button
@@ -88,12 +73,10 @@
                 data-cy="entityEditButton"
               >
                 <fa-icon icon="pencil-alt"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
               </button>
 
               <button type="submit" (click)="delete(mensagem)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
-                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
               </button>
             </div>
           </td>

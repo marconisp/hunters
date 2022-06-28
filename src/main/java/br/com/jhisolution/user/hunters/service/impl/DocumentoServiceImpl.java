@@ -1,8 +1,11 @@
 package br.com.jhisolution.user.hunters.service.impl;
 
+import br.com.jhisolution.user.hunters.domain.DadosPessoais;
 import br.com.jhisolution.user.hunters.domain.Documento;
+import br.com.jhisolution.user.hunters.repository.DadosPessoaisRepository;
 import br.com.jhisolution.user.hunters.repository.DocumentoRepository;
 import br.com.jhisolution.user.hunters.service.DocumentoService;
+import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +24,20 @@ public class DocumentoServiceImpl implements DocumentoService {
     private final Logger log = LoggerFactory.getLogger(DocumentoServiceImpl.class);
 
     private final DocumentoRepository documentoRepository;
+    private final DadosPessoaisRepository dadosPessoaisRepository;
 
-    public DocumentoServiceImpl(DocumentoRepository documentoRepository) {
+    public DocumentoServiceImpl(DocumentoRepository documentoRepository, DadosPessoaisRepository dadosPessoaisRepository) {
         this.documentoRepository = documentoRepository;
+        this.dadosPessoaisRepository = dadosPessoaisRepository;
     }
 
     @Override
     public Documento save(Documento documento) {
         log.debug("Request to save Documento : {}", documento);
+        if (Objects.nonNull(documento.getDadosPessoais()) && Objects.nonNull(documento.getDadosPessoais().getId())) {
+            DadosPessoais dadosPessoais = dadosPessoaisRepository.findById(documento.getDadosPessoais().getId()).get();
+            documento.setDadosPessoais(dadosPessoais);
+        }
         return documentoRepository.save(documento);
     }
 
@@ -59,6 +68,13 @@ public class DocumentoServiceImpl implements DocumentoService {
     public Page<Documento> findAll(Pageable pageable) {
         log.debug("Request to get all Documentos");
         return documentoRepository.findAll(pageable);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Documento> findAllByDadosPessoaisId(Long id, Pageable pageable) {
+        log.debug("Request to get all Enderecos by DadoPessoal id");
+        return documentoRepository.findAllByDadosPessoaisId(id, pageable);
     }
 
     @Override

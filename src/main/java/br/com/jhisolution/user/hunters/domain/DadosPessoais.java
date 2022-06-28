@@ -64,54 +64,55 @@ public class DadosPessoais implements Serializable {
 
     @OneToOne(optional = false)
     @NotNull
-    @JoinColumn(unique = true)
+    private TipoPessoa tipoPessoa;
+
+    @OneToOne(optional = false)
+    @NotNull
     private EstadoCivil estadoCivil;
 
     @OneToOne(optional = false)
     @NotNull
-    @JoinColumn(unique = true)
     private Raca raca;
 
     @OneToOne(optional = false)
     @NotNull
-    @JoinColumn(unique = true)
     private Religiao religiao;
 
-    @OneToOne
+    @OneToOne(cascade = { CascadeType.ALL })
     @JoinColumn(unique = true)
     private Foto foto;
 
-    @OneToOne
+    @OneToOne(cascade = { CascadeType.ALL })
     @JoinColumn(unique = true)
     private FotoAvatar fotoAvatar;
 
-    @OneToOne
+    @OneToOne(cascade = { CascadeType.ALL })
     @JoinColumn(unique = true)
     private FotoIcon fotoIcon;
 
-    @OneToMany(mappedBy = "dadosPessoais")
+    @OneToMany(mappedBy = "dadosPessoais", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "tipo", "dadosPessoais" }, allowSetters = true)
     private Set<Mensagem> mensagems = new HashSet<>();
 
-    @OneToMany(mappedBy = "dadosPessoais")
+    @OneToMany(mappedBy = "dadosPessoais", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "dadosPessoais" }, allowSetters = true)
     private Set<Aviso> avisos = new HashSet<>();
 
-    @OneToMany(mappedBy = "dadosPessoais")
+    @OneToMany(mappedBy = "dadosPessoais", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "fotos", "dadosPessoais" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "tipoDocumento", "fotos", "dadosPessoais" }, allowSetters = true)
     private Set<Documento> documentos = new HashSet<>();
 
-    @OneToMany(mappedBy = "dadosPessoais")
+    @OneToMany(mappedBy = "dadosPessoais", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "dadosPessoais" }, allowSetters = true)
     private Set<Endereco> enderecos = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "dadosPessoais" }, allowSetters = true)
-    private User1 user;
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -230,6 +231,19 @@ public class DadosPessoais implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public TipoPessoa getTipoPessoa() {
+        return this.tipoPessoa;
+    }
+
+    public void setTipoPessoa(TipoPessoa tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
+
+    public DadosPessoais tipoPessoa(TipoPessoa tipoPessoa) {
+        this.setTipoPessoa(tipoPessoa);
+        return this;
     }
 
     public EstadoCivil getEstadoCivil() {
@@ -434,16 +448,16 @@ public class DadosPessoais implements Serializable {
         return this;
     }
 
-    public User1 getUser() {
+    public User getUser() {
         return this.user;
     }
 
-    public void setUser(User1 user1) {
-        this.user = user1;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public DadosPessoais user(User1 user1) {
-        this.setUser(user1);
+    public DadosPessoais user(User user) {
+        this.setUser(user);
         return this;
     }
 

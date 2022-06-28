@@ -68,6 +68,8 @@ public class CacheConfiguration {
             createCache(cm, br.com.jhisolution.user.hunters.domain.Raca.class.getName());
             createCache(cm, br.com.jhisolution.user.hunters.domain.Religiao.class.getName());
             createCache(cm, br.com.jhisolution.user.hunters.domain.EstadoCivil.class.getName());
+            createCache(cm, br.com.jhisolution.user.hunters.domain.TipoPessoa.class.getName());
+            createCache(cm, br.com.jhisolution.user.hunters.domain.TipoDocumento.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

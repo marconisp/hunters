@@ -6,6 +6,7 @@ import { EnderecoComponent } from '../list/endereco.component';
 import { EnderecoDetailComponent } from '../detail/endereco-detail.component';
 import { EnderecoUpdateComponent } from '../update/endereco-update.component';
 import { EnderecoRoutingResolveService } from './endereco-routing-resolve.service';
+import { EnderecoRoutingResolvePessoaService } from './endereco-routing-resolve-pessoa.service';
 
 const enderecoRoute: Routes = [
   {
@@ -13,6 +14,17 @@ const enderecoRoute: Routes = [
     component: EnderecoComponent,
     data: {
       defaultSort: 'id,asc',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'dadospessoais/:idDadospessoais',
+    component: EnderecoComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
+    resolve: {
+      dadosPessoais: EnderecoRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },
@@ -29,6 +41,15 @@ const enderecoRoute: Routes = [
     component: EnderecoUpdateComponent,
     resolve: {
       endereco: EnderecoRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'new/dadospessoais/:idDadospessoais',
+    component: EnderecoUpdateComponent,
+    resolve: {
+      endereco: EnderecoRoutingResolveService,
+      dadosPessoais: EnderecoRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },

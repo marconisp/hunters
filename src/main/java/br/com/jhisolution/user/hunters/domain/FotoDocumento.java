@@ -32,7 +32,7 @@ public class FotoDocumento implements Serializable {
     private String conteudoContentType;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "fotos", "dadosPessoais" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "tipoDocumento", "fotos", "dadosPessoais" }, allowSetters = true)
     private Documento documento;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

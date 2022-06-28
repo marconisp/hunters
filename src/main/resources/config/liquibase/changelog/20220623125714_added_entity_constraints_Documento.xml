@@ -8,6 +8,12 @@
     -->
     <changeSet id="20220623125714-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="tipo_documento_id"
+                                 baseTableName="documento"
+                                 constraintName="fk_documento__tipo_documento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_documento"/>
+
         <addForeignKeyConstraint baseColumnNames="dados_pessoais_id"
                                  baseTableName="documento"
                                  constraintName="fk_documento__dados_pessoais_id"

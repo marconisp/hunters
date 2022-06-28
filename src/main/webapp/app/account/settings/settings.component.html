@@ -160,6 +160,15 @@
         >
           Save
         </button>
+        <button
+          type="submit"
+          [disabled]="settingsForm.invalid"
+          class="btn btn-primary"
+          jhiTranslate="settings.form.pessoais"
+          [routerLink]="['/dados-pessoais']"
+        >
+          Save
+        </button>
       </form>
     </div>
   </div>

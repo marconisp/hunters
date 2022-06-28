@@ -29,6 +29,8 @@
     <include file="config/liquibase/changelog/20220623130314_added_entity_Raca.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623130414_added_entity_Religiao.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623130514_added_entity_EstadoCivil.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220623140544_added_entity_TipoPessoa.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220623140545_added_entity_TipoDocumento.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20220623125314_added_entity_constraints_DadosPessoais.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623125414_added_entity_constraints_Endereco.xml" relativeToChangelogFile="false"/>

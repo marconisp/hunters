@@ -3,12 +3,11 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 import { IAviso, Aviso } from '../aviso.model';
 import { AvisoService } from '../service/aviso.service';
-import { IDadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
-import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/dados-pessoais.service';
+import { IDadosPessoais, DadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
 
 @Component({
   selector: 'jhi-aviso-update',
@@ -16,29 +15,21 @@ import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/d
 })
 export class AvisoUpdateComponent implements OnInit {
   isSaving = false;
-
-  dadosPessoaisSharedCollection: IDadosPessoais[] = [];
+  dadosPessoais?: IDadosPessoais;
 
   editForm = this.fb.group({
     id: [],
     data: [null, [Validators.required]],
     titulo: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(40)]],
     conteudo: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(1000)]],
-    dadosPessoais: [],
   });
 
-  constructor(
-    protected avisoService: AvisoService,
-    protected dadosPessoaisService: DadosPessoaisService,
-    protected activatedRoute: ActivatedRoute,
-    protected fb: FormBuilder
-  ) {}
+  constructor(protected avisoService: AvisoService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ aviso }) => {
+    this.activatedRoute.data.subscribe(({ aviso, dadosPessoais }) => {
       this.updateForm(aviso);
-
-      this.loadRelationshipsOptions();
+      this.dadosPessoais = dadosPessoais ?? new DadosPessoais();
     });
   }
 
@@ -49,6 +40,7 @@ export class AvisoUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const aviso = this.createFromForm();
+    aviso.dadosPessoais = this.dadosPessoais;
     if (aviso.id !== undefined) {
       this.subscribeToSaveResponse(this.avisoService.update(aviso));
     } else {
@@ -85,25 +77,7 @@ export class AvisoUpdateComponent implements OnInit {
       data: aviso.data,
       titulo: aviso.titulo,
       conteudo: aviso.conteudo,
-      dadosPessoais: aviso.dadosPessoais,
     });
-
-    this.dadosPessoaisSharedCollection = this.dadosPessoaisService.addDadosPessoaisToCollectionIfMissing(
-      this.dadosPessoaisSharedCollection,
-      aviso.dadosPessoais
-    );
-  }
-
-  protected loadRelationshipsOptions(): void {
-    this.dadosPessoaisService
-      .query()
-      .pipe(map((res: HttpResponse<IDadosPessoais[]>) => res.body ?? []))
-      .pipe(
-        map((dadosPessoais: IDadosPessoais[]) =>
-          this.dadosPessoaisService.addDadosPessoaisToCollectionIfMissing(dadosPessoais, this.editForm.get('dadosPessoais')!.value)
-        )
-      )
-      .subscribe((dadosPessoais: IDadosPessoais[]) => (this.dadosPessoaisSharedCollection = dadosPessoais));
   }
 
   protected createFromForm(): IAviso {
@@ -113,7 +87,6 @@ export class AvisoUpdateComponent implements OnInit {
       data: this.editForm.get(['data'])!.value,
       titulo: this.editForm.get(['titulo'])!.value,
       conteudo: this.editForm.get(['conteudo'])!.value,
-      dadosPessoais: this.editForm.get(['dadosPessoais'])!.value,
     };
   }
 }

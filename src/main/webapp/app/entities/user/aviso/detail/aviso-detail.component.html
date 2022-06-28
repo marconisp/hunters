@@ -26,14 +26,7 @@
         <dd>
           <span>{{ aviso.conteudo }}</span>
         </dd>
-        <dt><span jhiTranslate="hunterappApp.userAviso.dadosPessoais">Dados Pessoais</span></dt>
-        <dd>
-          <div *ngIf="aviso.dadosPessoais">
-            <a [routerLink]="['/dados-pessoais', aviso.dadosPessoais?.id, 'view']">{{ aviso.dadosPessoais?.id }}</a>
-          </div>
-        </dd>
       </dl>
-
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
         <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
       </button>

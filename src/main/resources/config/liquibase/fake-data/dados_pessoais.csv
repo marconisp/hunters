@@ -1,11 +1,11 @@
-id;nome;sobre_nome;pai;mae;telefone;celular;whatsapp;email;estado_civil_id;raca_id;religiao_id
-1;quantifying;Anguila;Somália;Checking Quetzal coral;synthesizing;invoiceX;ToalhasX;Yuri_Moreira@yahoo.com;1;1;1
-2;Alameda Proactive pa;Peixe Bebê;preto Computador Intuitive;envisioneer;Gostoso Sapatos;Integration;bricks-and-clicks;Elisa49@gmail.com;2;2;2
-3;Agent;Paraná Marginal emulation;Gostoso;Associate;Rupee Jogos drive;Avenida AI;Facilitator Pequeno ;Isabela.Moraes68@live.com;3;3;3
-4;Reverse-engineered B;bypass;bandwidth Filmes;withdrawal;Mouse Versatile;secondary Granito;da mobile withdrawal;Oflia_Macedo34@yahoo.com;4;4;4
-5;Dong navigating Dist;Impressionante application Salsicha;demand-driven withdrawal;Engineer Directives Travessa;Tocantins aggregate;plug-and-play;salmãoXX;Rafaela_Franco86@yahoo.com;5;5;5
-6;Filmes ability Savin;copy;Rua;cross-platform multi-state Marginal;AmapáXXX;Cambridgeshire Trave;collaboration card;MariaHelena38@hotmail.com;6;6;6
-7;approach;transmit user-centric Grosso;wireless Borders;proactive;architect contingenc;THX busX;PráticoX;Rebeca.Santos@gmail.com;7;7;7
-8;Function-based progr;Luvas USB USB;partnerships;override;content-based redund;Paulo Lustroso;Regional;gor14@yahoo.com;8;8;8
-9;Dynamic;Innovative Grande synergistic;capability Automotivo moderator;Sabonete Mouse Travessa;portal Mercearia;redundant;Business-focused Din;Danilo.Saraiva@live.com;9;9;9
-10;Luvas distributed Ac;parsing dourado;Monitored;Serbian firewall;AccountX;copy impactful Perna;roxoXXXX;Alessandra.Nogueira36@hotmail.com;10;10;10
+id;nome;sobre_nome;pai;mae;telefone;celular;whatsapp;email;tipo_pessoa_id;estado_civil_id;raca_id;religiao_id
+1;quantifying;Anguila;Somália;Checking Quetzal coral;synthesizing;invoiceX;ToalhasX;Yuri_Moreira@yahoo.com;1;1;1;1
+2;Alameda Proactive pa;Peixe Bebê;preto Computador Intuitive;envisioneer;Gostoso Sapatos;Integration;bricks-and-clicks;Elisa49@gmail.com;2;2;2;2
+3;Agent;Paraná Marginal emulation;Gostoso;Associate;Rupee Jogos drive;Avenida AI;Facilitator Pequeno ;Isabela.Moraes68@live.com;3;3;3;3
+4;Reverse-engineered B;bypass;bandwidth Filmes;withdrawal;Mouse Versatile;secondary Granito;da mobile withdrawal;Oflia_Macedo34@yahoo.com;4;4;4;4
+5;Dong navigating Dist;Impressionante application Salsicha;demand-driven withdrawal;Engineer Directives Travessa;Tocantins aggregate;plug-and-play;salmãoXX;Rafaela_Franco86@yahoo.com;5;5;5;5
+6;Filmes ability Savin;copy;Rua;cross-platform multi-state Marginal;AmapáXXX;Cambridgeshire Trave;collaboration card;MariaHelena38@hotmail.com;6;6;6;6
+7;approach;transmit user-centric Grosso;wireless Borders;proactive;architect contingenc;THX busX;PráticoX;Rebeca.Santos@gmail.com;7;7;7;7
+8;Function-based progr;Luvas USB USB;partnerships;override;content-based redund;Paulo Lustroso;Regional;gor14@yahoo.com;8;8;8;8
+9;Dynamic;Innovative Grande synergistic;capability Automotivo moderator;Sabonete Mouse Travessa;portal Mercearia;redundant;Business-focused Din;Danilo.Saraiva@live.com;9;9;9;9
+10;Luvas distributed Ac;parsing dourado;Monitored;Serbian firewall;AccountX;copy impactful Perna;roxoXXXX;Alessandra.Nogueira36@hotmail.com;10;10;10;10

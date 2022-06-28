@@ -40,6 +40,7 @@ public interface AvisoService {
      * @return the list of entities.
      */
     Page<Aviso> findAll(Pageable pageable);
+    Page<Aviso> findAllByDadosPessoaisId(Long id, Pageable pageable);
 
     /**
      * Get the "id" aviso.

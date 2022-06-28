@@ -41,7 +41,18 @@ public class Aviso implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(
         value = {
-            "estadoCivil", "raca", "religiao", "foto", "fotoAvatar", "fotoIcon", "mensagems", "avisos", "documentos", "enderecos", "user",
+            "tipoPessoa",
+            "estadoCivil",
+            "raca",
+            "religiao",
+            "foto",
+            "fotoAvatar",
+            "fotoIcon",
+            "mensagems",
+            "avisos",
+            "documentos",
+            "enderecos",
+            "user",
         },
         allowSetters = true
     )

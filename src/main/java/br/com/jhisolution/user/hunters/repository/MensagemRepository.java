@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.*;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
@@ -25,6 +26,15 @@ public interface MensagemRepository extends JpaRepository<Mensagem, Long> {
     default Page<Mensagem> findAllWithEagerRelationships(Pageable pageable) {
         return this.findAllWithToOneRelationships(pageable);
     }
+
+    default Page<Mensagem> findAllByDadosPessoaisId(Long id, Pageable pageable) {
+        return this.findAllByPessoalId(id, pageable);
+    }
+
+    @Query(
+        "select DISTINCT dadosPessoais.mensagems from DadosPessoais dadosPessoais join dadosPessoais.mensagems where dadosPessoais.id =:id"
+    )
+    Page<Mensagem> findAllByPessoalId(@Param("id") Long id, Pageable pageable);
 
     @Query(
         value = "select distinct mensagem from Mensagem mensagem left join fetch mensagem.tipo",

@@ -1,0 +1,26 @@
+{
+  "hunterappApp": {
+    "configTipoDocumento": {
+      "home": {
+        "title": "Tipo Documentos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Tipo Documento",
+        "createOrEditLabel": "Criar ou editar Tipo Documento",
+        "notFound": "Nenhum Tipo Documento encontrado"
+      },
+      "created": "Um novo Tipo Documento foi criado com o identificador {{ param }}",
+      "updated": "Um Tipo Documento foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tipo Documento foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tipo Documento {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Documento"
+      },
+      "id": "ID",
+      "codigo": "Codigo",
+      "nome": "Nome",
+      "descricao": "Descricao"
+    }
+  }
+}

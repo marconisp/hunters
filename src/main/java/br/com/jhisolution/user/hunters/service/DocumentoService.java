@@ -40,6 +40,7 @@ public interface DocumentoService {
      * @return the list of entities.
      */
     Page<Documento> findAll(Pageable pageable);
+    Page<Documento> findAllByDadosPessoaisId(Long id, Pageable pageable);
 
     /**
      * Get the "id" documento.

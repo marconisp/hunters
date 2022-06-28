@@ -18,330 +18,382 @@
         </div>
 
         <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.nome" for="field_nome">Nome</label>
-          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
-          <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('nome')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('nome')?.errors?.minlength"
-              jhiTranslate="entity.validation.minlength"
-              [translateValues]="{ min: 1 }"
-            >
-              This field is required to be at least 1 characters.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('nome')?.errors?.maxlength"
-              jhiTranslate="entity.validation.maxlength"
-              [translateValues]="{ max: 20 }"
-            >
-              This field cannot be longer than 20 characters.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.sobreNome" for="field_sobreNome">Sobre Nome</label>
-          <input type="text" class="form-control" name="sobreNome" id="field_sobreNome" data-cy="sobreNome" formControlName="sobreNome" />
-          <div *ngIf="editForm.get('sobreNome')!.invalid && (editForm.get('sobreNome')!.dirty || editForm.get('sobreNome')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('sobreNome')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('sobreNome')?.errors?.minlength"
-              jhiTranslate="entity.validation.minlength"
-              [translateValues]="{ min: 1 }"
-            >
-              This field is required to be at least 1 characters.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('sobreNome')?.errors?.maxlength"
-              jhiTranslate="entity.validation.maxlength"
-              [translateValues]="{ max: 50 }"
-            >
-              This field cannot be longer than 50 characters.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.pai" for="field_pai">Pai</label>
-          <input type="text" class="form-control" name="pai" id="field_pai" data-cy="pai" formControlName="pai" />
-          <div *ngIf="editForm.get('pai')!.invalid && (editForm.get('pai')!.dirty || editForm.get('pai')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('pai')?.errors?.minlength"
-              jhiTranslate="entity.validation.minlength"
-              [translateValues]="{ min: 1 }"
-            >
-              This field is required to be at least 1 characters.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('pai')?.errors?.maxlength"
-              jhiTranslate="entity.validation.maxlength"
-              [translateValues]="{ max: 50 }"
-            >
-              This field cannot be longer than 50 characters.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.mae" for="field_mae">Mae</label>
-          <input type="text" class="form-control" name="mae" id="field_mae" data-cy="mae" formControlName="mae" />
-          <div *ngIf="editForm.get('mae')!.invalid && (editForm.get('mae')!.dirty || editForm.get('mae')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('mae')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('mae')?.errors?.minlength"
-              jhiTranslate="entity.validation.minlength"
-              [translateValues]="{ min: 1 }"
-            >
-              This field is required to be at least 1 characters.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('mae')?.errors?.maxlength"
-              jhiTranslate="entity.validation.maxlength"
-              [translateValues]="{ max: 50 }"
-            >
-              This field cannot be longer than 50 characters.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.telefone" for="field_telefone">Telefone</label>
-          <input type="text" class="form-control" name="telefone" id="field_telefone" data-cy="telefone" formControlName="telefone" />
-          <div *ngIf="editForm.get('telefone')!.invalid && (editForm.get('telefone')!.dirty || editForm.get('telefone')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('telefone')?.errors?.minlength"
-              jhiTranslate="entity.validation.minlength"
-              [translateValues]="{ min: 8 }"
-            >
-              This field is required to be at least 8 characters.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('telefone')?.errors?.maxlength"
-              jhiTranslate="entity.validation.maxlength"
-              [translateValues]="{ max: 20 }"
-            >
-              This field cannot be longer than 20 characters.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.celular" for="field_celular">Celular</label>
-          <input type="text" class="form-control" name="celular" id="field_celular" data-cy="celular" formControlName="celular" />
-          <div *ngIf="editForm.get('celular')!.invalid && (editForm.get('celular')!.dirty || editForm.get('celular')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('celular')?.errors?.required"
-              jhiTranslate="entity.validation.required"
-            >
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('celular')?.errors?.minlength"
-              jhiTranslate="entity.validation.minlength"
-              [translateValues]="{ min: 8 }"
-            >
-              This field is required to be at least 8 characters.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('celular')?.errors?.maxlength"
-              jhiTranslate="entity.validation.maxlength"
-              [translateValues]="{ max: 20 }"
-            >
-              This field cannot be longer than 20 characters.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.whatsapp" for="field_whatsapp">Whatsapp</label>
-          <input type="text" class="form-control" name="whatsapp" id="field_whatsapp" data-cy="whatsapp" formControlName="whatsapp" />
-          <div *ngIf="editForm.get('whatsapp')!.invalid && (editForm.get('whatsapp')!.dirty || editForm.get('whatsapp')!.touched)">
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('whatsapp')?.errors?.minlength"
-              jhiTranslate="entity.validation.minlength"
-              [translateValues]="{ min: 8 }"
-            >
-              This field is required to be at least 8 characters.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('whatsapp')?.errors?.maxlength"
-              jhiTranslate="entity.validation.maxlength"
-              [translateValues]="{ max: 20 }"
-            >
-              This field cannot be longer than 20 characters.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.email" for="field_email">Email</label>
-          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
-          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required" jhiTranslate="entity.validation.required">
-              This field is required.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('email')?.errors?.minlength"
-              jhiTranslate="entity.validation.minlength"
-              [translateValues]="{ min: 9 }"
-            >
-              This field is required to be at least 9 characters.
-            </small>
-            <small
-              class="form-text text-danger"
-              *ngIf="editForm.get('email')?.errors?.maxlength"
-              jhiTranslate="entity.validation.maxlength"
-              [translateValues]="{ max: 50 }"
-            >
-              This field cannot be longer than 50 characters.
-            </small>
-          </div>
-        </div>
-
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.estadoCivil" for="field_estadoCivil">Estado Civil</label>
-          <select class="form-control" id="field_estadoCivil" data-cy="estadoCivil" name="estadoCivil" formControlName="estadoCivil">
-            <option *ngIf="editForm.get(['estadoCivil'])!.value == null" [ngValue]="null" selected></option>
-            <option
-              [ngValue]="
-                estadoCivilOption.id === editForm.get('estadoCivil')!.value?.id ? editForm.get('estadoCivil')!.value : estadoCivilOption
+          <div class="col">
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.tipoPessoa" for="field_tipoPessoa">Tipo Pessoa</label>
+              <select class="form-control" id="field_tipoPessoa" data-cy="tipoPessoa" name="tipoPessoa" formControlName="tipoPessoa">
+                <option *ngIf="editForm.get(['tipoPessoa'])!.value == null" [ngValue]="null" selected></option>
+                <option
+                  [ngValue]="
+                    tipoPessoaOption.id === editForm.get('tipoPessoa')!.value?.id ? editForm.get('tipoPessoa')!.value : tipoPessoaOption
+                  "
+                  *ngFor="let tipoPessoaOption of tipoPessoasCollection; trackBy: trackTipoPessoaById"
+                >
+                  {{ tipoPessoaOption.codigo }}
+                </option>
+              </select>
+            </div>
+            <div
+              *ngIf="
+                editForm.get(['tipoPessoa'])!.invalid && (editForm.get(['tipoPessoa'])!.dirty || editForm.get(['tipoPessoa'])!.touched)
               "
-              *ngFor="let estadoCivilOption of estadoCivilsCollection; trackBy: trackEstadoCivilById"
             >
-              {{ estadoCivilOption.codigo }}
-            </option>
-          </select>
-        </div>
-        <div
-          *ngIf="editForm.get(['estadoCivil'])!.invalid && (editForm.get(['estadoCivil'])!.dirty || editForm.get(['estadoCivil'])!.touched)"
-        >
-          <small
-            class="form-text text-danger"
-            *ngIf="editForm.get(['estadoCivil'])?.errors?.required"
-            jhiTranslate="entity.validation.required"
-          >
-            This field is required.
-          </small>
-        </div>
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get(['tipoPessoa'])?.errors?.required"
+                jhiTranslate="entity.validation.required"
+              >
+                This field is required.
+              </small>
+            </div>
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.nome" for="field_nome">Nome</label>
+              <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+              <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('nome')?.errors?.required"
+                  jhiTranslate="entity.validation.required"
+                >
+                  This field is required.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('nome')?.errors?.minlength"
+                  jhiTranslate="entity.validation.minlength"
+                  [translateValues]="{ min: 1 }"
+                >
+                  This field is required to be at least 1 characters.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('nome')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 20 }"
+                >
+                  This field cannot be longer than 20 characters.
+                </small>
+              </div>
+            </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.raca" for="field_raca">Raca</label>
-          <select class="form-control" id="field_raca" data-cy="raca" name="raca" formControlName="raca">
-            <option *ngIf="editForm.get(['raca'])!.value == null" [ngValue]="null" selected></option>
-            <option
-              [ngValue]="racaOption.id === editForm.get('raca')!.value?.id ? editForm.get('raca')!.value : racaOption"
-              *ngFor="let racaOption of racasCollection; trackBy: trackRacaById"
-            >
-              {{ racaOption.codigo }}
-            </option>
-          </select>
-        </div>
-        <div *ngIf="editForm.get(['raca'])!.invalid && (editForm.get(['raca'])!.dirty || editForm.get(['raca'])!.touched)">
-          <small class="form-text text-danger" *ngIf="editForm.get(['raca'])?.errors?.required" jhiTranslate="entity.validation.required">
-            This field is required.
-          </small>
-        </div>
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.sobreNome" for="field_sobreNome">Sobre Nome</label>
+              <input
+                type="text"
+                class="form-control"
+                name="sobreNome"
+                id="field_sobreNome"
+                data-cy="sobreNome"
+                formControlName="sobreNome"
+              />
+              <div *ngIf="editForm.get('sobreNome')!.invalid && (editForm.get('sobreNome')!.dirty || editForm.get('sobreNome')!.touched)">
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('sobreNome')?.errors?.required"
+                  jhiTranslate="entity.validation.required"
+                >
+                  This field is required.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('sobreNome')?.errors?.minlength"
+                  jhiTranslate="entity.validation.minlength"
+                  [translateValues]="{ min: 1 }"
+                >
+                  This field is required to be at least 1 characters.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('sobreNome')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 50 }"
+                >
+                  This field cannot be longer than 50 characters.
+                </small>
+              </div>
+            </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.religiao" for="field_religiao">Religiao</label>
-          <select class="form-control" id="field_religiao" data-cy="religiao" name="religiao" formControlName="religiao">
-            <option *ngIf="editForm.get(['religiao'])!.value == null" [ngValue]="null" selected></option>
-            <option
-              [ngValue]="religiaoOption.id === editForm.get('religiao')!.value?.id ? editForm.get('religiao')!.value : religiaoOption"
-              *ngFor="let religiaoOption of religiaosCollection; trackBy: trackReligiaoById"
-            >
-              {{ religiaoOption.codigo }}
-            </option>
-          </select>
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.pai" for="field_pai">Pai</label>
+              <input type="text" class="form-control" name="pai" id="field_pai" data-cy="pai" formControlName="pai" />
+              <div *ngIf="editForm.get('pai')!.invalid && (editForm.get('pai')!.dirty || editForm.get('pai')!.touched)">
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('pai')?.errors?.minlength"
+                  jhiTranslate="entity.validation.minlength"
+                  [translateValues]="{ min: 1 }"
+                >
+                  This field is required to be at least 1 characters.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('pai')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 50 }"
+                >
+                  This field cannot be longer than 50 characters.
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col border" style="max-width: 280px; max-height: 330px">
+            <div class="row">
+              <div>
+                <div *ngIf="editForm.get('conteudo')!.value; else elseBlock" class="form-text text-danger clearfix">
+                  <img
+                    [src]="'data:' + editForm.get('conteudoContentType')!.value + ';base64,' + editForm.get('conteudo')!.value"
+                    style="max-height: 100px"
+                    *ngIf="editForm.get('conteudo')!.value"
+                    alt="fotoAvatar image"
+                  />
+                  <button
+                    type="button"
+                    (click)="clearInputImage('conteudo', 'conteudoContentType', 'file_conteudo')"
+                    class="btn btn-secondary btn-xs pull-end"
+                  >
+                    <fa-icon icon="times"></fa-icon>
+                  </button>
+                </div>
+                <ng-template #elseBlock>
+                  <img
+                    src="../../../../../content/images/High-contrast-camera-photo.svg.png"
+                    style="max-width: 100%; max-height: 100%"
+                    alt="foto image"
+                  />
+                </ng-template>
+                <input
+                  type="file"
+                  id="file_conteudo"
+                  data-cy="conteudo"
+                  (change)="setFileData($event, 'conteudo', true)"
+                  accept="image/*"
+                  jhiTranslate="entity.action.addimage"
+                />
+              </div>
+              <input type="hidden" class="form-control" name="conteudo" id="field_conteudo" data-cy="conteudo" formControlName="conteudo" />
+              <input
+                type="hidden"
+                class="form-control"
+                name="conteudoContentType"
+                id="field_conteudoContentType"
+                formControlName="conteudoContentType"
+              />
+            </div>
+          </div>
         </div>
-        <div *ngIf="editForm.get(['religiao'])!.invalid && (editForm.get(['religiao'])!.dirty || editForm.get(['religiao'])!.touched)">
-          <small
-            class="form-text text-danger"
-            *ngIf="editForm.get(['religiao'])?.errors?.required"
-            jhiTranslate="entity.validation.required"
-          >
-            This field is required.
-          </small>
-        </div>
+        <div class="row">
+          <div class="col">
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.mae" for="field_mae">Mae</label>
+              <input type="text" class="form-control" name="mae" id="field_mae" data-cy="mae" formControlName="mae" />
+              <div *ngIf="editForm.get('mae')!.invalid && (editForm.get('mae')!.dirty || editForm.get('mae')!.touched)">
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('mae')?.errors?.required"
+                  jhiTranslate="entity.validation.required"
+                >
+                  This field is required.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('mae')?.errors?.minlength"
+                  jhiTranslate="entity.validation.minlength"
+                  [translateValues]="{ min: 1 }"
+                >
+                  This field is required to be at least 1 characters.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('mae')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 50 }"
+                >
+                  This field cannot be longer than 50 characters.
+                </small>
+              </div>
+            </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.foto" for="field_foto">Foto</label>
-          <select class="form-control" id="field_foto" data-cy="foto" name="foto" formControlName="foto">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="fotoOption.id === editForm.get('foto')!.value?.id ? editForm.get('foto')!.value : fotoOption"
-              *ngFor="let fotoOption of fotosCollection; trackBy: trackFotoById"
-            >
-              {{ fotoOption.id }}
-            </option>
-          </select>
-        </div>
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.telefone" for="field_telefone">Telefone</label>
+              <input type="text" class="form-control" name="telefone" id="field_telefone" data-cy="telefone" formControlName="telefone" />
+              <div *ngIf="editForm.get('telefone')!.invalid && (editForm.get('telefone')!.dirty || editForm.get('telefone')!.touched)">
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('telefone')?.errors?.minlength"
+                  jhiTranslate="entity.validation.minlength"
+                  [translateValues]="{ min: 8 }"
+                >
+                  This field is required to be at least 8 characters.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('telefone')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 20 }"
+                >
+                  This field cannot be longer than 20 characters.
+                </small>
+              </div>
+            </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.fotoAvatar" for="field_fotoAvatar">Foto Avatar</label>
-          <select class="form-control" id="field_fotoAvatar" data-cy="fotoAvatar" name="fotoAvatar" formControlName="fotoAvatar">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="
-                fotoAvatarOption.id === editForm.get('fotoAvatar')!.value?.id ? editForm.get('fotoAvatar')!.value : fotoAvatarOption
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.whatsapp" for="field_whatsapp">Whatsapp</label>
+              <input type="text" class="form-control" name="whatsapp" id="field_whatsapp" data-cy="whatsapp" formControlName="whatsapp" />
+              <div *ngIf="editForm.get('whatsapp')!.invalid && (editForm.get('whatsapp')!.dirty || editForm.get('whatsapp')!.touched)">
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('whatsapp')?.errors?.minlength"
+                  jhiTranslate="entity.validation.minlength"
+                  [translateValues]="{ min: 8 }"
+                >
+                  This field is required to be at least 8 characters.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('whatsapp')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 20 }"
+                >
+                  This field cannot be longer than 20 characters.
+                </small>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.celular" for="field_celular">Celular</label>
+              <input type="text" class="form-control" name="celular" id="field_celular" data-cy="celular" formControlName="celular" />
+              <div *ngIf="editForm.get('celular')!.invalid && (editForm.get('celular')!.dirty || editForm.get('celular')!.touched)">
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('celular')?.errors?.required"
+                  jhiTranslate="entity.validation.required"
+                >
+                  This field is required.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('celular')?.errors?.minlength"
+                  jhiTranslate="entity.validation.minlength"
+                  [translateValues]="{ min: 8 }"
+                >
+                  This field is required to be at least 8 characters.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('celular')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 20 }"
+                >
+                  This field cannot be longer than 20 characters.
+                </small>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.email" for="field_email">Email</label>
+              <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+              <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('email')?.errors?.required"
+                  jhiTranslate="entity.validation.required"
+                >
+                  This field is required.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('email')?.errors?.minlength"
+                  jhiTranslate="entity.validation.minlength"
+                  [translateValues]="{ min: 9 }"
+                >
+                  This field is required to be at least 9 characters.
+                </small>
+                <small
+                  class="form-text text-danger"
+                  *ngIf="editForm.get('email')?.errors?.maxlength"
+                  jhiTranslate="entity.validation.maxlength"
+                  [translateValues]="{ max: 50 }"
+                >
+                  This field cannot be longer than 50 characters.
+                </small>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.estadoCivil" for="field_estadoCivil"
+                >Estado Civil</label
+              >
+              <select class="form-control" id="field_estadoCivil" data-cy="estadoCivil" name="estadoCivil" formControlName="estadoCivil">
+                <option *ngIf="editForm.get(['estadoCivil'])!.value == null" [ngValue]="null" selected></option>
+                <option
+                  [ngValue]="
+                    estadoCivilOption.id === editForm.get('estadoCivil')!.value?.id ? editForm.get('estadoCivil')!.value : estadoCivilOption
+                  "
+                  *ngFor="let estadoCivilOption of estadoCivilsCollection; trackBy: trackEstadoCivilById"
+                >
+                  {{ estadoCivilOption.codigo }}
+                </option>
+              </select>
+            </div>
+            <div
+              *ngIf="
+                editForm.get(['estadoCivil'])!.invalid && (editForm.get(['estadoCivil'])!.dirty || editForm.get(['estadoCivil'])!.touched)
               "
-              *ngFor="let fotoAvatarOption of fotoAvatarsCollection; trackBy: trackFotoAvatarById"
             >
-              {{ fotoAvatarOption.id }}
-            </option>
-          </select>
-        </div>
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get(['estadoCivil'])?.errors?.required"
+                jhiTranslate="entity.validation.required"
+              >
+                This field is required.
+              </small>
+            </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.fotoIcon" for="field_fotoIcon">Foto Icon</label>
-          <select class="form-control" id="field_fotoIcon" data-cy="fotoIcon" name="fotoIcon" formControlName="fotoIcon">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="fotoIconOption.id === editForm.get('fotoIcon')!.value?.id ? editForm.get('fotoIcon')!.value : fotoIconOption"
-              *ngFor="let fotoIconOption of fotoIconsCollection; trackBy: trackFotoIconById"
-            >
-              {{ fotoIconOption.id }}
-            </option>
-          </select>
-        </div>
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.raca" for="field_raca">Raca</label>
+              <select class="form-control" id="field_raca" data-cy="raca" name="raca" formControlName="raca">
+                <option *ngIf="editForm.get(['raca'])!.value == null" [ngValue]="null" selected></option>
+                <option
+                  [ngValue]="racaOption.id === editForm.get('raca')!.value?.id ? editForm.get('raca')!.value : racaOption"
+                  *ngFor="let racaOption of racasCollection; trackBy: trackRacaById"
+                >
+                  {{ racaOption.codigo }}
+                </option>
+              </select>
+            </div>
+            <div *ngIf="editForm.get(['raca'])!.invalid && (editForm.get(['raca'])!.dirty || editForm.get(['raca'])!.touched)">
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get(['raca'])?.errors?.required"
+                jhiTranslate="entity.validation.required"
+              >
+                This field is required.
+              </small>
+            </div>
 
-        <div class="row mb-3">
-          <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.user" for="field_user">User</label>
-          <select class="form-control" id="field_user" data-cy="user" name="user" formControlName="user">
-            <option [ngValue]="null"></option>
-            <option
-              [ngValue]="user1Option.id === editForm.get('user')!.value?.id ? editForm.get('user')!.value : user1Option"
-              *ngFor="let user1Option of user1sSharedCollection; trackBy: trackUser1ById"
-            >
-              {{ user1Option.id }}
-            </option>
-          </select>
+            <div class="row mb-3">
+              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.religiao" for="field_religiao">Religiao</label>
+              <select class="form-control" id="field_religiao" data-cy="religiao" name="religiao" formControlName="religiao">
+                <option *ngIf="editForm.get(['religiao'])!.value == null" [ngValue]="null" selected></option>
+                <option
+                  [ngValue]="religiaoOption.id === editForm.get('religiao')!.value?.id ? editForm.get('religiao')!.value : religiaoOption"
+                  *ngFor="let religiaoOption of religiaosCollection; trackBy: trackReligiaoById"
+                >
+                  {{ religiaoOption.codigo }}
+                </option>
+              </select>
+            </div>
+            <div *ngIf="editForm.get(['religiao'])!.invalid && (editForm.get(['religiao'])!.dirty || editForm.get(['religiao'])!.touched)">
+              <small
+                class="form-text text-danger"
+                *ngIf="editForm.get(['religiao'])?.errors?.required"
+                jhiTranslate="entity.validation.required"
+              >
+                This field is required.
+              </small>
+            </div>
+          </div>
         </div>
       </div>
 

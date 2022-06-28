@@ -55,14 +55,14 @@ entity Endereco {
 
 @clientRootFolder(user)
 entity Mensagem {
-	data         LocalDate    required,
+    data         LocalDate    required,
     titulo       String       required minlength(1) maxlength(40),
     conteudo     String       required minlength(1) maxlength(1000)
 }
 
 @clientRootFolder(user)
 entity Aviso {
-	data         LocalDate    required,
+    data         LocalDate    required,
     titulo       String       required minlength(1) maxlength(40),
     conteudo     String       required minlength(1) maxlength(1000)
 }
@@ -93,47 +93,63 @@ entity FotoDocumento {
 }
 
 @clientRootFolder(config)
+entity TipoPessoa {
+    codigo    String required minlength(1) maxlength(20),
+    nome      String required minlength(1) maxlength(50),
+    descricao String minlength(1) maxlength(100)
+}
+
+@clientRootFolder(config)
+entity TipoDocumento {
+    codigo    String required minlength(1) maxlength(20),
+    nome      String required minlength(1) maxlength(50),
+    descricao String minlength(1) maxlength(100)
+}
+
+@clientRootFolder(config)
 entity TipoMensagem {
-	codigo    String required minlength(1) maxlength(20),
+    codigo    String required minlength(1) maxlength(20),
     nome      String required minlength(1) maxlength(50),
     descricao String minlength(1) maxlength(100)
 }
 
 @clientRootFolder(config)
 entity Raca {
-	codigo    String required minlength(1) maxlength(20),
+    codigo    String required minlength(1) maxlength(20),
     descricao String required minlength(1) maxlength(50)
 }
 
 @clientRootFolder(config)
 entity Religiao {
-	codigo    String required minlength(1) maxlength(20),
+    codigo    String required minlength(1) maxlength(20),
     descricao String required minlength(1) maxlength(50)
 }
 
 @clientRootFolder(config)
 entity EstadoCivil {
-	codigo    String required minlength(1) maxlength(20),
-	descricao String required minlength(1) maxlength(50)
+    codigo    String required minlength(1) maxlength(20),
+    descricao String required minlength(1) maxlength(50)
 }    
 
 relationship OneToOne {
-	DadosPessoais{estadoCivil(codigo) required} to EstadoCivil,
+    DadosPessoais{tipoPessoa(codigo)  required} to TipoPessoa,
+    DadosPessoais{estadoCivil(codigo) required} to EstadoCivil,
     DadosPessoais{raca(codigo)        required} to Raca,
     DadosPessoais{religiao(codigo)    required} to Religiao,
-	DadosPessoais{foto}                         to Foto,
-	DadosPessoais{fotoAvatar}                   to FotoAvatar,
-	DadosPessoais{fotoIcon}                     to FotoIcon,
-	Mensagem{tipo(codigo) required}             to TipoMensagem
+    DadosPessoais{foto}                         to Foto,
+    DadosPessoais{fotoAvatar}                   to FotoAvatar,
+    DadosPessoais{fotoIcon}                     to FotoIcon,
+    Mensagem{tipo(codigo)             required} to TipoMensagem,
+    Documento{tipoDocumento}                    to TipoDocumento
 }
 
 relationship OneToMany {
     User1{dadosPessoais} to DadosPessoais{user},
     DadosPessoais{mensagem}  to Mensagem,
-	DadosPessoais{aviso}     to Aviso,
-	DadosPessoais{documento} to Documento,
-	DadosPessoais{endereco}  to Endereco,
-	Documento{foto}          to FotoDocumento
+    DadosPessoais{aviso}     to Aviso,
+    DadosPessoais{documento} to Documento,
+    DadosPessoais{endereco}  to Endereco,
+    Documento{foto}          to FotoDocumento
 }
 
 paginate all with pagination

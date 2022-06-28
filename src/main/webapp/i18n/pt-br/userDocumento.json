@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "descricao": "Descricao",
+      "tipoDocumento": "Tipo Documento",
       "foto": "Foto",
       "dadosPessoais": "Dados Pessoais"
     }

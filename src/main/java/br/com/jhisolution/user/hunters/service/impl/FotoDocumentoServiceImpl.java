@@ -1,8 +1,11 @@
 package br.com.jhisolution.user.hunters.service.impl;
 
+import br.com.jhisolution.user.hunters.domain.Documento;
 import br.com.jhisolution.user.hunters.domain.FotoDocumento;
+import br.com.jhisolution.user.hunters.repository.DocumentoRepository;
 import br.com.jhisolution.user.hunters.repository.FotoDocumentoRepository;
 import br.com.jhisolution.user.hunters.service.FotoDocumentoService;
+import java.util.Objects;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +24,20 @@ public class FotoDocumentoServiceImpl implements FotoDocumentoService {
     private final Logger log = LoggerFactory.getLogger(FotoDocumentoServiceImpl.class);
 
     private final FotoDocumentoRepository fotoDocumentoRepository;
+    private final DocumentoRepository documentoRepository;
 
-    public FotoDocumentoServiceImpl(FotoDocumentoRepository fotoDocumentoRepository) {
+    public FotoDocumentoServiceImpl(FotoDocumentoRepository fotoDocumentoRepository, DocumentoRepository documentoRepository) {
         this.fotoDocumentoRepository = fotoDocumentoRepository;
+        this.documentoRepository = documentoRepository;
     }
 
     @Override
     public FotoDocumento save(FotoDocumento fotoDocumento) {
         log.debug("Request to save FotoDocumento : {}", fotoDocumento);
+        if (Objects.nonNull(fotoDocumento.getDocumento()) && Objects.nonNull(fotoDocumento.getDocumento().getId())) {
+            Documento documento = documentoRepository.findById(fotoDocumento.getDocumento().getId()).get();
+            fotoDocumento.setDocumento(documento);
+        }
         return fotoDocumentoRepository.save(fotoDocumento);
     }
 
@@ -62,6 +71,12 @@ public class FotoDocumentoServiceImpl implements FotoDocumentoService {
     public Page<FotoDocumento> findAll(Pageable pageable) {
         log.debug("Request to get all FotoDocumentos");
         return fotoDocumentoRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<FotoDocumento> findAllFotoDocumentosByDocumentoId(Long id, Pageable pageable) {
+        log.debug("Request to get all FotoDocumentos");
+        return fotoDocumentoRepository.findAllFotoDocumentosByDocumentoId(id, pageable);
     }
 
     @Override

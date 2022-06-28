@@ -6,6 +6,7 @@ import { DocumentoComponent } from '../list/documento.component';
 import { DocumentoDetailComponent } from '../detail/documento-detail.component';
 import { DocumentoUpdateComponent } from '../update/documento-update.component';
 import { DocumentoRoutingResolveService } from './documento-routing-resolve.service';
+import { DocumentoRoutingResolvePessoaService } from './documento-routing-resolve-pessoa.service';
 
 const documentoRoute: Routes = [
   {
@@ -13,6 +14,17 @@ const documentoRoute: Routes = [
     component: DocumentoComponent,
     data: {
       defaultSort: 'id,asc',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'dadospessoais/:idDadospessoais',
+    component: DocumentoComponent,
+    data: {
+      defaultSort: 'id,asc',
+    },
+    resolve: {
+      dadosPessoais: DocumentoRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },
@@ -29,6 +41,15 @@ const documentoRoute: Routes = [
     component: DocumentoUpdateComponent,
     resolve: {
       documento: DocumentoRoutingResolveService,
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'new/dadospessoais/:idDadospessoais',
+    component: DocumentoUpdateComponent,
+    resolve: {
+      documento: DocumentoRoutingResolveService,
+      dadosPessoais: DocumentoRoutingResolvePessoaService,
     },
     canActivate: [UserRouteAccessService],
   },

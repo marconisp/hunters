@@ -1,3 +1,4 @@
+import { ITipoPessoa } from 'app/entities/config/tipo-pessoa/tipo-pessoa.model';
 import { IEstadoCivil } from 'app/entities/config/estado-civil/estado-civil.model';
 import { IRaca } from 'app/entities/config/raca/raca.model';
 import { IReligiao } from 'app/entities/config/religiao/religiao.model';
@@ -20,6 +21,7 @@ export interface IDadosPessoais {
   celular?: string;
   whatsapp?: string | null;
   email?: string;
+  tipoPessoa?: ITipoPessoa;
   estadoCivil?: IEstadoCivil;
   raca?: IRaca;
   religiao?: IReligiao;
@@ -44,6 +46,7 @@ export class DadosPessoais implements IDadosPessoais {
     public celular?: string,
     public whatsapp?: string | null,
     public email?: string,
+    public tipoPessoa?: ITipoPessoa,
     public estadoCivil?: IEstadoCivil,
     public raca?: IRaca,
     public religiao?: IReligiao,

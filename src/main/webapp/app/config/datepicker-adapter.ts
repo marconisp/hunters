@@ -5,6 +5,9 @@ import { Injectable } from '@angular/core';
 import { NgbDateAdapter, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import dayjs from 'dayjs/esm';
 
+/**
+ * This Service handles how the date is represented in scripts i.e. ngModel.
+ */
 @Injectable()
 export class NgbDateDayjsAdapter extends NgbDateAdapter<dayjs.Dayjs> {
   fromModel(date: dayjs.Dayjs | null): NgbDateStruct | null {

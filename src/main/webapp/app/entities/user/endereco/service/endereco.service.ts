@@ -34,6 +34,11 @@ export class EnderecoService {
     return this.http.get<IEndereco>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  findAllByPessoaId(id: number, req?: any): Observable<EntityArrayResponseType> {
+    const options = createRequestOption(req);
+    return this.http.get<IEndereco[]>(`${this.resourceUrl}/dadospessoais/${id}`, { params: options, observe: 'response' });
+  }
+
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http.get<IEndereco[]>(this.resourceUrl, { params: options, observe: 'response' });

@@ -8,6 +8,12 @@
     -->
     <changeSet id="20220623125314-2" author="jhipster">
 
+        <addForeignKeyConstraint baseColumnNames="tipo_pessoa_id"
+                                 baseTableName="dados_pessoais"
+                                 constraintName="fk_dados_pessoais__tipo_pessoa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_pessoa"/>
+
         <addForeignKeyConstraint baseColumnNames="estado_civil_id"
                                  baseTableName="dados_pessoais"
                                  constraintName="fk_dados_pessoais__estado_civil_id"
@@ -48,6 +54,6 @@
                                  baseTableName="dados_pessoais"
                                  constraintName="fk_dados_pessoais__user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="user_1"/>
+                                 referencedTableName="jhi_user"/>
     </changeSet>
 </databaseChangeLog>

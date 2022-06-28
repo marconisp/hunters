@@ -1,5 +1,6 @@
 package br.com.jhisolution.user.hunters.service;
 
+import br.com.jhisolution.user.hunters.domain.Documento;
 import br.com.jhisolution.user.hunters.domain.FotoDocumento;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -40,6 +41,7 @@ public interface FotoDocumentoService {
      * @return the list of entities.
      */
     Page<FotoDocumento> findAll(Pageable pageable);
+    Page<FotoDocumento> findAllFotoDocumentosByDocumentoId(Long id, Pageable pageable);
 
     /**
      * Get the "id" fotoDocumento.

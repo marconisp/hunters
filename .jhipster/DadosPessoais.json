@@ -71,6 +71,15 @@
   "relationships": [
     {
       "otherEntityField": "codigo",
+      "otherEntityName": "tipoPessoa",
+      "otherEntityRelationshipName": "dadosPessoais",
+      "ownerSide": true,
+      "relationshipName": "tipoPessoa",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "codigo",
       "otherEntityName": "estadoCivil",
       "otherEntityRelationshipName": "dadosPessoais",
       "ownerSide": true,

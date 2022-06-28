@@ -18,10 +18,10 @@
         <dd>
           <span>{{ documento.descricao }}</span>
         </dd>
-        <dt><span jhiTranslate="hunterappApp.userDocumento.dadosPessoais">Dados Pessoais</span></dt>
+        <dt><span jhiTranslate="hunterappApp.userDocumento.tipoDocumento">Tipo Documento</span></dt>
         <dd>
-          <div *ngIf="documento.dadosPessoais">
-            <a [routerLink]="['/dados-pessoais', documento.dadosPessoais?.id, 'view']">{{ documento.dadosPessoais?.id }}</a>
+          <div *ngIf="documento.tipoDocumento">
+            {{ documento.tipoDocumento?.id }}
           </div>
         </dd>
       </dl>

@@ -9,7 +9,7 @@ import { IMensagem, Mensagem } from '../mensagem.model';
 import { MensagemService } from '../service/mensagem.service';
 import { ITipoMensagem } from 'app/entities/config/tipo-mensagem/tipo-mensagem.model';
 import { TipoMensagemService } from 'app/entities/config/tipo-mensagem/service/tipo-mensagem.service';
-import { IDadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
+import { IDadosPessoais, DadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
 import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/dados-pessoais.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class MensagemUpdateComponent implements OnInit {
   isSaving = false;
 
   tiposCollection: ITipoMensagem[] = [];
-  dadosPessoaisSharedCollection: IDadosPessoais[] = [];
+  dadosPessoais?: IDadosPessoais;
 
   editForm = this.fb.group({
     id: [],
@@ -28,7 +28,6 @@ export class MensagemUpdateComponent implements OnInit {
     titulo: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(40)]],
     conteudo: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(1000)]],
     tipo: [null, Validators.required],
-    dadosPessoais: [],
   });
 
   constructor(
@@ -40,9 +39,9 @@ export class MensagemUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe(({ mensagem }) => {
+    this.activatedRoute.data.subscribe(({ mensagem, dadosPessoais }) => {
+      this.dadosPessoais = dadosPessoais ?? new DadosPessoais();
       this.updateForm(mensagem);
-
       this.loadRelationshipsOptions();
     });
   }
@@ -54,6 +53,7 @@ export class MensagemUpdateComponent implements OnInit {
   save(): void {
     this.isSaving = true;
     const mensagem = this.createFromForm();
+    mensagem.dadosPessoais = this.dadosPessoais;
     if (mensagem.id !== undefined) {
       this.subscribeToSaveResponse(this.mensagemService.update(mensagem));
     } else {
@@ -62,10 +62,6 @@ export class MensagemUpdateComponent implements OnInit {
   }
 
   trackTipoMensagemById(_index: number, item: ITipoMensagem): number {
-    return item.id!;
-  }
-
-  trackDadosPessoaisById(_index: number, item: IDadosPessoais): number {
     return item.id!;
   }
 
@@ -95,14 +91,9 @@ export class MensagemUpdateComponent implements OnInit {
       titulo: mensagem.titulo,
       conteudo: mensagem.conteudo,
       tipo: mensagem.tipo,
-      dadosPessoais: mensagem.dadosPessoais,
     });
 
     this.tiposCollection = this.tipoMensagemService.addTipoMensagemToCollectionIfMissing(this.tiposCollection, mensagem.tipo);
-    this.dadosPessoaisSharedCollection = this.dadosPessoaisService.addDadosPessoaisToCollectionIfMissing(
-      this.dadosPessoaisSharedCollection,
-      mensagem.dadosPessoais
-    );
   }
 
   protected loadRelationshipsOptions(): void {
@@ -115,16 +106,6 @@ export class MensagemUpdateComponent implements OnInit {
         )
       )
       .subscribe((tipoMensagems: ITipoMensagem[]) => (this.tiposCollection = tipoMensagems));
-
-    this.dadosPessoaisService
-      .query()
-      .pipe(map((res: HttpResponse<IDadosPessoais[]>) => res.body ?? []))
-      .pipe(
-        map((dadosPessoais: IDadosPessoais[]) =>
-          this.dadosPessoaisService.addDadosPessoaisToCollectionIfMissing(dadosPessoais, this.editForm.get('dadosPessoais')!.value)
-        )
-      )
-      .subscribe((dadosPessoais: IDadosPessoais[]) => (this.dadosPessoaisSharedCollection = dadosPessoais));
   }
 
   protected createFromForm(): IMensagem {
@@ -135,7 +116,6 @@ export class MensagemUpdateComponent implements OnInit {
       titulo: this.editForm.get(['titulo'])!.value,
       conteudo: this.editForm.get(['conteudo'])!.value,
       tipo: this.editForm.get(['tipo'])!.value,
-      dadosPessoais: this.editForm.get(['dadosPessoais'])!.value,
     };
   }
 }

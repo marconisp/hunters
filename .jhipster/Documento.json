@@ -21,6 +21,13 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "tipoDocumento",
+      "otherEntityRelationshipName": "documento",
+      "ownerSide": true,
+      "relationshipName": "tipoDocumento",
+      "relationshipType": "one-to-one"
+    },
+    {
       "otherEntityName": "fotoDocumento",
       "otherEntityRelationshipName": "documento",
       "relationshipName": "foto",

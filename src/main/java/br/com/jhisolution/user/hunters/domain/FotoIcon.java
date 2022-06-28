@@ -30,6 +30,27 @@ public class FotoIcon implements Serializable {
     @Column(name = "conteudo_content_type", nullable = false)
     private String conteudoContentType;
 
+    public FotoIcon() {}
+
+    public FotoIcon(Long id, byte[] conteudo, String conteudoContentType) {
+        super();
+        this.id = id;
+        this.conteudo = conteudo;
+        this.conteudoContentType = conteudoContentType;
+    }
+
+    public static FotoIcon getInstance() {
+        return new FotoIcon();
+    }
+
+    public static FotoIcon getInstance(Long id, byte[] conteudo, String conteudoContentType) {
+        return new FotoIcon(id, conteudo, conteudoContentType);
+    }
+
+    public static FotoIcon getInstance(byte[] conteudo, String conteudoContentType) {
+        return new FotoIcon(null, conteudo, conteudoContentType);
+    }
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {

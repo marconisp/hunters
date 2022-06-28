@@ -11,6 +11,7 @@ import br.com.jhisolution.user.hunters.domain.DadosPessoais;
 import br.com.jhisolution.user.hunters.domain.EstadoCivil;
 import br.com.jhisolution.user.hunters.domain.Raca;
 import br.com.jhisolution.user.hunters.domain.Religiao;
+import br.com.jhisolution.user.hunters.domain.TipoPessoa;
 import br.com.jhisolution.user.hunters.repository.DadosPessoaisRepository;
 import br.com.jhisolution.user.hunters.service.DadosPessoaisService;
 import java.util.ArrayList;
@@ -105,6 +106,16 @@ class DadosPessoaisResourceIT {
             .whatsapp(DEFAULT_WHATSAPP)
             .email(DEFAULT_EMAIL);
         // Add required entity
+        TipoPessoa tipoPessoa;
+        if (TestUtil.findAll(em, TipoPessoa.class).isEmpty()) {
+            tipoPessoa = TipoPessoaResourceIT.createEntity(em);
+            em.persist(tipoPessoa);
+            em.flush();
+        } else {
+            tipoPessoa = TestUtil.findAll(em, TipoPessoa.class).get(0);
+        }
+        dadosPessoais.setTipoPessoa(tipoPessoa);
+        // Add required entity
         EstadoCivil estadoCivil;
         if (TestUtil.findAll(em, EstadoCivil.class).isEmpty()) {
             estadoCivil = EstadoCivilResourceIT.createEntity(em);
@@ -153,6 +164,16 @@ class DadosPessoaisResourceIT {
             .celular(UPDATED_CELULAR)
             .whatsapp(UPDATED_WHATSAPP)
             .email(UPDATED_EMAIL);
+        // Add required entity
+        TipoPessoa tipoPessoa;
+        if (TestUtil.findAll(em, TipoPessoa.class).isEmpty()) {
+            tipoPessoa = TipoPessoaResourceIT.createUpdatedEntity(em);
+            em.persist(tipoPessoa);
+            em.flush();
+        } else {
+            tipoPessoa = TestUtil.findAll(em, TipoPessoa.class).get(0);
+        }
+        dadosPessoais.setTipoPessoa(tipoPessoa);
         // Add required entity
         EstadoCivil estadoCivil;
         if (TestUtil.findAll(em, EstadoCivil.class).isEmpty()) {

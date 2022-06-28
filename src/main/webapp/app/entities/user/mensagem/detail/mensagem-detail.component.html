@@ -32,12 +32,6 @@
             <a [routerLink]="['/tipo-mensagem', mensagem.tipo?.id, 'view']">{{ mensagem.tipo?.codigo }}</a>
           </div>
         </dd>
-        <dt><span jhiTranslate="hunterappApp.userMensagem.dadosPessoais">Dados Pessoais</span></dt>
-        <dd>
-          <div *ngIf="mensagem.dadosPessoais">
-            <a [routerLink]="['/dados-pessoais', mensagem.dadosPessoais?.id, 'view']">{{ mensagem.dadosPessoais?.id }}</a>
-          </div>
-        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

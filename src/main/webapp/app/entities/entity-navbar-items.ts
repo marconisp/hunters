@@ -69,4 +69,14 @@ export const EntityNavbarItems = [
     route: 'estado-civil',
     translationKey: 'global.menu.entities.configEstadoCivil',
   },
+  {
+    name: 'TipoPessoa',
+    route: 'tipo-pessoa',
+    translationKey: 'global.menu.entities.configTipoPessoa',
+  },
+  {
+    name: 'TipoDocumento',
+    route: 'tipo-documento',
+    translationKey: 'global.menu.entities.configTipoDocumento',
+  },
 ];

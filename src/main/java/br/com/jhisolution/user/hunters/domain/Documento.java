@@ -30,6 +30,10 @@ public class Documento implements Serializable {
     @Column(name = "descricao", length = 50, nullable = false)
     private String descricao;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private TipoDocumento tipoDocumento;
+
     @OneToMany(mappedBy = "documento")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "documento" }, allowSetters = true)
@@ -38,7 +42,18 @@ public class Documento implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(
         value = {
-            "estadoCivil", "raca", "religiao", "foto", "fotoAvatar", "fotoIcon", "mensagems", "avisos", "documentos", "enderecos", "user",
+            "tipoPessoa",
+            "estadoCivil",
+            "raca",
+            "religiao",
+            "foto",
+            "fotoAvatar",
+            "fotoIcon",
+            "mensagems",
+            "avisos",
+            "documentos",
+            "enderecos",
+            "user",
         },
         allowSetters = true
     )
@@ -70,6 +85,19 @@ public class Documento implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public TipoDocumento getTipoDocumento() {
+        return this.tipoDocumento;
+    }
+
+    public void setTipoDocumento(TipoDocumento tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
+    }
+
+    public Documento tipoDocumento(TipoDocumento tipoDocumento) {
+        this.setTipoDocumento(tipoDocumento);
+        return this;
     }
 
     public Set<FotoDocumento> getFotos() {
