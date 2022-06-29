@@ -5,11 +5,6 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forChild([
       {
-        path: 'user-1',
-        data: { pageTitle: 'hunterappApp.userUser1.home.title' },
-        loadChildren: () => import('./user/user-1/user-1.module').then(m => m.User1Module),
-      },
-      {
         path: 'dados-pessoais',
         data: { pageTitle: 'hunterappApp.userDadosPessoais.home.title' },
         loadChildren: () => import('./user/dados-pessoais/dados-pessoais.module').then(m => m.DadosPessoaisModule),

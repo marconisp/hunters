@@ -48,8 +48,6 @@ public class CacheConfiguration {
             createCache(cm, br.com.jhisolution.user.hunters.domain.User.class.getName());
             createCache(cm, br.com.jhisolution.user.hunters.domain.Authority.class.getName());
             createCache(cm, br.com.jhisolution.user.hunters.domain.User.class.getName() + ".authorities");
-            createCache(cm, br.com.jhisolution.user.hunters.domain.User1.class.getName());
-            createCache(cm, br.com.jhisolution.user.hunters.domain.User1.class.getName() + ".dadosPessoais");
             createCache(cm, br.com.jhisolution.user.hunters.domain.DadosPessoais.class.getName());
             createCache(cm, br.com.jhisolution.user.hunters.domain.DadosPessoais.class.getName() + ".mensagems");
             createCache(cm, br.com.jhisolution.user.hunters.domain.DadosPessoais.class.getName() + ".avisos");

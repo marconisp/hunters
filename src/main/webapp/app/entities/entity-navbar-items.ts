@@ -1,10 +1,5 @@
 export const EntityNavbarItems = [
   {
-    name: 'User1',
-    route: 'user-1',
-    translationKey: 'global.menu.entities.userUser1',
-  },
-  {
     name: 'DadosPessoais',
     route: 'dados-pessoais',
     translationKey: 'global.menu.entities.userDadosPessoais',

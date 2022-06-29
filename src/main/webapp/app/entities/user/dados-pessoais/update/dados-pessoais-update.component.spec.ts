@@ -16,14 +16,6 @@ import { IRaca } from 'app/entities/config/raca/raca.model';
 import { RacaService } from 'app/entities/config/raca/service/raca.service';
 import { IReligiao } from 'app/entities/config/religiao/religiao.model';
 import { ReligiaoService } from 'app/entities/config/religiao/service/religiao.service';
-import { IFoto } from 'app/entities/foto/foto/foto.model';
-import { FotoService } from 'app/entities/foto/foto/service/foto.service';
-import { IFotoAvatar } from 'app/entities/foto/foto-avatar/foto-avatar.model';
-import { FotoAvatarService } from 'app/entities/foto/foto-avatar/service/foto-avatar.service';
-import { IFotoIcon } from 'app/entities/foto/foto-icon/foto-icon.model';
-import { FotoIconService } from 'app/entities/foto/foto-icon/service/foto-icon.service';
-import { IUser1 } from 'app/entities/user/user-1/user-1.model';
-import { User1Service } from 'app/entities/user/user-1/service/user-1.service';
 
 import { DadosPessoaisUpdateComponent } from './dados-pessoais-update.component';
 
@@ -36,10 +28,6 @@ describe('DadosPessoais Management Update Component', () => {
   let estadoCivilService: EstadoCivilService;
   let racaService: RacaService;
   let religiaoService: ReligiaoService;
-  let fotoService: FotoService;
-  let fotoAvatarService: FotoAvatarService;
-  let fotoIconService: FotoIconService;
-  let user1Service: User1Service;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -65,10 +53,6 @@ describe('DadosPessoais Management Update Component', () => {
     estadoCivilService = TestBed.inject(EstadoCivilService);
     racaService = TestBed.inject(RacaService);
     religiaoService = TestBed.inject(ReligiaoService);
-    fotoService = TestBed.inject(FotoService);
-    fotoAvatarService = TestBed.inject(FotoAvatarService);
-    fotoIconService = TestBed.inject(FotoIconService);
-    user1Service = TestBed.inject(User1Service);
 
     comp = fixture.componentInstance;
   });
@@ -146,79 +130,6 @@ describe('DadosPessoais Management Update Component', () => {
       expect(comp.religiaosCollection).toEqual(expectedCollection);
     });
 
-    it('Should call foto query and add missing value', () => {
-      const dadosPessoais: IDadosPessoais = { id: 456 };
-      const foto: IFoto = { id: 79620 };
-      dadosPessoais.foto = foto;
-
-      const fotoCollection: IFoto[] = [{ id: 44401 }];
-      jest.spyOn(fotoService, 'query').mockReturnValue(of(new HttpResponse({ body: fotoCollection })));
-      const expectedCollection: IFoto[] = [foto, ...fotoCollection];
-      jest.spyOn(fotoService, 'addFotoToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ dadosPessoais });
-      comp.ngOnInit();
-
-      expect(fotoService.query).toHaveBeenCalled();
-      expect(fotoService.addFotoToCollectionIfMissing).toHaveBeenCalledWith(fotoCollection, foto);
-      expect(comp.fotosCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call fotoAvatar query and add missing value', () => {
-      const dadosPessoais: IDadosPessoais = { id: 456 };
-      const fotoAvatar: IFotoAvatar = { id: 42864 };
-      dadosPessoais.fotoAvatar = fotoAvatar;
-
-      const fotoAvatarCollection: IFotoAvatar[] = [{ id: 73692 }];
-      jest.spyOn(fotoAvatarService, 'query').mockReturnValue(of(new HttpResponse({ body: fotoAvatarCollection })));
-      const expectedCollection: IFotoAvatar[] = [fotoAvatar, ...fotoAvatarCollection];
-      jest.spyOn(fotoAvatarService, 'addFotoAvatarToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ dadosPessoais });
-      comp.ngOnInit();
-
-      expect(fotoAvatarService.query).toHaveBeenCalled();
-      expect(fotoAvatarService.addFotoAvatarToCollectionIfMissing).toHaveBeenCalledWith(fotoAvatarCollection, fotoAvatar);
-      expect(comp.fotoAvatarsCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call fotoIcon query and add missing value', () => {
-      const dadosPessoais: IDadosPessoais = { id: 456 };
-      const fotoIcon: IFotoIcon = { id: 82889 };
-      dadosPessoais.fotoIcon = fotoIcon;
-
-      const fotoIconCollection: IFotoIcon[] = [{ id: 57419 }];
-      jest.spyOn(fotoIconService, 'query').mockReturnValue(of(new HttpResponse({ body: fotoIconCollection })));
-      const expectedCollection: IFotoIcon[] = [fotoIcon, ...fotoIconCollection];
-      jest.spyOn(fotoIconService, 'addFotoIconToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ dadosPessoais });
-      comp.ngOnInit();
-
-      expect(fotoIconService.query).toHaveBeenCalled();
-      expect(fotoIconService.addFotoIconToCollectionIfMissing).toHaveBeenCalledWith(fotoIconCollection, fotoIcon);
-      expect(comp.fotoIconsCollection).toEqual(expectedCollection);
-    });
-
-    it('Should call User1 query and add missing value', () => {
-      const dadosPessoais: IDadosPessoais = { id: 456 };
-      const user: IUser1 = { id: 87890 };
-      dadosPessoais.user = user;
-
-      const user1Collection: IUser1[] = [{ id: 59826 }];
-      jest.spyOn(user1Service, 'query').mockReturnValue(of(new HttpResponse({ body: user1Collection })));
-      const additionalUser1s = [user];
-      const expectedCollection: IUser1[] = [...additionalUser1s, ...user1Collection];
-      jest.spyOn(user1Service, 'addUser1ToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ dadosPessoais });
-      comp.ngOnInit();
-
-      expect(user1Service.query).toHaveBeenCalled();
-      expect(user1Service.addUser1ToCollectionIfMissing).toHaveBeenCalledWith(user1Collection, ...additionalUser1s);
-      expect(comp.user1sSharedCollection).toEqual(expectedCollection);
-    });
-
     it('Should update editForm', () => {
       const dadosPessoais: IDadosPessoais = { id: 456 };
       const tipoPessoa: ITipoPessoa = { id: 79706 };
@@ -229,14 +140,6 @@ describe('DadosPessoais Management Update Component', () => {
       dadosPessoais.raca = raca;
       const religiao: IReligiao = { id: 71151 };
       dadosPessoais.religiao = religiao;
-      const foto: IFoto = { id: 49122 };
-      dadosPessoais.foto = foto;
-      const fotoAvatar: IFotoAvatar = { id: 42611 };
-      dadosPessoais.fotoAvatar = fotoAvatar;
-      const fotoIcon: IFotoIcon = { id: 75172 };
-      dadosPessoais.fotoIcon = fotoIcon;
-      const user: IUser1 = { id: 51309 };
-      dadosPessoais.user = user;
 
       activatedRoute.data = of({ dadosPessoais });
       comp.ngOnInit();
@@ -246,10 +149,6 @@ describe('DadosPessoais Management Update Component', () => {
       expect(comp.estadoCivilsCollection).toContain(estadoCivil);
       expect(comp.racasCollection).toContain(raca);
       expect(comp.religiaosCollection).toContain(religiao);
-      expect(comp.fotosCollection).toContain(foto);
-      expect(comp.fotoAvatarsCollection).toContain(fotoAvatar);
-      expect(comp.fotoIconsCollection).toContain(fotoIcon);
-      expect(comp.user1sSharedCollection).toContain(user);
     });
   });
 
@@ -346,38 +245,6 @@ describe('DadosPessoais Management Update Component', () => {
       it('Should return tracked Religiao primary key', () => {
         const entity = { id: 123 };
         const trackResult = comp.trackReligiaoById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackFotoById', () => {
-      it('Should return tracked Foto primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackFotoById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackFotoAvatarById', () => {
-      it('Should return tracked FotoAvatar primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackFotoAvatarById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackFotoIconById', () => {
-      it('Should return tracked FotoIcon primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackFotoIconById(0, entity);
-        expect(trackResult).toEqual(entity.id);
-      });
-    });
-
-    describe('trackUser1ById', () => {
-      it('Should return tracked User1 primary key', () => {
-        const entity = { id: 123 };
-        const trackResult = comp.trackUser1ById(0, entity);
         expect(trackResult).toEqual(entity.id);
       });
     });

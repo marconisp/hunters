@@ -9,7 +9,6 @@ import { IMensagem } from 'app/entities/user/mensagem/mensagem.model';
 import { IAviso } from 'app/entities/user/aviso/aviso.model';
 import { IDocumento } from 'app/entities/user/documento/documento.model';
 import { IEndereco } from 'app/entities/user/endereco/endereco.model';
-import { IUser1 } from 'app/entities/user/user-1/user-1.model';
 
 export interface IDadosPessoais {
   id?: number;
@@ -32,7 +31,6 @@ export interface IDadosPessoais {
   avisos?: IAviso[] | null;
   documentos?: IDocumento[] | null;
   enderecos?: IEndereco[] | null;
-  user?: IUser1 | null;
 }
 
 export class DadosPessoais implements IDadosPessoais {
@@ -56,8 +54,7 @@ export class DadosPessoais implements IDadosPessoais {
     public mensagems?: IMensagem[] | null,
     public avisos?: IAviso[] | null,
     public documentos?: IDocumento[] | null,
-    public enderecos?: IEndereco[] | null,
-    public user?: IUser1 | null
+    public enderecos?: IEndereco[] | null
   ) {}
 }
 
