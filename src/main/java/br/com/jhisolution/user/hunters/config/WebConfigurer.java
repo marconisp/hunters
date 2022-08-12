@@ -5,10 +5,13 @@ import static java.net.URLDecoder.decode;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
-import javax.servlet.*;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.web.server.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.server.WebServerFactory;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.ServletContextInitializer;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
@@ -34,6 +37,15 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     private final Environment env;
 
     private final JHipsterProperties jHipsterProperties;
+
+    @Value("${tomcat.ajp.port}")
+    private Integer port;
+
+    @Value("${tomcat.ajp.enabled}")
+    private Boolean enabled;
+
+    @Value("${tomcat.ajp.remoteauthentication}")
+    private Boolean remoteauthentication;
 
     public WebConfigurer(Environment env, JHipsterProperties jHipsterProperties) {
         this.env = env;
@@ -107,5 +119,21 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
     private void initH2Console(ServletContext servletContext) {
         log.debug("Initialize H2 console");
         H2ConfigurationHelper.initH2Console(servletContext);
+    }
+
+    @Bean
+    public EmbeddedServletContainerFactory servletContainer() {
+        TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory();
+        if (tomcatAjpEnabled) {
+            Connector ajpConnector = new Connector("AJP/1.3");
+            ajpConnector.setProtocol("AJP/1.3");
+            ajpConnector.setPort(ajpPort);
+            ajpConnector.setSecure(false);
+            ajpConnector.setAllowTrace(false);
+            ajpConnector.setScheme("http");
+            tomcat.addAdditionalTomcatConnectors(ajpConnector);
+        }
+
+        return tomcat;
     }
 }

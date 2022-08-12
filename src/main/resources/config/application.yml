@@ -186,7 +186,7 @@ jhipster:
   #   allow-credentials: true
   #   max-age: 1800
   mail:
-    from: hunterapp@localhost
+    from: santafehunters@gmail.com
   api-docs:
     default-include-pattern: ${server.servlet.context-path:}/api/**
     management-include-pattern: ${server.servlet.context-path:}/management/**
@@ -211,3 +211,12 @@ jhipster:
 # ===================================================================
 
 # application:
+
+# ===================================================================
+# Mod_jk
+# ===================================================================
+tomcat:
+  ajp:
+    port: 9090
+    remoteauthentication: false
+    enabled: true

@@ -2,8 +2,10 @@
   <div class="container-fluid">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
       <span class="logo-img"></span>
-      <span jhiTranslate="global.title" class="navbar-title">Hunterapp</span>
+      <!--
+      <span jhiTranslate="global.title" class="navbar-title">verão</span>
       <span class="navbar-version">{{ version }}</span>
+      -->
     </a>
     <a
       class="navbar-toggler d-lg-none"
@@ -28,6 +30,7 @@
           </a>
         </li>
         <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
+        <!--
         <li
           *ngSwitchCase="true"
           ngbDropdown
@@ -235,9 +238,10 @@
                 <span jhiTranslate="global.menu.entities.configTipoDocumento">Tipo Documento</span>
               </a>
             </li>
-            <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
+            -- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here --
           </ul>
         </li>
+        -->
         <li
           *jhiHasAnyAuthority="'ROLE_ADMIN'"
           ngbDropdown
