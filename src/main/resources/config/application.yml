@@ -166,7 +166,7 @@ springdoc:
 # Properties to be exposed on the /info management endpoint
 info:
   # Comma separated list of profiles that will trigger the ribbon to show
-  display-ribbon-on-profiles: 'dev'
+  display-ribbon-on-profiles: 'pro'
 
 # ===================================================================
 # JHipster specific properties
@@ -186,7 +186,7 @@ jhipster:
   #   allow-credentials: true
   #   max-age: 1800
   mail:
-    from: santafehunters@gmail.com
+    from: santafehuntersmail@gmail.com
   api-docs:
     default-include-pattern: ${server.servlet.context-path:}/api/**
     management-include-pattern: ${server.servlet.context-path:}/management/**

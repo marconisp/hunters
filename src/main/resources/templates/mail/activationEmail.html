@@ -6,6 +6,9 @@
     <link rel="icon" th:href="@{|${baseUrl}/favicon.ico|}" />
   </head>
   <body>
+    <div>
+      <img th:src="@{|${baseUrl}/content/images/figure-10anos.png|}" height="200" width="200" />
+    </div>
     <p th:text="#{email.activation.greeting(${user.login})}">Dear</p>
     <p th:text="#{email.activation.text1}">Your JHipster account has been created, please click on the URL below to activate it:</p>
     <p>

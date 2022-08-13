@@ -120,7 +120,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
         log.debug("Initialize H2 console");
         H2ConfigurationHelper.initH2Console(servletContext);
     }
-
+    /*
     @Bean
     public EmbeddedServletContainerFactory servletContainer() {
         TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory();
@@ -136,4 +136,5 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
 
         return tomcat;
     }
+	*/
 }
