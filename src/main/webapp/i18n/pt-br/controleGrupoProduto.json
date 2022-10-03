@@ -1,0 +1,26 @@
+{
+  "hunterappApp": {
+    "controleGrupoProduto": {
+      "home": {
+        "title": "Grupo Produtos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Grupo Produto",
+        "createOrEditLabel": "Criar ou editar Grupo Produto",
+        "notFound": "Nenhum Grupo Produto encontrado"
+      },
+      "created": "Um novo Grupo Produto foi criado com o identificador {{ param }}",
+      "updated": "Um Grupo Produto foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Grupo Produto foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Grupo Produto {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupo Produto"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "obs": "Obs",
+      "nome": "Nome"
+    }
+  }
+}

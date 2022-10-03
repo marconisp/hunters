@@ -1,0 +1,137 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-evento-heading" data-cy="EventoCreateUpdateHeading" jhiTranslate="hunterappApp.eventoEvento.home.createOrEditLabel">
+        Create or edit a Evento
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.eventoEvento.nome" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+          <div *ngIf="editForm.get('nome')!.invalid && (editForm.get('nome')!.dirty || editForm.get('nome')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('nome')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('nome')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.eventoEvento.descricao" for="field_descricao">Descricao</label>
+          <input type="text" class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao" />
+          <div *ngIf="editForm.get('descricao')!.invalid && (editForm.get('descricao')!.dirty || editForm.get('descricao')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('descricao')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.eventoEvento.ativo" for="field_ativo">Ativo</label>
+          <input type="checkbox" class="form-check" name="ativo" id="field_ativo" data-cy="ativo" formControlName="ativo" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.eventoEvento.obs" for="field_obs">Obs</label>
+          <input type="text" class="form-control" name="obs" id="field_obs" data-cy="obs" formControlName="obs" />
+          <div *ngIf="editForm.get('obs')!.invalid && (editForm.get('obs')!.dirty || editForm.get('obs')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('obs')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.eventoEvento.periodoDuracao" for="field_periodoDuracao"
+            >Periodo Duracao</label
+          >
+          <select
+            class="form-control"
+            id="field_periodoDuracao"
+            data-cy="periodoDuracao"
+            name="periodoDuracao"
+            formControlName="periodoDuracao"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                periodoDuracaoOption.id === editForm.get('periodoDuracao')!.value?.id
+                  ? editForm.get('periodoDuracao')!.value
+                  : periodoDuracaoOption
+              "
+              *ngFor="let periodoDuracaoOption of periodoDuracaosCollection; trackBy: trackPeriodoDuracaoById"
+            >
+              {{ periodoDuracaoOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.eventoEvento.dadosPessoais" for="field_dadosPessoais"
+            >Dados Pessoais 1</label
+          >
+          <select
+            class="form-control"
+            id="field_dadosPessoais"
+            data-cy="dadosPessoais"
+            name="dadosPessoais"
+            formControlName="dadosPessoais"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                dadosPessoaisOption.id === editForm.get('dadosPessoais')!.value?.id
+                  ? editForm.get('dadosPessoais')!.value
+                  : dadosPessoaisOption
+              "
+              *ngFor="let dadosPessoaisOption of dadosPessoaisSharedCollection; trackBy: trackDadosPessoaisById"
+            >
+              {{ dadosPessoaisOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

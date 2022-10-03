@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="caracteristicasPsiquicas">
+      <h2 data-cy="caracteristicasPsiquicasDetailsHeading">
+        <span jhiTranslate="hunterappApp.matriculaCaracteristicasPsiquicas.detail.title">Caracteristicas Psiquicas</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ caracteristicasPsiquicas.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaCaracteristicasPsiquicas.nome">Nome</span></dt>
+        <dd>
+          <span>{{ caracteristicasPsiquicas.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaCaracteristicasPsiquicas.dadosPessoais">Dados Pessoais</span></dt>
+        <dd>
+          <div *ngIf="caracteristicasPsiquicas.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais-1', caracteristicasPsiquicas.dadosPessoais?.id, 'view']">{{
+              caracteristicasPsiquicas.dadosPessoais?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/caracteristicas-psiquicas', caracteristicasPsiquicas.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

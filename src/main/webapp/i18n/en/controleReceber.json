@@ -1,0 +1,38 @@
+{
+  "hunterappApp": {
+    "controleReceber": {
+      "report": {
+        "title": "Relatório de contas receber",
+        "dataInicio": "Data Início",
+        "dataFim": "Data Fim",
+        "emitir": "Emitir"
+      },
+      "home": {
+        "title": "Recebers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Receber",
+        "createOrEditLabel": "Create or edit a Receber",
+        "notFound": "No Recebers found"
+      },
+      "created": "A new Receber is created with identifier {{ param }}",
+      "updated": "A Receber is updated with identifier {{ param }}",
+      "deleted": "A Receber is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Receber {{ id }}?"
+      },
+      "detail": {
+        "title": "Receber"
+      },
+      "id": "ID",
+      "data": "Data",
+      "valor": "Valor",
+      "status": "Status",
+      "obs": "Obs",
+      "tipoReceber": "Tipo Receber",
+      "receberDe": "Receber De",
+      "tipoTransacao": "Tipo Transacao",
+      "fotoReceber": "Foto Receber",
+      "pessoa": "Pessoa"
+    }
+  }
+}

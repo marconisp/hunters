@@ -1,0 +1,35 @@
+{
+  "hunterappApp": {
+    "userDadosPessoais1": {
+      "home": {
+        "title": "Dados Pessoais 1 S",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Dados Pessoais 1",
+        "createOrEditLabel": "Criar ou editar Dados Pessoais 1",
+        "notFound": "Nenhum Dados Pessoais 1 encontrado"
+      },
+      "created": "Um novo Dados Pessoais 1 foi criado com o identificador {{ param }}",
+      "updated": "Um Dados Pessoais 1 foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Dados Pessoais 1 foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Dados Pessoais 1 {{ id }}?"
+      },
+      "detail": {
+        "title": "Dados Pessoais 1"
+      },
+      "id": "ID",
+      "matricula": "Matricula",
+      "dadosMedico": "Dados Medico",
+      "avaliacaoEconomica": "Avaliacao Economica",
+      "acompanhamentoAluno": "Acompanhamento Aluno",
+      "colaborador": "Colaborador",
+      "caracteristicasPsiquicas": "Caracteristicas Psiquicas",
+      "exameMedico": "Exame Medico",
+      "evento": "Evento",
+      "pagar": "Pagar",
+      "receber": "Receber",
+      "entradaEstoque": "Entrada Estoque",
+      "saidaEstoque": "Saida Estoque"
+    }
+  }
+}

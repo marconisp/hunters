@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity AvaliacaoEconomica.
+    -->
+    <changeSet id="20220916011235-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="dados_pessoais_id"
+                                 baseTableName="avaliacao_economica"
+                                 constraintName="fk_avaliacao_economica__dados_pessoais_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dados_pessoais"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,10 @@
+{
+  "hunterappApp": {
+    "TipoMoradia": {
+      "null": "",
+      "CASA": "CASA",
+      "APARTAMENTO": "APARTAMENTO",
+      "OUTROS": "OUTROS"
+    }
+  }
+}

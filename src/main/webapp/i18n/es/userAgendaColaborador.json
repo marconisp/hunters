@@ -1,0 +1,27 @@
+{
+  "hunterappApp": {
+    "userAgendaColaborador": {
+      "home": {
+        "title": "Agenda Colaboradors",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Agenda Colaborador",
+        "createOrEditLabel": "Crear o editar Agenda Colaborador",
+        "notFound": "Ningún Agenda Colaboradors encontrado"
+      },
+      "created": "Un nuevo Agenda Colaborador ha sido creado con el identificador {{ param }}",
+      "updated": "Un Agenda Colaborador ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Agenda Colaborador ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Agenda Colaborador {{ id }}?"
+      },
+      "detail": {
+        "title": "Agenda Colaborador"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "obs": "Obs",
+      "periodoDuracao": "Periodo Duracao",
+      "colaborador": "Colaborador"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "hunterappApp": {
+    "controleTipoReceber": {
+      "home": {
+        "title": "Tipo Recebers",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Tipo Receber",
+        "createOrEditLabel": "Criar ou editar Tipo Receber",
+        "notFound": "Nenhum Tipo Receber encontrado"
+      },
+      "created": "Um novo Tipo Receber foi criado com o identificador {{ param }}",
+      "updated": "Um Tipo Receber foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tipo Receber foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tipo Receber {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Receber"
+      },
+      "id": "ID",
+      "nome": "Nome"
+    }
+  }
+}

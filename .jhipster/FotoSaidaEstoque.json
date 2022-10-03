@@ -1,0 +1,30 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011302",
+  "clientRootFolder": "foto",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "foto_saida_estoque",
+  "fields": [
+    {
+      "fieldName": "conteudo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FotoSaidaEstoque",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "saidaEstoque",
+      "otherEntityRelationshipName": "fotoSaidaEstoque",
+      "relationshipName": "saidaEstoque",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

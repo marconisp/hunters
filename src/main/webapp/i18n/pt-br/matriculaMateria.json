@@ -1,0 +1,24 @@
+{
+  "hunterappApp": {
+    "matriculaMateria": {
+      "home": {
+        "title": "Materias",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Materia",
+        "createOrEditLabel": "Criar ou editar Materia",
+        "notFound": "Nenhum Materia encontrado"
+      },
+      "created": "Um novo Materia foi criado com o identificador {{ param }}",
+      "updated": "Um Materia foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Materia foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Materia {{ id }}?"
+      },
+      "detail": {
+        "title": "Materia"
+      },
+      "id": "ID",
+      "nome": "Nome"
+    }
+  }
+}

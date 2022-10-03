@@ -1,0 +1,30 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011254",
+  "clientRootFolder": "foto",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "foto_receber",
+  "fields": [
+    {
+      "fieldName": "conteudo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "FotoReceber",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "receber",
+      "otherEntityRelationshipName": "fotoReceber",
+      "relationshipName": "receber",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

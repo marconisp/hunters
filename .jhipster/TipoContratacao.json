@@ -1,0 +1,30 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011241",
+  "clientRootFolder": "controle",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tipo_contratacao",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "50"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TipoContratacao",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "colaborador",
+      "otherEntityRelationshipName": "tipoContratacao",
+      "relationshipName": "colaborador",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

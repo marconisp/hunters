@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "matriculaCaracteristicasPsiquicas": {
+      "home": {
+        "title": "Caracteristicas Psiquicas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Caracteristicas Psiquicas",
+        "createOrEditLabel": "Create or edit a Caracteristicas Psiquicas",
+        "notFound": "No Caracteristicas Psiquicas found"
+      },
+      "created": "A new Caracteristicas Psiquicas is created with identifier {{ param }}",
+      "updated": "A Caracteristicas Psiquicas is updated with identifier {{ param }}",
+      "deleted": "A Caracteristicas Psiquicas is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Caracteristicas Psiquicas {{ id }}?"
+      },
+      "detail": {
+        "title": "Caracteristicas Psiquicas"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "dadosPessoais1": "Dados Pessoais 1"
+    }
+  }
+}

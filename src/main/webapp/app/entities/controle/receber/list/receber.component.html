@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="ReceberHeading">
+    <span jhiTranslate="hunterappApp.controleReceber.home.title">Recebers</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      </button>
+
+      <button class="btn btn-info me-2" [routerLink]="['/receber/report']">
+        <fa-icon icon="newspaper"></fa-icon>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-receber"
+        [routerLink]="['/receber/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="recebers?.length === 0">
+    <span jhiTranslate="hunterappApp.controleReceber.home.notFound">No recebers found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="recebers && recebers.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="data">
+            <span jhiTranslate="hunterappApp.controleReceber.data">Data</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="valor">
+            <span jhiTranslate="hunterappApp.controleReceber.valor">Valor</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="hunterappApp.controleReceber.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tipoReceber.nome">
+            <span jhiTranslate="hunterappApp.controleReceber.tipoReceber">Tipo Receber</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tipoTransacao.nome">
+            <span jhiTranslate="hunterappApp.controleReceber.tipoTransacao">Tipo Transacao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let receber of recebers; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/receber', receber.id, 'view']">{{ receber.id }}</a>
+          </td>
+          <td>{{ receber.data | formatMediumDate }}</td>
+          <td>{{ receber.valor | currency: 'BRL' }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.StatusContaReceber.' + receber.status }}">{{ receber.status }}</td>
+          <td>
+            <div *ngIf="receber.tipoReceber">{{ receber.tipoReceber?.nome }}</div>
+          </td>
+          <td>
+            <div *ngIf="receber.tipoTransacao">{{ receber.tipoTransacao?.nome }}</div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/foto-receber/receber', receber.id]"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="camera"></fa-icon>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/receber', receber.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/receber', receber.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+              </button>
+
+              <button type="submit" (click)="delete(receber)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="recebers && recebers.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

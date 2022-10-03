@@ -1,0 +1,30 @@
+{
+  "hunterappApp": {
+    "controleEntradaEstoque": {
+      "home": {
+        "title": "Entrada Estoques",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Entrada Estoque",
+        "createOrEditLabel": "Crear o editar Entrada Estoque",
+        "notFound": "Ningún Entrada Estoques encontrado"
+      },
+      "created": "Un nuevo Entrada Estoque ha sido creado con el identificador {{ param }}",
+      "updated": "Un Entrada Estoque ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Entrada Estoque ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Entrada Estoque {{ id }}?"
+      },
+      "detail": {
+        "title": "Entrada Estoque"
+      },
+      "id": "ID",
+      "data": "Data",
+      "qtde": "Qtde",
+      "valorUnitario": "Valor Unitario",
+      "obs": "Obs",
+      "produto": "Produto",
+      "fotoEntradaEstoque": "Foto Entrada Estoque",
+      "dadosPessoais1": "Dados Pessoais 1"
+    }
+  }
+}

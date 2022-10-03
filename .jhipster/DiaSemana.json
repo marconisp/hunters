@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011230",
+  "clientRootFolder": "config",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "dia_semana",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "obs",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DiaSemana",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "periodoDuracao",
+      "otherEntityRelationshipName": "diaSemana",
+      "relationshipName": "periodoDuracao",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

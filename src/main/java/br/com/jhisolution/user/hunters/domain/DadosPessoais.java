@@ -64,51 +64,115 @@ public class DadosPessoais implements Serializable {
 
     @OneToOne(optional = false)
     @NotNull
+    @JoinColumn(unique = true)
     private TipoPessoa tipoPessoa;
 
     @OneToOne(optional = false)
     @NotNull
+    @JoinColumn(unique = true)
     private EstadoCivil estadoCivil;
 
     @OneToOne(optional = false)
     @NotNull
+    @JoinColumn(unique = true)
     private Raca raca;
 
     @OneToOne(optional = false)
     @NotNull
+    @JoinColumn(unique = true)
     private Religiao religiao;
 
-    @OneToOne(cascade = { CascadeType.ALL })
+    @OneToOne
     @JoinColumn(unique = true)
     private Foto foto;
 
-    @OneToOne(cascade = { CascadeType.ALL })
+    @OneToOne
     @JoinColumn(unique = true)
     private FotoAvatar fotoAvatar;
 
-    @OneToOne(cascade = { CascadeType.ALL })
+    @OneToOne
     @JoinColumn(unique = true)
     private FotoIcon fotoIcon;
 
-    @OneToMany(mappedBy = "dadosPessoais", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "dadosPessoais")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "tipo", "dadosPessoais" }, allowSetters = true)
     private Set<Mensagem> mensagems = new HashSet<>();
 
-    @OneToMany(mappedBy = "dadosPessoais", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "dadosPessoais")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "dadosPessoais" }, allowSetters = true)
     private Set<Aviso> avisos = new HashSet<>();
 
-    @OneToMany(mappedBy = "dadosPessoais", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "dadosPessoais")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "tipoDocumento", "fotos", "dadosPessoais" }, allowSetters = true)
     private Set<Documento> documentos = new HashSet<>();
 
-    @OneToMany(mappedBy = "dadosPessoais", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "dadosPessoais")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "dadosPessoais" }, allowSetters = true)
     private Set<Endereco> enderecos = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "turma", "dadosPessoais" }, allowSetters = true)
+    private Set<Matricula> matriculas = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "vacina", "alergia", "doenca", "dadosPessoais" }, allowSetters = true)
+    private Set<DadosMedico> dadosMedicos = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "dadosPessoais" }, allowSetters = true)
+    private Set<AvaliacaoEconomica> avaliacaoEconomicas = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "itemMaterias", "dadosPessoais" }, allowSetters = true)
+    private Set<AcompanhamentoAluno> acompanhamentoAlunos = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "agendaColaboradors", "tipoContratacaos", "dadosPessoais" }, allowSetters = true)
+    private Set<Colaborador> colaboradors = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "dadosPessoais" }, allowSetters = true)
+    private Set<CaracteristicasPsiquicas> caracteristicasPsiquicas = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "fotoExameMedicos", "dadosPessoais" }, allowSetters = true)
+    private Set<ExameMedico> exameMedicos = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "periodoDuracao", "enderecos", "dadosPessoais" }, allowSetters = true)
+    private Set<Evento> eventos = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "tipoPagar", "pagarPara", "tipoTransacao", "fotoPagars", "dadosPessoais" }, allowSetters = true)
+    private Set<Pagar> pagars = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "tipoReceber", "receberDe", "tipoTransacao", "fotoRecebers", "dadosPessoais" }, allowSetters = true)
+    private Set<Receber> recebers = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "produto", "fotoEntradaEstoques", "dadosPessoais" }, allowSetters = true)
+    private Set<EntradaEstoque> entradaEstoques = new HashSet<>();
+
+    @OneToMany(mappedBy = "dadosPessoais")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "produto", "fotoSaidaEstoques", "dadosPessoais" }, allowSetters = true)
+    private Set<SaidaEstoque> saidaEstoques = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "dadosPessoais" }, allowSetters = true)
@@ -462,6 +526,102 @@ public class DadosPessoais implements Serializable {
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    public Set<Matricula> getMatriculas() {
+        return matriculas;
+    }
+
+    public void setMatriculas(Set<Matricula> matriculas) {
+        this.matriculas = matriculas;
+    }
+
+    public Set<DadosMedico> getDadosMedicos() {
+        return dadosMedicos;
+    }
+
+    public void setDadosMedicos(Set<DadosMedico> dadosMedicos) {
+        this.dadosMedicos = dadosMedicos;
+    }
+
+    public Set<AvaliacaoEconomica> getAvaliacaoEconomicas() {
+        return avaliacaoEconomicas;
+    }
+
+    public void setAvaliacaoEconomicas(Set<AvaliacaoEconomica> avaliacaoEconomicas) {
+        this.avaliacaoEconomicas = avaliacaoEconomicas;
+    }
+
+    public Set<AcompanhamentoAluno> getAcompanhamentoAlunos() {
+        return acompanhamentoAlunos;
+    }
+
+    public void setAcompanhamentoAlunos(Set<AcompanhamentoAluno> acompanhamentoAlunos) {
+        this.acompanhamentoAlunos = acompanhamentoAlunos;
+    }
+
+    public Set<Colaborador> getColaboradors() {
+        return colaboradors;
+    }
+
+    public void setColaboradors(Set<Colaborador> colaboradors) {
+        this.colaboradors = colaboradors;
+    }
+
+    public Set<CaracteristicasPsiquicas> getCaracteristicasPsiquicas() {
+        return caracteristicasPsiquicas;
+    }
+
+    public void setCaracteristicasPsiquicas(Set<CaracteristicasPsiquicas> caracteristicasPsiquicas) {
+        this.caracteristicasPsiquicas = caracteristicasPsiquicas;
+    }
+
+    public Set<ExameMedico> getExameMedicos() {
+        return exameMedicos;
+    }
+
+    public void setExameMedicos(Set<ExameMedico> exameMedicos) {
+        this.exameMedicos = exameMedicos;
+    }
+
+    public Set<Evento> getEventos() {
+        return eventos;
+    }
+
+    public void setEventos(Set<Evento> eventos) {
+        this.eventos = eventos;
+    }
+
+    public Set<Pagar> getPagars() {
+        return pagars;
+    }
+
+    public void setPagars(Set<Pagar> pagars) {
+        this.pagars = pagars;
+    }
+
+    public Set<Receber> getRecebers() {
+        return recebers;
+    }
+
+    public void setRecebers(Set<Receber> recebers) {
+        this.recebers = recebers;
+    }
+
+    public Set<EntradaEstoque> getEntradaEstoques() {
+        return entradaEstoques;
+    }
+
+    public void setEntradaEstoques(Set<EntradaEstoque> entradaEstoques) {
+        this.entradaEstoques = entradaEstoques;
+    }
+
+    public Set<SaidaEstoque> getSaidaEstoques() {
+        return saidaEstoques;
+    }
+
+    public void setSaidaEstoques(Set<SaidaEstoque> saidaEstoques) {
+        this.saidaEstoques = saidaEstoques;
+    }
 
     @Override
     public boolean equals(Object o) {

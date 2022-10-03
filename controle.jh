@@ -1,0 +1,435 @@
+enum Pressao {
+ BAIXA, NORMAL, ALTA
+}
+
+enum Coracao {
+ NORMAL, ARTERIOSCLEROSE, ANGINA, INFARTO, INSUFICIENCIA, ARRITIMIA, CARDIOMIOPATIA, DOENCA_ARTERIAL, ENDOCARDITE
+}
+
+enum SimNao {
+ SIM, NAO
+}
+
+enum Escola {
+ PUBLICA, PARTICULAR
+} 
+
+enum LocalEscola {
+ URBANA, RURAL
+} 
+
+enum Moradia {
+ PAI, MAE, PARENTES, AMIGOS, AVOS, OUTROS
+} 
+
+enum Pais {
+ CASADOS, SEPARADOS, PAI_FALECIDOS, MAE_FALECIDO, PAIS_FALECIDOS, OUTROS
+}
+
+enum SituacaoMoradia {
+ PROPRIO, FINANCIADO, FUNCIONAL, ALUGADO, CEDIDO, IRREGULAR, INVADIDO
+}
+
+enum TipoMoradia {
+ CASA, APARTAMENTO, OUTROS 
+}
+
+enum FamiliaExiste {
+ ALCOOLISMO, DROGADICAO, DOENCA, DEFICIENCIA, DESEMPREGO, PRISAO, ABANDONO, VIOLENCIA
+}
+
+enum AssitenciaMedica {
+ PUBLICA, PRIVADA
+}
+
+enum Ensino {
+ FUNDAMENTAL1, FUNDAMENTAL2, MEDIO
+}
+
+enum TipoTrabalho {
+ CLT, EVENTUAL, AUTONOMO, VOLUNTARIO, ESTAGIO
+} 
+
+enum StatusContaPagar {
+ VENCIDA, PAGA, AVENCER, PAGA_VENCIDA
+}
+
+enum StatusContaReceber {
+ VENCIDA, RECEBIDA, ARECEBER, RECEBIDA_VENCIDA
+}
+
+@clientRootFolder(user)
+entity DadosPessoais1 {
+}
+
+relationship OneToMany {
+  DadosPessoais1{matricula} to Matricula,
+  DadosPessoais1{dadosMedico} to DadosMedico,
+  DadosPessoais1{avaliacaoEconomica} to AvaliacaoEconomica,
+  DadosPessoais1{acompanhamentoAluno} to AcompanhamentoAluno,
+  DadosPessoais1{colaborador} to Colaborador,
+  DadosPessoais1{caracteristicasPsiquicas} to CaracteristicasPsiquicas,
+  DadosPessoais1{exameMedico} to ExameMedico,
+  DadosPessoais1{evento} to Evento,
+  DadosPessoais1{pagar} to Pagar,
+  DadosPessoais1{receber} to Receber,
+  DadosPessoais1{entradaEstoque} to EntradaEstoque,
+  DadosPessoais1{saidaEstoque} to SaidaEstoque
+  
+}
+
+@clientRootFolder(matricula)
+entity Matricula {
+ data LocalDate required,
+ obs String maxlength(100)
+}
+relationship OneToOne {
+ Matricula{turma(nome)} to Turma
+}
+@clientRootFolder(matricula)
+entity Turma {
+ nome String  maxlength(50) required,
+ ano  Integer required
+}
+relationship OneToOne {
+ Turma{periodoDuracao(nome)} to PeriodoDuracao
+}
+@clientRootFolder(config)
+entity PeriodoDuracao {
+ nome String maxlength(50) required,
+ dataInicio LocalDate required,
+ dataFim    LocalDate required,
+ horaInicio String maxlength(5),
+ horaFim    String maxlength(5),
+ obs String maxlength(100)
+}
+relationship OneToMany {
+ PeriodoDuracao{diaSemana(nome)} to DiaSemana
+}
+@clientRootFolder(config)
+entity DiaSemana {
+ nome String maxlength(20) required, 
+ obs    String maxlength(100)
+}
+
+@clientRootFolder(matricula)
+entity DadosMedico {
+ data   LocalDate required,
+ peso Integer required,
+ altura Integer required, 
+ pressao Pressao required,
+ coracao Coracao required,
+ medicacao String maxlength(100)
+ obs String maxlength(50)
+}
+relationship OneToOne {
+ DadosMedico{vacina(nome)} to Vacina,
+ DadosMedico{alergia(nome)} to Alergia,
+ DadosMedico{doenca(nome)} to Doenca
+}
+
+@clientRootFolder(matricula)
+entity Vacina {
+ nome String maxlength(50) required,
+ idade String maxlength(5),
+ obs String maxlength(50)
+}
+
+@clientRootFolder(matricula)
+entity Doenca {
+ nome String maxlength(50) required,
+ sintoma String maxlength(150),
+ precaucoes String maxlength(150),
+ socorro String maxlength(150),
+ obs String maxlength(50)
+}
+
+@clientRootFolder(matricula)
+entity Alergia {
+ nome String maxlength(50) required,
+ sintoma String maxlength(150),
+ precaucoes String maxlength(150),
+ socorro String maxlength(150),
+ obs String maxlength(50)
+}
+
+@clientRootFolder(matricula)
+entity AvaliacaoEconomica {
+ trabalhoOuEstagio SimNao required,
+ vinculoEmpregaticio SimNao,
+ cargoFuncao String maxlength(50),
+ contribuiRendaFamiliar SimNao required,
+ apoioFinanceiroFamiliar SimNao required,
+ estudaAtualmente SimNao required,
+ escolaAtual Escola,
+ estudouAnteriormente SimNao required,
+ escolaAnterior Escola,
+ concluiAnoEscolarAnterior SimNao required,
+ repetente SimNao,
+ dificuldadeAprendizado SimNao,
+ dificuldadeDisciplina String maxlength(150),
+ MoraCom Moradia required,
+ pais Pais required,
+ situacaoMoradia SituacaoMoradia 	required,
+ tipoMoradia TipoMoradia required,
+ recebeBeneficioGoverno SimNao required,
+ tipoBeneficio String maxlength(100),
+ familiaExiste FamiliaExiste required,
+ AssitenciaMedica AssitenciaMedica required,
+ temAlergia SimNao required,
+ temProblemaSaude SimNao required,
+ temAlergia SimNao required,
+ tomaMedicamento SimNao required,
+ teveFratura SimNao required,
+ teveCirurgia SimNao required,
+ temDeficiencia SimNao required,
+ temAcompanhamentoMedico SimNao required
+}
+
+@clientRootFolder(matricula)
+entity AcompanhamentoAluno {
+ ano Integer required,
+ ensino Ensino required,
+ bimestre Integer required,
+} 
+relationship OneToMany {
+ AcompanhamentoAluno{itemMateria} to ItemMateria
+}
+
+@clientRootFolder(matricula)
+entity ItemMateria {
+ nota String maxlength(20) required,
+ obs String maxlength(50)
+}
+relationship OneToOne {
+ ItemMateria{materia(nome)} to Materia
+}
+
+@clientRootFolder(matricula)
+entity Materia {
+ nome String maxlength(50) required,
+} 
+
+@clientRootFolder(matricula)
+entity CaracteristicasPsiquicas {
+ nome String maxlength(50) required,
+}
+
+@clientRootFolder(user)
+entity Colaborador {
+ dataCadastro LocalDate required,
+ dataAdmissao LocalDate,
+ dataRecisao LocalDate,
+ salario BigDecimal,
+ ativo Boolean,
+ obs String maxlength(100)
+}
+relationship OneToMany {
+ Colaborador{agendaColaborador(nome)} to AgendaColaborador,
+ Colaborador{tipoContratacao(nome)} to TipoContratacao
+}
+
+@clientRootFolder(controle)
+entity TipoContratacao {
+ nome String maxlength(50) required,
+}
+
+@clientRootFolder(user)
+entity AgendaColaborador {
+ nome String maxlength(50) required,
+ obs String maxlength(100)
+}
+relationship OneToOne {
+ AgendaColaborador{periodoDuracao(nome)} to PeriodoDuracao
+}
+
+@clientRootFolder(evento)
+entity ExameMedico {
+ data LocalDate required,
+ nomeMedico String maxlength(50),
+ crmMedico  String maxlength(20),
+ resumo String   maxlength(200),
+ obs String   maxlength(100)
+}
+@clientRootFolder(foto)
+entity FotoExameMedico {
+  foto ImageBlob required
+}
+relationship OneToMany {
+    ExameMedico{fotoExameMedico}  to FotoExameMedico
+}
+
+@clientRootFolder(evento)
+entity Evento {
+ nome String maxlength(50) required,
+ descricao String maxlength(100),
+ ativo Boolean,
+ obs String maxlength(100)
+}
+relationship OneToOne {
+ Evento{periodoDuracao(nome)} to PeriodoDuracao
+}
+relationship OneToMany {
+    Evento{endereco}  to EnderecoEvento
+}
+@clientRootFolder(evento)
+entity EnderecoEvento {
+    cep String minlength(8)  maxlength(10) required,
+    logradouro String maxlength(50) required,
+    complemento String maxlength(50),
+    numero String maxlength(10) required,
+    bairro String maxlength(50) required,
+    cidade String maxlength(50) required,
+    uf String maxlength(2) required
+}
+
+@clientRootFolder(controle)
+entity Pagar {
+ data LocalDate required,
+ valor Float required,
+ status StatusContaPagar,
+ obs   String maxlength(100)
+}
+relationship OneToOne {
+ Pagar{tipoPagar(nome)}  to TipoPagar,
+ Pagar{pagarPara(nome)}  to PagarPara,
+ Pagar{tipoTransacao(nome)}  to TipoTransacao
+}
+@clientRootFolder(controle)
+entity TipoPagar {
+ nome String required maxlength(20),
+}
+@clientRootFolder(controle)
+entity PagarPara {
+ nome String maxlength(50) required,
+ descricao String maxlength(100),
+ cnpj Boolean,
+ documento String maxlength(20),
+ banco String maxlength(50),
+ agencia String maxlength(20),
+ conta String maxlength(20),
+ pix String maxlength(50),
+}
+@clientRootFolder(foto)
+entity FotoPagar {
+    conteudo ImageBlob required
+}
+relationship OneToMany {
+    Pagar{fotoPagar}  to FotoPagar
+}
+
+@clientRootFolder(controle)
+entity Receber {
+ data LocalDate required,
+ valor Float required,
+ status StatusContaReceber,
+ obs   String maxlength(100)
+}
+relationship OneToOne {
+ Receber{tipoReceber(nome)}  to TipoReceber,
+ Receber{receberDe(nome)}  to ReceberDe,
+ Receber{tipoTransacao(nome)}  to TipoTransacao
+}
+@clientRootFolder(controle)
+entity TipoReceber {
+ nome String required maxlength(20),
+}
+
+@clientRootFolder(controle)
+entity ReceberDe {
+ nome String maxlength(50) required,
+ descricao String maxlength(100),
+ cnpj Boolean,
+ documento String maxlength(20),
+}
+@clientRootFolder(foto)
+entity FotoReceber {
+    conteudo ImageBlob required
+}
+relationship OneToMany {
+    Receber{fotoReceber}  to FotoReceber
+}
+@clientRootFolder(controle)
+entity TipoTransacao {
+ nome String maxlength(20) required,
+}
+
+@clientRootFolder(controle)
+entity Estoque {
+ data LocalDate required,
+ qtde Integer required,
+ valorUnitario Float required,
+ valorTotal Float required,
+}
+relationship OneToOne {
+ Estoque{produto(nome)}  to Produto,
+ Estoque{grupoProduto(nome)}  to GrupoProduto,
+ Estoque{subGrupoProduto(nome)}  to SubGrupoProduto,
+}
+@clientRootFolder(controle)
+entity Produto {
+ nome String maxlength(50) required,
+ descricao String maxlength(100),
+ unidade String maxlength(20),
+ peso String maxlength(20),
+}
+@clientRootFolder(foto)
+entity FotoProduto {
+    conteudo ImageBlob required
+}
+relationship OneToMany {
+    Produto{fotoProduto}  to FotoProduto
+}
+
+@clientRootFolder(controle)
+entity EntradaEstoque {
+ data LocalDate required,
+ qtde Integer required,
+ valorUnitario Float required,
+ obs String maxlength(50)
+}
+relationship OneToOne {
+ EntradaEstoque{produto(nome)}  to Produto,
+}
+@clientRootFolder(foto)
+entity FotoEntradaEstoque {
+    conteudo ImageBlob required
+}
+relationship OneToMany {
+    EntradaEstoque{fotoEntradaEstoque}  to FotoEntradaEstoque
+}
+
+@clientRootFolder(controle)
+entity SaidaEstoque {
+ data LocalDate required,
+ qtde Integer required,
+ valorUnitario Float required,
+ obs String maxlength(100)
+}
+relationship OneToOne {
+ SaidaEstoque{produto(nome)}  to Produto,
+}
+@clientRootFolder(foto)
+entity FotoSaidaEstoque {
+    conteudo ImageBlob required
+}
+relationship OneToMany {
+    SaidaEstoque{fotoSaidaEstoque}  to FotoSaidaEstoque
+}
+
+@clientRootFolder(controle)
+entity GrupoProduto {
+ nome String maxlength(30) required,
+ obs String maxlength(50)
+}
+relationship OneToMany {
+    GrupoProduto{nome}  to SubGrupoProduto
+}
+@clientRootFolder(controle)
+entity SubGrupoProduto {
+ nome String maxlength(30) required,
+ obs String maxlength(50)
+}
+
+paginate all with pagination
+service all with serviceImpl

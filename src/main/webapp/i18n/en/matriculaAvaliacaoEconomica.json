@@ -1,0 +1,52 @@
+{
+  "hunterappApp": {
+    "matriculaAvaliacaoEconomica": {
+      "home": {
+        "title": "Avaliacao Economicas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Avaliacao Economica",
+        "createOrEditLabel": "Create or edit a Avaliacao Economica",
+        "notFound": "No Avaliacao Economicas found"
+      },
+      "created": "A new Avaliacao Economica is created with identifier {{ param }}",
+      "updated": "A Avaliacao Economica is updated with identifier {{ param }}",
+      "deleted": "A Avaliacao Economica is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Avaliacao Economica {{ id }}?"
+      },
+      "detail": {
+        "title": "Avaliacao Economica"
+      },
+      "id": "ID",
+      "trabalhoOuEstagio": "Trabalho Ou Estagio",
+      "vinculoEmpregaticio": "Vinculo Empregaticio",
+      "cargoFuncao": "Cargo Funcao",
+      "contribuiRendaFamiliar": "Contribui Renda Familiar",
+      "apoioFinanceiroFamiliar": "Apoio Financeiro Familiar",
+      "estudaAtualmente": "Estuda Atualmente",
+      "escolaAtual": "Escola Atual",
+      "estudouAnteriormente": "Estudou Anteriormente",
+      "escolaAnterior": "Escola Anterior",
+      "concluiAnoEscolarAnterior": "Conclui Ano Escolar Anterior",
+      "repetente": "Repetente",
+      "dificuldadeAprendizado": "Dificuldade Aprendizado",
+      "dificuldadeDisciplina": "Dificuldade Disciplina",
+      "moraCom": "Mora Com",
+      "pais": "Pais",
+      "situacaoMoradia": "Situacao Moradia",
+      "tipoMoradia": "Tipo Moradia",
+      "recebeBeneficioGoverno": "Recebe Beneficio Governo",
+      "tipoBeneficio": "Tipo Beneficio",
+      "familiaExiste": "Familia Existe",
+      "assitenciaMedica": "Assitencia Medica",
+      "temAlergia": "Tem Alergia",
+      "temProblemaSaude": "Tem Problema Saude",
+      "tomaMedicamento": "Toma Medicamento",
+      "teveFratura": "Teve Fratura",
+      "teveCirurgia": "Teve Cirurgia",
+      "temDeficiencia": "Tem Deficiencia",
+      "temAcompanhamentoMedico": "Tem Acompanhamento Medico",
+      "dadosPessoais1": "Dados Pessoais 1"
+    }
+  }
+}

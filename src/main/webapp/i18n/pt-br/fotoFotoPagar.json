@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "fotoFotoPagar": {
+      "home": {
+        "title": "Foto Pagars",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Foto Pagar",
+        "createOrEditLabel": "Criar ou editar Foto Pagar",
+        "notFound": "Nenhum Foto Pagar encontrado"
+      },
+      "created": "Um novo Foto Pagar foi criado com o identificador {{ param }}",
+      "updated": "Um Foto Pagar foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Foto Pagar foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Foto Pagar {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Pagar"
+      },
+      "id": "ID",
+      "conteudo": "Conteudo",
+      "pagar": "Pagar"
+    }
+  }
+}

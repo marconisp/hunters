@@ -145,13 +145,6 @@ public class DadosPessoaisServiceImpl implements DadosPessoaisService {
                 if (dadosPessoais.getCelular() != null) {
                     existingDadosPessoais.setCelular(dadosPessoais.getCelular());
                 }
-                if (dadosPessoais.getWhatsapp() != null) {
-                    existingDadosPessoais.setWhatsapp(dadosPessoais.getWhatsapp());
-                }
-                if (dadosPessoais.getEmail() != null) {
-                    existingDadosPessoais.setEmail(dadosPessoais.getEmail());
-                }
-
                 return existingDadosPessoais;
             })
             .map(dadosPessoaisRepository::save);

@@ -149,12 +149,6 @@
       "otherEntityRelationshipName": "dadosPessoais",
       "relationshipName": "endereco",
       "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityName": "user1",
-      "otherEntityRelationshipName": "dadosPessoais",
-      "relationshipName": "user",
-      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceImpl"

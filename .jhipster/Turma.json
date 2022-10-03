@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011228",
+  "clientRootFolder": "matricula",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "turma",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "ano",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Turma",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "periodoDuracao",
+      "otherEntityRelationshipName": "turma",
+      "ownerSide": true,
+      "relationshipName": "periodoDuracao",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

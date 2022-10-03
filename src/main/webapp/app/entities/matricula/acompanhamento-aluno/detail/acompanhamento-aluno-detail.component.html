@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="acompanhamentoAluno">
+      <h2 data-cy="acompanhamentoAlunoDetailsHeading">
+        <span jhiTranslate="hunterappApp.matriculaAcompanhamentoAluno.detail.title">Acompanhamento Aluno</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ acompanhamentoAluno.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAcompanhamentoAluno.ano">Ano</span></dt>
+        <dd>
+          <span>{{ acompanhamentoAluno.ano }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAcompanhamentoAluno.ensino">Ensino</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.Ensino.' + acompanhamentoAluno.ensino }}">{{ acompanhamentoAluno.ensino }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAcompanhamentoAluno.bimestre">Bimestre</span></dt>
+        <dd>
+          <span>{{ acompanhamentoAluno.bimestre }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAcompanhamentoAluno.dadosPessoais">Dados Pessoais 1</span></dt>
+        <dd>
+          <div *ngIf="acompanhamentoAluno.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais', acompanhamentoAluno.dadosPessoais?.id, 'view']">{{
+              acompanhamentoAluno.dadosPessoais?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/acompanhamento-aluno', acompanhamentoAluno.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

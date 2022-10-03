@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity FotoEntradaEstoque.
+    -->
+    <changeSet id="20220916011300-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="entrada_estoque_id"
+                                 baseTableName="foto_entrada_estoque"
+                                 constraintName="fk_foto_entrada_estoque__entrada_estoque_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="entrada_estoque"/>
+    </changeSet>
+</databaseChangeLog>

@@ -110,6 +110,17 @@
         </div>
       </div>
 
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="hunterappApp.userMensagem.selected" for="field_selected">Pessoas selecionadas</label>
+        <mat-selection-list #pessoaLst class="custom-scroll-bar" id="field_selected" (selectionChange)="onListSelectionChange($event)">
+          <mat-list-option *ngFor="let pessoa of pessoas">
+            {{ pessoa.name }}
+          </mat-list-option>
+        </mat-selection-list>
+
+        <p><span jhiTranslate="hunterappApp.userMensagem.selected"> </span> : {{ selectedOptions | json }}</p>
+      </div>
+
       <div>
         <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
           <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>

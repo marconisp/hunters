@@ -1,0 +1,62 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011256",
+  "clientRootFolder": "controle",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "estoque",
+  "fields": [
+    {
+      "fieldName": "data",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "qtde",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "valorUnitario",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "valorTotal",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Estoque",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "produto",
+      "otherEntityRelationshipName": "estoque",
+      "ownerSide": true,
+      "relationshipName": "produto",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "grupoProduto",
+      "otherEntityRelationshipName": "estoque",
+      "ownerSide": true,
+      "relationshipName": "grupoProduto",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "subGrupoProduto",
+      "otherEntityRelationshipName": "estoque",
+      "ownerSide": true,
+      "relationshipName": "subGrupoProduto",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

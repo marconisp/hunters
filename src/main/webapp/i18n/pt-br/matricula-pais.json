@@ -1,0 +1,13 @@
+{
+  "hunterappApp": {
+    "Pais": {
+      "null": "",
+      "CASADOS": "CASADOS",
+      "SEPARADOS": "SEPARADOS",
+      "PAI_FALECIDOS": "PAI_FALECIDOS",
+      "MAE_FALECIDO": "MAE_FALECIDO",
+      "PAIS_FALECIDOS": "PAIS_FALECIDOS",
+      "OUTROS": "OUTROS"
+    }
+  }
+}

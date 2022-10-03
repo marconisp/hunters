@@ -1,0 +1,27 @@
+{
+  "hunterappApp": {
+    "controleReceberDe": {
+      "home": {
+        "title": "Receber Des",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Receber De",
+        "createOrEditLabel": "Crear o editar Receber De",
+        "notFound": "Ningún Receber Des encontrado"
+      },
+      "created": "Un nuevo Receber De ha sido creado con el identificador {{ param }}",
+      "updated": "Un Receber De ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Receber De ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Receber De {{ id }}?"
+      },
+      "detail": {
+        "title": "Receber De"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "cnpj": "Cnpj",
+      "documento": "Documento"
+    }
+  }
+}

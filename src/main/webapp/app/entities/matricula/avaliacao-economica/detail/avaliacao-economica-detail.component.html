@@ -1,0 +1,186 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="avaliacaoEconomica">
+      <h2 data-cy="avaliacaoEconomicaDetailsHeading">
+        <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.detail.title">Avaliacao Economica</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ avaliacaoEconomica.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.trabalhoOuEstagio">Trabalho Ou Estagio</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.trabalhoOuEstagio }}">{{
+            avaliacaoEconomica.trabalhoOuEstagio
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.vinculoEmpregaticio">Vinculo Empregaticio</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.vinculoEmpregaticio }}">{{
+            avaliacaoEconomica.vinculoEmpregaticio
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.cargoFuncao">Cargo Funcao</span></dt>
+        <dd>
+          <span>{{ avaliacaoEconomica.cargoFuncao }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.contribuiRendaFamiliar">Contribui Renda Familiar</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.contribuiRendaFamiliar }}">{{
+            avaliacaoEconomica.contribuiRendaFamiliar
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.apoioFinanceiroFamiliar">Apoio Financeiro Familiar</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.apoioFinanceiroFamiliar }}">{{
+            avaliacaoEconomica.apoioFinanceiroFamiliar
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.estudaAtualmente">Estuda Atualmente</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.estudaAtualmente }}">{{
+            avaliacaoEconomica.estudaAtualmente
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.escolaAtual">Escola Atual</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.Escola.' + avaliacaoEconomica.escolaAtual }}">{{ avaliacaoEconomica.escolaAtual }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.estudouAnteriormente">Estudou Anteriormente</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.estudouAnteriormente }}">{{
+            avaliacaoEconomica.estudouAnteriormente
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.escolaAnterior">Escola Anterior</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.Escola.' + avaliacaoEconomica.escolaAnterior }}">{{
+            avaliacaoEconomica.escolaAnterior
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.concluiAnoEscolarAnterior">Conclui Ano Escolar Anterior</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.concluiAnoEscolarAnterior }}">{{
+            avaliacaoEconomica.concluiAnoEscolarAnterior
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.repetente">Repetente</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.repetente }}">{{ avaliacaoEconomica.repetente }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.dificuldadeAprendizado">Dificuldade Aprendizado</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.dificuldadeAprendizado }}">{{
+            avaliacaoEconomica.dificuldadeAprendizado
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.dificuldadeDisciplina">Dificuldade Disciplina</span></dt>
+        <dd>
+          <span>{{ avaliacaoEconomica.dificuldadeDisciplina }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.moraCom">Mora Com</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.Moradia.' + avaliacaoEconomica.moraCom }}">{{ avaliacaoEconomica.moraCom }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.pais">Pais</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.Pais.' + avaliacaoEconomica.pais }}">{{ avaliacaoEconomica.pais }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.situacaoMoradia">Situacao Moradia</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SituacaoMoradia.' + avaliacaoEconomica.situacaoMoradia }}">{{
+            avaliacaoEconomica.situacaoMoradia
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.tipoMoradia">Tipo Moradia</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.TipoMoradia.' + avaliacaoEconomica.tipoMoradia }}">{{
+            avaliacaoEconomica.tipoMoradia
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.recebeBeneficioGoverno">Recebe Beneficio Governo</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.recebeBeneficioGoverno }}">{{
+            avaliacaoEconomica.recebeBeneficioGoverno
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.tipoBeneficio">Tipo Beneficio</span></dt>
+        <dd>
+          <span>{{ avaliacaoEconomica.tipoBeneficio }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.familiaExiste">Familia Existe</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.FamiliaExiste.' + avaliacaoEconomica.familiaExiste }}">{{
+            avaliacaoEconomica.familiaExiste
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.assitenciaMedica">Assitencia Medica</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.AssitenciaMedica.' + avaliacaoEconomica.assitenciaMedica }}">{{
+            avaliacaoEconomica.assitenciaMedica
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temAlergia">Tem Alergia</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.temAlergia }}">{{ avaliacaoEconomica.temAlergia }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temProblemaSaude">Tem Problema Saude</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.temProblemaSaude }}">{{
+            avaliacaoEconomica.temProblemaSaude
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.tomaMedicamento">Toma Medicamento</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.tomaMedicamento }}">{{
+            avaliacaoEconomica.tomaMedicamento
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.teveFratura">Teve Fratura</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.teveFratura }}">{{ avaliacaoEconomica.teveFratura }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.teveCirurgia">Teve Cirurgia</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.teveCirurgia }}">{{ avaliacaoEconomica.teveCirurgia }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temDeficiencia">Tem Deficiencia</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.temDeficiencia }}">{{
+            avaliacaoEconomica.temDeficiencia
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temAcompanhamentoMedico">Tem Acompanhamento Medico</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.temAcompanhamentoMedico }}">{{
+            avaliacaoEconomica.temAcompanhamentoMedico
+          }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.dadosPessoais">Dados Pessoais</span></dt>
+        <dd>
+          <div *ngIf="avaliacaoEconomica.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais', avaliacaoEconomica.dadosPessoais?.id, 'view']">{{
+              avaliacaoEconomica.dadosPessoais?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/avaliacao-economica', avaliacaoEconomica.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

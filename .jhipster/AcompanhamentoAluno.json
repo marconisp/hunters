@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011236",
+  "clientRootFolder": "matricula",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "acompanhamento_aluno",
+  "fields": [
+    {
+      "fieldName": "ano",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ensino",
+      "fieldType": "Ensino",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "FUNDAMENTAL1,FUNDAMENTAL2,MEDIO"
+    },
+    {
+      "fieldName": "bimestre",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AcompanhamentoAluno",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "itemMateria",
+      "otherEntityRelationshipName": "acompanhamentoAluno",
+      "relationshipName": "itemMateria",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dadosPessoais1",
+      "otherEntityRelationshipName": "acompanhamentoAluno",
+      "relationshipName": "dadosPessoais1",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

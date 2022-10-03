@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Estoque.
+    -->
+    <changeSet id="20220916011256-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="produto_id"
+                                 baseTableName="estoque"
+                                 constraintName="fk_estoque__produto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="produto"/>
+
+        <addForeignKeyConstraint baseColumnNames="grupo_produto_id"
+                                 baseTableName="estoque"
+                                 constraintName="fk_estoque__grupo_produto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grupo_produto"/>
+
+        <addForeignKeyConstraint baseColumnNames="sub_grupo_produto_id"
+                                 baseTableName="estoque"
+                                 constraintName="fk_estoque__sub_grupo_produto_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sub_grupo_produto"/>
+    </changeSet>
+</databaseChangeLog>

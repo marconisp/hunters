@@ -1,0 +1,30 @@
+{
+  "hunterappApp": {
+    "controleSaidaEstoque": {
+      "home": {
+        "title": "Saida Estoques",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Saida Estoque",
+        "createOrEditLabel": "Criar ou editar Saida Estoque",
+        "notFound": "Nenhum Saida Estoque encontrado"
+      },
+      "created": "Um novo Saida Estoque foi criado com o identificador {{ param }}",
+      "updated": "Um Saida Estoque foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Saida Estoque foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Saida Estoque {{ id }}?"
+      },
+      "detail": {
+        "title": "Saida Estoque"
+      },
+      "id": "ID",
+      "data": "Data",
+      "qtde": "Qtde",
+      "valorUnitario": "Valor Unitario",
+      "obs": "Obs",
+      "produto": "Produto",
+      "fotoSaidaEstoque": "Foto Saida Estoque",
+      "dadosPessoais1": "Dados Pessoais 1"
+    }
+  }
+}

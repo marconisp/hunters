@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity DiaSemana.
+    -->
+    <changeSet id="20220916011230-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="periodo_duracao_id"
+                                 baseTableName="dia_semana"
+                                 constraintName="fk_dia_semana__periodo_duracao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="periodo_duracao"/>
+    </changeSet>
+</databaseChangeLog>

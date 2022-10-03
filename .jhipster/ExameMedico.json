@@ -1,0 +1,59 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011243",
+  "clientRootFolder": "evento",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "exame_medico",
+  "fields": [
+    {
+      "fieldName": "data",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nomeMedico",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "crmMedico",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "20"
+    },
+    {
+      "fieldName": "resumo",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "200"
+    },
+    {
+      "fieldName": "obs",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ExameMedico",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "fotoExameMedico",
+      "otherEntityRelationshipName": "exameMedico",
+      "relationshipName": "fotoExameMedico",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dadosPessoais1",
+      "otherEntityRelationshipName": "exameMedico",
+      "relationshipName": "dadosPessoais1",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

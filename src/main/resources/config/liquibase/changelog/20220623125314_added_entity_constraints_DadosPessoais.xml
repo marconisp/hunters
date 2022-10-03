@@ -50,10 +50,5 @@
                                  referencedColumnNames="id"
                                  referencedTableName="foto_icon"/>
 
-        <addForeignKeyConstraint baseColumnNames="user_id"
-                                 baseTableName="dados_pessoais"
-                                 constraintName="fk_dados_pessoais__user_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="jhi_user"/>
     </changeSet>
 </databaseChangeLog>

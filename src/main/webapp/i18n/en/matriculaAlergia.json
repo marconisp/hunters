@@ -1,0 +1,28 @@
+{
+  "hunterappApp": {
+    "matriculaAlergia": {
+      "home": {
+        "title": "Alergias",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Alergia",
+        "createOrEditLabel": "Create or edit a Alergia",
+        "notFound": "No Alergias found"
+      },
+      "created": "A new Alergia is created with identifier {{ param }}",
+      "updated": "A Alergia is updated with identifier {{ param }}",
+      "deleted": "A Alergia is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Alergia {{ id }}?"
+      },
+      "detail": {
+        "title": "Alergia"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "sintoma": "Sintoma",
+      "precaucoes": "Precaucoes",
+      "socorro": "Socorro",
+      "obs": "Obs"
+    }
+  }
+}

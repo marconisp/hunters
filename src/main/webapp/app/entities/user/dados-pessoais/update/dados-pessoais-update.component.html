@@ -119,14 +119,6 @@
               <div *ngIf="editForm.get('pai')!.invalid && (editForm.get('pai')!.dirty || editForm.get('pai')!.touched)">
                 <small
                   class="form-text text-danger"
-                  *ngIf="editForm.get('pai')?.errors?.minlength"
-                  jhiTranslate="entity.validation.minlength"
-                  [translateValues]="{ min: 1 }"
-                >
-                  This field is required to be at least 1 characters.
-                </small>
-                <small
-                  class="form-text text-danger"
                   *ngIf="editForm.get('pai')?.errors?.maxlength"
                   jhiTranslate="entity.validation.maxlength"
                   [translateValues]="{ max: 50 }"
@@ -189,21 +181,6 @@
               <div *ngIf="editForm.get('mae')!.invalid && (editForm.get('mae')!.dirty || editForm.get('mae')!.touched)">
                 <small
                   class="form-text text-danger"
-                  *ngIf="editForm.get('mae')?.errors?.required"
-                  jhiTranslate="entity.validation.required"
-                >
-                  This field is required.
-                </small>
-                <small
-                  class="form-text text-danger"
-                  *ngIf="editForm.get('mae')?.errors?.minlength"
-                  jhiTranslate="entity.validation.minlength"
-                  [translateValues]="{ min: 1 }"
-                >
-                  This field is required to be at least 1 characters.
-                </small>
-                <small
-                  class="form-text text-danger"
                   *ngIf="editForm.get('mae')?.errors?.maxlength"
                   jhiTranslate="entity.validation.maxlength"
                   [translateValues]="{ max: 50 }"
@@ -219,38 +196,7 @@
               <div *ngIf="editForm.get('telefone')!.invalid && (editForm.get('telefone')!.dirty || editForm.get('telefone')!.touched)">
                 <small
                   class="form-text text-danger"
-                  *ngIf="editForm.get('telefone')?.errors?.minlength"
-                  jhiTranslate="entity.validation.minlength"
-                  [translateValues]="{ min: 8 }"
-                >
-                  This field is required to be at least 8 characters.
-                </small>
-                <small
-                  class="form-text text-danger"
                   *ngIf="editForm.get('telefone')?.errors?.maxlength"
-                  jhiTranslate="entity.validation.maxlength"
-                  [translateValues]="{ max: 20 }"
-                >
-                  This field cannot be longer than 20 characters.
-                </small>
-              </div>
-            </div>
-
-            <div class="row mb-3">
-              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.whatsapp" for="field_whatsapp">Whatsapp</label>
-              <input type="text" class="form-control" name="whatsapp" id="field_whatsapp" data-cy="whatsapp" formControlName="whatsapp" />
-              <div *ngIf="editForm.get('whatsapp')!.invalid && (editForm.get('whatsapp')!.dirty || editForm.get('whatsapp')!.touched)">
-                <small
-                  class="form-text text-danger"
-                  *ngIf="editForm.get('whatsapp')?.errors?.minlength"
-                  jhiTranslate="entity.validation.minlength"
-                  [translateValues]="{ min: 8 }"
-                >
-                  This field is required to be at least 8 characters.
-                </small>
-                <small
-                  class="form-text text-danger"
-                  *ngIf="editForm.get('whatsapp')?.errors?.maxlength"
                   jhiTranslate="entity.validation.maxlength"
                   [translateValues]="{ max: 20 }"
                 >
@@ -290,36 +236,6 @@
             </div>
           </div>
           <div class="col">
-            <div class="row mb-3">
-              <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.email" for="field_email">Email</label>
-              <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
-              <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
-                <small
-                  class="form-text text-danger"
-                  *ngIf="editForm.get('email')?.errors?.required"
-                  jhiTranslate="entity.validation.required"
-                >
-                  This field is required.
-                </small>
-                <small
-                  class="form-text text-danger"
-                  *ngIf="editForm.get('email')?.errors?.minlength"
-                  jhiTranslate="entity.validation.minlength"
-                  [translateValues]="{ min: 9 }"
-                >
-                  This field is required to be at least 9 characters.
-                </small>
-                <small
-                  class="form-text text-danger"
-                  *ngIf="editForm.get('email')?.errors?.maxlength"
-                  jhiTranslate="entity.validation.maxlength"
-                  [translateValues]="{ max: 50 }"
-                >
-                  This field cannot be longer than 50 characters.
-                </small>
-              </div>
-            </div>
-
             <div class="row mb-3">
               <label class="form-label" jhiTranslate="hunterappApp.userDadosPessoais.estadoCivil" for="field_estadoCivil"
                 >Estado Civil</label

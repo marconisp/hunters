@@ -1,0 +1,14 @@
+{
+  "hunterappApp": {
+    "SituacaoMoradia": {
+      "null": "",
+      "PROPRIO": "PROPRIO",
+      "FINANCIADO": "FINANCIADO",
+      "FUNCIONAL": "FUNCIONAL",
+      "ALUGADO": "ALUGADO",
+      "CEDIDO": "CEDIDO",
+      "IRREGULAR": "IRREGULAR",
+      "INVADIDO": "INVADIDO"
+    }
+  }
+}

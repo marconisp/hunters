@@ -1,0 +1,31 @@
+{
+  "hunterappApp": {
+    "eventoEnderecoEvento": {
+      "home": {
+        "title": "Endereco Eventos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Endereco Evento",
+        "createOrEditLabel": "Crear o editar Endereco Evento",
+        "notFound": "Ningún Endereco Eventos encontrado"
+      },
+      "created": "Un nuevo Endereco Evento ha sido creado con el identificador {{ param }}",
+      "updated": "Un Endereco Evento ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Endereco Evento ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Endereco Evento {{ id }}?"
+      },
+      "detail": {
+        "title": "Endereco Evento"
+      },
+      "id": "ID",
+      "cep": "Cep",
+      "logradouro": "Logradouro",
+      "complemento": "Complemento",
+      "numero": "Numero",
+      "bairro": "Bairro",
+      "cidade": "Cidade",
+      "uf": "Uf",
+      "evento": "Evento"
+    }
+  }
+}

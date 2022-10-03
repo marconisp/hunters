@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="colaborador">
+      <h2 data-cy="colaboradorDetailsHeading"><span jhiTranslate="hunterappApp.userColaborador.detail.title">Colaborador</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ colaborador.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userColaborador.dataCadastro">Data Cadastro</span></dt>
+        <dd>
+          <span>{{ colaborador.dataCadastro | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userColaborador.dataAdmissao">Data Admissao</span></dt>
+        <dd>
+          <span>{{ colaborador.dataAdmissao | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userColaborador.dataRecisao">Data Recisao</span></dt>
+        <dd>
+          <span>{{ colaborador.dataRecisao | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userColaborador.salario">Salario</span></dt>
+        <dd>
+          <span>{{ colaborador.salario }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userColaborador.ativo">Ativo</span></dt>
+        <dd>
+          <span>{{ colaborador.ativo }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userColaborador.obs">Obs</span></dt>
+        <dd>
+          <span>{{ colaborador.obs }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.userColaborador.dadosPessoais">Dados Pessoais 1</span></dt>
+        <dd>
+          <div *ngIf="colaborador.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais', colaborador.dadosPessoais?.id, 'view']">{{ colaborador.dadosPessoais?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/colaborador', colaborador.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

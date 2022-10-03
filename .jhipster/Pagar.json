@@ -1,0 +1,75 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011247",
+  "clientRootFolder": "controle",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "pagar",
+  "fields": [
+    {
+      "fieldName": "data",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "StatusContaPagar",
+      "fieldValues": "VENCIDA,PAGA,AVENCER,PAGA_VENCIDA"
+    },
+    {
+      "fieldName": "obs",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Pagar",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tipoPagar",
+      "otherEntityRelationshipName": "pagar",
+      "ownerSide": true,
+      "relationshipName": "tipoPagar",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "pagarPara",
+      "otherEntityRelationshipName": "pagar",
+      "ownerSide": true,
+      "relationshipName": "pagarPara",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tipoTransacao",
+      "otherEntityRelationshipName": "pagar",
+      "ownerSide": true,
+      "relationshipName": "tipoTransacao",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "fotoPagar",
+      "otherEntityRelationshipName": "pagar",
+      "relationshipName": "fotoPagar",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dadosPessoais1",
+      "otherEntityRelationshipName": "pagar",
+      "relationshipName": "dadosPessoais1",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="evento">
+      <h2 data-cy="eventoDetailsHeading"><span jhiTranslate="hunterappApp.eventoEvento.detail.title">Evento</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ evento.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEvento.nome">Nome</span></dt>
+        <dd>
+          <span>{{ evento.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEvento.descricao">Descricao</span></dt>
+        <dd>
+          <span>{{ evento.descricao }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEvento.ativo">Ativo</span></dt>
+        <dd>
+          <span>{{ evento.ativo }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEvento.obs">Obs</span></dt>
+        <dd>
+          <span>{{ evento.obs }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEvento.periodoDuracao">Periodo Duracao</span></dt>
+        <dd>
+          <div *ngIf="evento.periodoDuracao">
+            <a [routerLink]="['/periodo-duracao', evento.periodoDuracao?.id, 'view']">{{ evento.periodoDuracao?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEvento.dadosPessoais">Dados Pessoais</span></dt>
+        <dd>
+          <div *ngIf="evento.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais', evento.dadosPessoais?.id, 'view']">{{ evento.dadosPessoais?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/evento', evento.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="EntradaEstoqueHeading">
+    <span jhiTranslate="hunterappApp.controleEntradaEstoque.home.title">Entrada Estoques</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hunterappApp.controleEntradaEstoque.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-entrada-estoque"
+        [routerLink]="['/entrada-estoque/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hunterappApp.controleEntradaEstoque.home.createLabel"> Create a new Entrada Estoque </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="entradaEstoques?.length === 0">
+    <span jhiTranslate="hunterappApp.controleEntradaEstoque.home.notFound">No entradaEstoques found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="entradaEstoques && entradaEstoques.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="data">
+            <span jhiTranslate="hunterappApp.controleEntradaEstoque.data">Data</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="qtde">
+            <span jhiTranslate="hunterappApp.controleEntradaEstoque.qtde">Qtde</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="valorUnitario">
+            <span jhiTranslate="hunterappApp.controleEntradaEstoque.valorUnitario">Valor Unitario</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="obs">
+            <span jhiTranslate="hunterappApp.controleEntradaEstoque.obs">Obs</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="produto.nome">
+            <span jhiTranslate="hunterappApp.controleEntradaEstoque.produto">Produto</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dadosPessoais.id">
+            <span jhiTranslate="hunterappApp.controleEntradaEstoque.dadosPessoais">Dados Pessoais</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let entradaEstoque of entradaEstoques; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/entrada-estoque', entradaEstoque.id, 'view']">{{ entradaEstoque.id }}</a>
+          </td>
+          <td>{{ entradaEstoque.data | formatMediumDate }}</td>
+          <td>{{ entradaEstoque.qtde }}</td>
+          <td>{{ entradaEstoque.valorUnitario }}</td>
+          <td>{{ entradaEstoque.obs }}</td>
+          <td>
+            <div *ngIf="entradaEstoque.produto">
+              <a [routerLink]="['/produto', entradaEstoque.produto?.id, 'view']">{{ entradaEstoque.produto?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="entradaEstoque.dadosPessoais">
+              <a [routerLink]="['/dados-pessoais', entradaEstoque.dadosPessoais?.id, 'view']">{{ entradaEstoque.dadosPessoais?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/entrada-estoque', entradaEstoque.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/entrada-estoque', entradaEstoque.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(entradaEstoque)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="entradaEstoques && entradaEstoques.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

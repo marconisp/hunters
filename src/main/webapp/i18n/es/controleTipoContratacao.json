@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "controleTipoContratacao": {
+      "home": {
+        "title": "Tipo Contratacaos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Tipo Contratacao",
+        "createOrEditLabel": "Crear o editar Tipo Contratacao",
+        "notFound": "Ningún Tipo Contratacaos encontrado"
+      },
+      "created": "Un nuevo Tipo Contratacao ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tipo Contratacao ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tipo Contratacao ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Contratacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Contratacao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "colaborador": "Colaborador"
+    }
+  }
+}

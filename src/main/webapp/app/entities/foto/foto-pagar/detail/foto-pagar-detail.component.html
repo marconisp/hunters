@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fotoPagar">
+      <h2 data-cy="fotoPagarDetailsHeading"><span jhiTranslate="hunterappApp.fotoFotoPagar.detail.title">Foto Pagar</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fotoPagar.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.fotoFotoPagar.conteudo">Conteudo</span></dt>
+        <dd>
+          <div *ngIf="fotoPagar.conteudo">
+            <a (click)="openFile(fotoPagar.conteudo, fotoPagar.conteudoContentType)">
+              <img
+                [src]="'data:' + fotoPagar.conteudoContentType + ';base64,' + fotoPagar.conteudo"
+                style="max-width: 100%"
+                alt="fotoPagar image"
+              />
+            </a>
+            {{ fotoPagar.conteudoContentType }}, {{ byteSize(fotoPagar.conteudo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.fotoFotoPagar.pagar">Pagar</span></dt>
+        <dd>
+          <div *ngIf="fotoPagar.pagar">
+            <a [routerLink]="['/pagar', fotoPagar.pagar?.id, 'view']">{{ fotoPagar.pagar?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/foto-pagar', fotoPagar.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

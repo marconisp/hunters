@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "fotoFotoPagar": {
+      "home": {
+        "title": "Foto Pagars",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Foto Pagar",
+        "createOrEditLabel": "Create or edit a Foto Pagar",
+        "notFound": "No Foto Pagars found"
+      },
+      "created": "A new Foto Pagar is created with identifier {{ param }}",
+      "updated": "A Foto Pagar is updated with identifier {{ param }}",
+      "deleted": "A Foto Pagar is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Foto Pagar {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Pagar"
+      },
+      "id": "ID",
+      "conteudo": "Conteudo",
+      "pagar": "Pagar"
+    }
+  }
+}

@@ -1,0 +1,111 @@
+<div>
+  <h2 id="page-heading" data-cy="PagarHeading">
+    <span jhiTranslate="hunterappApp.controlePagar.home.title">Pagars</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-pagar"
+        [routerLink]="['/pagar/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="pagars?.length === 0">
+    <span jhiTranslate="hunterappApp.controlePagar.home.notFound">No pagars found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="pagars && pagars.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="data">
+            <span jhiTranslate="hunterappApp.controlePagar.data">Data</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="valor">
+            <span jhiTranslate="hunterappApp.controlePagar.valor">Valor</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="hunterappApp.controlePagar.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tipoPagar.nome">
+            <span jhiTranslate="hunterappApp.controlePagar.tipoPagar">Tipo Pagar</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tipoTransacao.nome">
+            <span jhiTranslate="hunterappApp.controlePagar.tipoTransacao">Tipo Transacao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pagar of pagars; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/pagar', pagar.id, 'view']">{{ pagar.id }}</a>
+          </td>
+          <td>{{ pagar.data | formatMediumDate }}</td>
+          <td>{{ pagar.valor }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.StatusContaPagar.' + pagar.status }}">{{ pagar.status }}</td>
+          <td>
+            <div *ngIf="pagar.tipoPagar">{{ pagar.tipoPagar?.nome }}</div>
+          </td>
+          <td>
+            <div *ngIf="pagar.tipoTransacao">{{ pagar.tipoTransacao?.nome }}</div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/foto-pagar/pagar', pagar.id]"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="camera"></fa-icon>
+              </button>
+              <button type="submit" [routerLink]="['/pagar', pagar.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+              </button>
+
+              <button type="submit" [routerLink]="['/pagar', pagar.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+              </button>
+
+              <button type="submit" (click)="delete(pagar)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="pagars && pagars.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

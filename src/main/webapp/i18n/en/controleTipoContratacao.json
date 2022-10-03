@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "controleTipoContratacao": {
+      "home": {
+        "title": "Tipo Contratacaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tipo Contratacao",
+        "createOrEditLabel": "Create or edit a Tipo Contratacao",
+        "notFound": "No Tipo Contratacaos found"
+      },
+      "created": "A new Tipo Contratacao is created with identifier {{ param }}",
+      "updated": "A Tipo Contratacao is updated with identifier {{ param }}",
+      "deleted": "A Tipo Contratacao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tipo Contratacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Contratacao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "colaborador": "Colaborador"
+    }
+  }
+}

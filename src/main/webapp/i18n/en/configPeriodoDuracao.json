@@ -1,0 +1,30 @@
+{
+  "hunterappApp": {
+    "configPeriodoDuracao": {
+      "home": {
+        "title": "Periodo Duracaos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Periodo Duracao",
+        "createOrEditLabel": "Create or edit a Periodo Duracao",
+        "notFound": "No Periodo Duracaos found"
+      },
+      "created": "A new Periodo Duracao is created with identifier {{ param }}",
+      "updated": "A Periodo Duracao is updated with identifier {{ param }}",
+      "deleted": "A Periodo Duracao is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Periodo Duracao {{ id }}?"
+      },
+      "detail": {
+        "title": "Periodo Duracao"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "dataInicio": "Data Inicio",
+      "dataFim": "Data Fim",
+      "horaInicio": "Hora Inicio",
+      "horaFim": "Hora Fim",
+      "obs": "Obs",
+      "diaSemana": "Dia Semana"
+    }
+  }
+}

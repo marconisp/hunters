@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fotoReceber">
+      <h2 data-cy="fotoReceberDetailsHeading"><span jhiTranslate="hunterappApp.fotoFotoReceber.detail.title">Foto Receber</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fotoReceber.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.fotoFotoReceber.conteudo">Conteudo</span></dt>
+        <dd>
+          <div *ngIf="fotoReceber.conteudo">
+            <a (click)="openFile(fotoReceber.conteudo, fotoReceber.conteudoContentType)">
+              <img
+                [src]="'data:' + fotoReceber.conteudoContentType + ';base64,' + fotoReceber.conteudo"
+                style="max-width: 100%"
+                alt="fotoReceber image"
+              />
+            </a>
+            {{ fotoReceber.conteudoContentType }}, {{ byteSize(fotoReceber.conteudo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.fotoFotoReceber.receber">Receber</span></dt>
+        <dd>
+          <div *ngIf="fotoReceber.receber">
+            <a [routerLink]="['/receber', fotoReceber.receber?.id, 'view']">{{ fotoReceber.receber?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/foto-receber', fotoReceber.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

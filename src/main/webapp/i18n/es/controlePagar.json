@@ -1,0 +1,32 @@
+{
+  "hunterappApp": {
+    "controlePagar": {
+      "home": {
+        "title": "Pagars",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Pagar",
+        "createOrEditLabel": "Crear o editar Pagar",
+        "notFound": "Ningún Pagars encontrado"
+      },
+      "created": "Un nuevo Pagar ha sido creado con el identificador {{ param }}",
+      "updated": "Un Pagar ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Pagar ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Pagar {{ id }}?"
+      },
+      "detail": {
+        "title": "Pagar"
+      },
+      "id": "ID",
+      "data": "Data",
+      "valor": "Valor",
+      "status": "Status",
+      "obs": "Obs",
+      "tipoPagar": "Tipo Pagar",
+      "pagarPara": "Pagar Para",
+      "tipoTransacao": "Tipo Transacao",
+      "fotoPagar": "Foto Pagar",
+      "dadosPessoais": "Pessoa a pagar"
+    }
+  }
+}

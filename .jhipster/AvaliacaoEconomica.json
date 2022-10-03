@@ -1,0 +1,187 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011235",
+  "clientRootFolder": "matricula",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "avaliacao_economica",
+  "fields": [
+    {
+      "fieldName": "trabalhoOuEstagio",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "vinculoEmpregaticio",
+      "fieldType": "SimNao",
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "cargoFuncao",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "contribuiRendaFamiliar",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "apoioFinanceiroFamiliar",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "estudaAtualmente",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "escolaAtual",
+      "fieldType": "Escola",
+      "fieldValues": "PUBLICA,PARTICULAR"
+    },
+    {
+      "fieldName": "estudouAnteriormente",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "escolaAnterior",
+      "fieldType": "Escola",
+      "fieldValues": "PUBLICA,PARTICULAR"
+    },
+    {
+      "fieldName": "concluiAnoEscolarAnterior",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "repetente",
+      "fieldType": "SimNao",
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "dificuldadeAprendizado",
+      "fieldType": "SimNao",
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "dificuldadeDisciplina",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "150"
+    },
+    {
+      "fieldName": "moraCom",
+      "fieldType": "Moradia",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PAI,MAE,PARENTES,AMIGOS,AVOS,OUTROS"
+    },
+    {
+      "fieldName": "pais",
+      "fieldType": "Pais",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CASADOS,SEPARADOS,PAI_FALECIDOS,MAE_FALECIDO,PAIS_FALECIDOS,OUTROS"
+    },
+    {
+      "fieldName": "situacaoMoradia",
+      "fieldType": "SituacaoMoradia",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PROPRIO,FINANCIADO,FUNCIONAL,ALUGADO,CEDIDO,IRREGULAR,INVADIDO"
+    },
+    {
+      "fieldName": "tipoMoradia",
+      "fieldType": "TipoMoradia",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "CASA,APARTAMENTO,OUTROS"
+    },
+    {
+      "fieldName": "recebeBeneficioGoverno",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "tipoBeneficio",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    },
+    {
+      "fieldName": "familiaExiste",
+      "fieldType": "FamiliaExiste",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "ALCOOLISMO,DROGADICAO,DOENCA,DEFICIENCIA,DESEMPREGO,PRISAO,ABANDONO,VIOLENCIA"
+    },
+    {
+      "fieldName": "assitenciaMedica",
+      "fieldType": "AssitenciaMedica",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "PUBLICA,PRIVADA"
+    },
+    {
+      "fieldName": "temAlergia",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "temProblemaSaude",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "tomaMedicamento",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "teveFratura",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "teveCirurgia",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "temDeficiencia",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    },
+    {
+      "fieldName": "temAcompanhamentoMedico",
+      "fieldType": "SimNao",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "SIM,NAO"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AvaliacaoEconomica",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "dadosPessoais1",
+      "otherEntityRelationshipName": "avaliacaoEconomica",
+      "relationshipName": "dadosPessoais1",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

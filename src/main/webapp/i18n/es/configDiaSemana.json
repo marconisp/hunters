@@ -1,0 +1,26 @@
+{
+  "hunterappApp": {
+    "configDiaSemana": {
+      "home": {
+        "title": "Dia Semanas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Dia Semana",
+        "createOrEditLabel": "Crear o editar Dia Semana",
+        "notFound": "Ningún Dia Semanas encontrado"
+      },
+      "created": "Un nuevo Dia Semana ha sido creado con el identificador {{ param }}",
+      "updated": "Un Dia Semana ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Dia Semana ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Dia Semana {{ id }}?"
+      },
+      "detail": {
+        "title": "Dia Semana"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "obs": "Obs",
+      "periodoDuracao": "Periodo Duracao"
+    }
+  }
+}

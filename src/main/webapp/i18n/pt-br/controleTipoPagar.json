@@ -1,0 +1,24 @@
+{
+  "hunterappApp": {
+    "controleTipoPagar": {
+      "home": {
+        "title": "Tipo Pagars",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Tipo Pagar",
+        "createOrEditLabel": "Criar ou editar Tipo Pagar",
+        "notFound": "Nenhum Tipo Pagar encontrado"
+      },
+      "created": "Um novo Tipo Pagar foi criado com o identificador {{ param }}",
+      "updated": "Um Tipo Pagar foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Tipo Pagar foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Tipo Pagar {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Pagar"
+      },
+      "id": "ID",
+      "nome": "Nome"
+    }
+  }
+}

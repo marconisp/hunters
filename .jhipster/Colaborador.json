@@ -1,0 +1,65 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011240",
+  "clientRootFolder": "user",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "colaborador",
+  "fields": [
+    {
+      "fieldName": "dataCadastro",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dataAdmissao",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dataRecisao",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "salario",
+      "fieldType": "BigDecimal"
+    },
+    {
+      "fieldName": "ativo",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "obs",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Colaborador",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "agendaColaborador",
+      "otherEntityRelationshipName": "colaborador",
+      "relationshipName": "agendaColaborador",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tipoContratacao",
+      "otherEntityRelationshipName": "colaborador",
+      "relationshipName": "tipoContratacao",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dadosPessoais1",
+      "otherEntityRelationshipName": "colaborador",
+      "relationshipName": "dadosPessoais1",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

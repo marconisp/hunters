@@ -4,6 +4,7 @@ import br.com.jhisolution.user.hunters.domain.DadosPessoais;
 import br.com.jhisolution.user.hunters.domain.User;
 import br.com.jhisolution.user.hunters.repository.DadosPessoaisRepository;
 import br.com.jhisolution.user.hunters.repository.UserRepository;
+import br.com.jhisolution.user.hunters.security.AuthoritiesConstants;
 import br.com.jhisolution.user.hunters.security.SecurityUtils;
 import br.com.jhisolution.user.hunters.service.DadosPessoaisService;
 import br.com.jhisolution.user.hunters.web.rest.errors.BadRequestAlertException;
@@ -178,10 +179,27 @@ public class DadosPessoaisResource {
         log.debug("REST request to get a page of DadosPessoais");
         Page<DadosPessoais> page;
         User user = this.getUserLogin().orElse(new User());
-        if (eagerload) {
-            page = dadosPessoaisService.findAllByUser(pageable, user);
+
+        Boolean admin =
+            user
+                .getAuthorities()
+                .stream()
+                .filter(role ->
+                    role.getName().equalsIgnoreCase(AuthoritiesConstants.ADMIN) ||
+                    role.getName().equalsIgnoreCase(AuthoritiesConstants.DIRETOR) ||
+                    role.getName().equalsIgnoreCase(AuthoritiesConstants.SECRETARIA)
+                )
+                .count() >=
+            1;
+
+        if (admin) {
+            page = dadosPessoaisService.findAll(pageable);
         } else {
-            page = dadosPessoaisService.findAllByUser(pageable, user);
+            if (eagerload) {
+                page = dadosPessoaisService.findAllByUser(pageable, user);
+            } else {
+                page = dadosPessoaisService.findAllByUser(pageable, user);
+            }
         }
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
@@ -217,6 +235,6 @@ public class DadosPessoaisResource {
     }
 
     private Optional<User> getUserLogin() {
-        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneByLogin);
+        return SecurityUtils.getCurrentUserLogin().flatMap(userRepository::findOneWithAuthoritiesByLogin);
     }
 }

@@ -1,0 +1,24 @@
+{
+  "hunterappApp": {
+    "controleTipoPagar": {
+      "home": {
+        "title": "Tipo Pagars",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tipo Pagar",
+        "createOrEditLabel": "Create or edit a Tipo Pagar",
+        "notFound": "No Tipo Pagars found"
+      },
+      "created": "A new Tipo Pagar is created with identifier {{ param }}",
+      "updated": "A Tipo Pagar is updated with identifier {{ param }}",
+      "deleted": "A Tipo Pagar is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tipo Pagar {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Pagar"
+      },
+      "id": "ID",
+      "nome": "Nome"
+    }
+  }
+}

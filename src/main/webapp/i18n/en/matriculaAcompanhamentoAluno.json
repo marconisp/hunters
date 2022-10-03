@@ -1,0 +1,28 @@
+{
+  "hunterappApp": {
+    "matriculaAcompanhamentoAluno": {
+      "home": {
+        "title": "Acompanhamento Alunos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Acompanhamento Aluno",
+        "createOrEditLabel": "Create or edit a Acompanhamento Aluno",
+        "notFound": "No Acompanhamento Alunos found"
+      },
+      "created": "A new Acompanhamento Aluno is created with identifier {{ param }}",
+      "updated": "A Acompanhamento Aluno is updated with identifier {{ param }}",
+      "deleted": "A Acompanhamento Aluno is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Acompanhamento Aluno {{ id }}?"
+      },
+      "detail": {
+        "title": "Acompanhamento Aluno"
+      },
+      "id": "ID",
+      "ano": "Ano",
+      "ensino": "Ensino",
+      "bimestre": "Bimestre",
+      "itemMateria": "Item Materia",
+      "dadosPessoais1": "Dados Pessoais 1"
+    }
+  }
+}

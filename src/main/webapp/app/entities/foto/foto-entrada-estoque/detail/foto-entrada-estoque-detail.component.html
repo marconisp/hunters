@@ -1,0 +1,51 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fotoEntradaEstoque">
+      <h2 data-cy="fotoEntradaEstoqueDetailsHeading">
+        <span jhiTranslate="hunterappApp.fotoFotoEntradaEstoque.detail.title">Foto Entrada Estoque</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fotoEntradaEstoque.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.fotoFotoEntradaEstoque.conteudo">Conteudo</span></dt>
+        <dd>
+          <div *ngIf="fotoEntradaEstoque.conteudo">
+            <a (click)="openFile(fotoEntradaEstoque.conteudo, fotoEntradaEstoque.conteudoContentType)">
+              <img
+                [src]="'data:' + fotoEntradaEstoque.conteudoContentType + ';base64,' + fotoEntradaEstoque.conteudo"
+                style="max-width: 100%"
+                alt="fotoEntradaEstoque image"
+              />
+            </a>
+            {{ fotoEntradaEstoque.conteudoContentType }}, {{ byteSize(fotoEntradaEstoque.conteudo) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.fotoFotoEntradaEstoque.entradaEstoque">Entrada Estoque</span></dt>
+        <dd>
+          <div *ngIf="fotoEntradaEstoque.entradaEstoque">
+            <a [routerLink]="['/entrada-estoque', fotoEntradaEstoque.entradaEstoque?.id, 'view']">{{
+              fotoEntradaEstoque.entradaEstoque?.id
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/foto-entrada-estoque', fotoEntradaEstoque.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

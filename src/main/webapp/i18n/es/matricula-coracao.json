@@ -1,0 +1,16 @@
+{
+  "hunterappApp": {
+    "Coracao": {
+      "null": "",
+      "NORMAL": "NORMAL",
+      "ARTERIOSCLEROSE": "ARTERIOSCLEROSE",
+      "ANGINA": "ANGINA",
+      "INFARTO": "INFARTO",
+      "INSUFICIENCIA": "INSUFICIENCIA",
+      "ARRITIMIA": "ARRITIMIA",
+      "CARDIOMIOPATIA": "CARDIOMIOPATIA",
+      "DOENCA_ARTERIAL": "DOENCA_ARTERIAL",
+      "ENDOCARDITE": "ENDOCARDITE"
+    }
+  }
+}

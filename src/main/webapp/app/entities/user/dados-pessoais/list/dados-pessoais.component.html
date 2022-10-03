@@ -3,8 +3,8 @@
     <span jhiTranslate="hunterappApp.userDadosPessoais.home.title">Dados Pessoais</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <button class="btn btn-info me-2" routerLink="/account/settings" [disabled]="isLoading">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
       </button>
 
       <button

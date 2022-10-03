@@ -1,0 +1,89 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011226",
+  "clientRootFolder": "user",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "dados_pessoais_1",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DadosPessoais1",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "matricula",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "matricula",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dadosMedico",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "dadosMedico",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "avaliacaoEconomica",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "avaliacaoEconomica",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "acompanhamentoAluno",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "acompanhamentoAluno",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "colaborador",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "colaborador",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "caracteristicasPsiquicas",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "caracteristicasPsiquicas",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "exameMedico",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "exameMedico",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "evento",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "evento",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "pagar",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "pagar",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "receber",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "receber",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "entradaEstoque",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "entradaEstoque",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "saidaEstoque",
+      "otherEntityRelationshipName": "dadosPessoais1",
+      "relationshipName": "saidaEstoque",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -15,7 +15,6 @@
     <property name="datetimeType" value="datetime" dbms="oracle, mssql, postgresql, h2"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20220623125214_added_entity_User1.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623125314_added_entity_DadosPessoais.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623125414_added_entity_Endereco.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623125514_added_entity_Mensagem.xml" relativeToChangelogFile="false"/>
@@ -31,6 +30,44 @@
     <include file="config/liquibase/changelog/20220623130514_added_entity_EstadoCivil.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623140544_added_entity_TipoPessoa.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623140545_added_entity_TipoDocumento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011227_added_entity_Matricula.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011228_added_entity_Turma.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011229_added_entity_PeriodoDuracao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011230_added_entity_DiaSemana.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011231_added_entity_DadosMedico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011232_added_entity_Vacina.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011233_added_entity_Doenca.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011234_added_entity_Alergia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011235_added_entity_AvaliacaoEconomica.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011236_added_entity_AcompanhamentoAluno.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011237_added_entity_ItemMateria.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011238_added_entity_Materia.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011239_added_entity_CaracteristicasPsiquicas.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011240_added_entity_Colaborador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011241_added_entity_TipoContratacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011242_added_entity_AgendaColaborador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011243_added_entity_ExameMedico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011244_added_entity_FotoExameMedico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011245_added_entity_Evento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011246_added_entity_EnderecoEvento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011247_added_entity_Pagar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011248_added_entity_TipoPagar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011249_added_entity_PagarPara.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011250_added_entity_FotoPagar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011251_added_entity_Receber.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011252_added_entity_TipoReceber.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011253_added_entity_ReceberDe.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011254_added_entity_FotoReceber.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011255_added_entity_TipoTransacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011256_added_entity_Estoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011257_added_entity_Produto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011258_added_entity_FotoProduto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011259_added_entity_EntradaEstoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011300_added_entity_FotoEntradaEstoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011301_added_entity_SaidaEstoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011302_added_entity_FotoSaidaEstoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011303_added_entity_GrupoProduto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011304_added_entity_SubGrupoProduto.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20220623125314_added_entity_constraints_DadosPessoais.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623125414_added_entity_constraints_Endereco.xml" relativeToChangelogFile="false"/>
@@ -38,6 +75,32 @@
     <include file="config/liquibase/changelog/20220623125614_added_entity_constraints_Aviso.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623125714_added_entity_constraints_Documento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20220623130114_added_entity_constraints_FotoDocumento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011227_added_entity_constraints_Matricula.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011228_added_entity_constraints_Turma.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011230_added_entity_constraints_DiaSemana.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011231_added_entity_constraints_DadosMedico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011235_added_entity_constraints_AvaliacaoEconomica.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011236_added_entity_constraints_AcompanhamentoAluno.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011237_added_entity_constraints_ItemMateria.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011239_added_entity_constraints_CaracteristicasPsiquicas.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011240_added_entity_constraints_Colaborador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011241_added_entity_constraints_TipoContratacao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011242_added_entity_constraints_AgendaColaborador.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011243_added_entity_constraints_ExameMedico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011244_added_entity_constraints_FotoExameMedico.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011245_added_entity_constraints_Evento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011246_added_entity_constraints_EnderecoEvento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011247_added_entity_constraints_Pagar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011250_added_entity_constraints_FotoPagar.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011251_added_entity_constraints_Receber.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011254_added_entity_constraints_FotoReceber.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011256_added_entity_constraints_Estoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011258_added_entity_constraints_FotoProduto.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011259_added_entity_constraints_EntradaEstoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011300_added_entity_constraints_FotoEntradaEstoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011301_added_entity_constraints_SaidaEstoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011302_added_entity_constraints_FotoSaidaEstoque.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20220916011304_added_entity_constraints_SubGrupoProduto.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
     <!-- jhipster-needle-liquibase-add-incremental-changelog - JHipster will add incremental liquibase changelogs here -->
 </databaseChangeLog>

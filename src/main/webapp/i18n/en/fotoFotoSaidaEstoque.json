@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "fotoFotoSaidaEstoque": {
+      "home": {
+        "title": "Foto Saida Estoques",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Foto Saida Estoque",
+        "createOrEditLabel": "Create or edit a Foto Saida Estoque",
+        "notFound": "No Foto Saida Estoques found"
+      },
+      "created": "A new Foto Saida Estoque is created with identifier {{ param }}",
+      "updated": "A Foto Saida Estoque is updated with identifier {{ param }}",
+      "deleted": "A Foto Saida Estoque is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Foto Saida Estoque {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Saida Estoque"
+      },
+      "id": "ID",
+      "conteudo": "Conteudo",
+      "saidaEstoque": "Saida Estoque"
+    }
+  }
+}

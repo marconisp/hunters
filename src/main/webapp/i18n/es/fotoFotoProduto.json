@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "fotoFotoProduto": {
+      "home": {
+        "title": "Foto Produtos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Foto Produto",
+        "createOrEditLabel": "Crear o editar Foto Produto",
+        "notFound": "Ningún Foto Produtos encontrado"
+      },
+      "created": "Un nuevo Foto Produto ha sido creado con el identificador {{ param }}",
+      "updated": "Un Foto Produto ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Foto Produto ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Foto Produto {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Produto"
+      },
+      "id": "ID",
+      "conteudo": "Conteudo",
+      "produto": "Produto"
+    }
+  }
+}

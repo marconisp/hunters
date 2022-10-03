@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="estoque">
+      <h2 data-cy="estoqueDetailsHeading"><span jhiTranslate="hunterappApp.controleEstoque.detail.title">Estoque</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ estoque.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleEstoque.data">Data</span></dt>
+        <dd>
+          <span>{{ estoque.data | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleEstoque.qtde">Qtde</span></dt>
+        <dd>
+          <span>{{ estoque.qtde }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleEstoque.valorUnitario">Valor Unitario</span></dt>
+        <dd>
+          <span>{{ estoque.valorUnitario }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleEstoque.valorTotal">Valor Total</span></dt>
+        <dd>
+          <span>{{ estoque.valorTotal }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleEstoque.produto">Produto</span></dt>
+        <dd>
+          <div *ngIf="estoque.produto">
+            <a [routerLink]="['/produto', estoque.produto?.id, 'view']">{{ estoque.produto?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleEstoque.grupoProduto">Grupo Produto</span></dt>
+        <dd>
+          <div *ngIf="estoque.grupoProduto">
+            <a [routerLink]="['/grupo-produto', estoque.grupoProduto?.id, 'view']">{{ estoque.grupoProduto?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleEstoque.subGrupoProduto">Sub Grupo Produto</span></dt>
+        <dd>
+          <div *ngIf="estoque.subGrupoProduto">
+            <a [routerLink]="['/sub-grupo-produto', estoque.subGrupoProduto?.id, 'view']">{{ estoque.subGrupoProduto?.nome }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/estoque', estoque.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

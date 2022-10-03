@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="pagarPara">
+      <h2 data-cy="pagarParaDetailsHeading"><span jhiTranslate="hunterappApp.controlePagarPara.detail.title">Pagar Para</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ pagarPara.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controlePagarPara.nome">Nome</span></dt>
+        <dd>
+          <span>{{ pagarPara.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controlePagarPara.descricao">Descricao</span></dt>
+        <dd>
+          <span>{{ pagarPara.descricao }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controlePagarPara.cnpj">Cnpj</span></dt>
+        <dd>
+          <span>{{ pagarPara.cnpj }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controlePagarPara.documento">Documento</span></dt>
+        <dd>
+          <span>{{ pagarPara.documento }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controlePagarPara.banco">Banco</span></dt>
+        <dd>
+          <span>{{ pagarPara.banco }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controlePagarPara.agencia">Agencia</span></dt>
+        <dd>
+          <span>{{ pagarPara.agencia }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controlePagarPara.conta">Conta</span></dt>
+        <dd>
+          <span>{{ pagarPara.conta }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controlePagarPara.pix">Pix</span></dt>
+        <dd>
+          <span>{{ pagarPara.pix }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/pagar-para', pagarPara.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

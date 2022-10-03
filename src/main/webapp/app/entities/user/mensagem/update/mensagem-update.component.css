@@ -1,0 +1,18 @@
+.custom-scroll-bar {
+  height: 300px;
+  background-color: aliceblue;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.custom-scroll-bar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.custom-scroll-bar::-webkit-scrollbar-thumb {
+  background: rgba(18, 27, 19, 0.26);
+}
+
+.custom-scroll-bar::-webkit-scrollbar-track {
+  background: transparent;
+}

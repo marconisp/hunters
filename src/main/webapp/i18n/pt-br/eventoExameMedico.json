@@ -1,0 +1,30 @@
+{
+  "hunterappApp": {
+    "eventoExameMedico": {
+      "home": {
+        "title": "Exame Medicos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Exame Medico",
+        "createOrEditLabel": "Criar ou editar Exame Medico",
+        "notFound": "Nenhum Exame Medico encontrado"
+      },
+      "created": "Um novo Exame Medico foi criado com o identificador {{ param }}",
+      "updated": "Um Exame Medico foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Exame Medico foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Exame Medico {{ id }}?"
+      },
+      "detail": {
+        "title": "Exame Medico"
+      },
+      "id": "ID",
+      "data": "Data",
+      "nomeMedico": "Nome Medico",
+      "crmMedico": "Crm Medico",
+      "resumo": "Resumo",
+      "obs": "Obs",
+      "fotoExameMedico": "Foto Exame Medico",
+      "dadosPessoais1": "Dados Pessoais 1"
+    }
+  }
+}

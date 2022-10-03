@@ -1,0 +1,26 @@
+{
+  "hunterappApp": {
+    "matriculaVacina": {
+      "home": {
+        "title": "Vacinas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Vacina",
+        "createOrEditLabel": "Crear o editar Vacina",
+        "notFound": "Ningún Vacinas encontrado"
+      },
+      "created": "Un nuevo Vacina ha sido creado con el identificador {{ param }}",
+      "updated": "Un Vacina ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Vacina ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Vacina {{ id }}?"
+      },
+      "detail": {
+        "title": "Vacina"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "idade": "Idade",
+      "obs": "Obs"
+    }
+  }
+}

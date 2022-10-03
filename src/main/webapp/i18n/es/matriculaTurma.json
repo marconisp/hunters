@@ -1,0 +1,26 @@
+{
+  "hunterappApp": {
+    "matriculaTurma": {
+      "home": {
+        "title": "Turmas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Turma",
+        "createOrEditLabel": "Crear o editar Turma",
+        "notFound": "Ningún Turmas encontrado"
+      },
+      "created": "Un nuevo Turma ha sido creado con el identificador {{ param }}",
+      "updated": "Un Turma ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Turma ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Turma {{ id }}?"
+      },
+      "detail": {
+        "title": "Turma"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "ano": "Ano",
+      "periodoDuracao": "Periodo Duracao"
+    }
+  }
+}

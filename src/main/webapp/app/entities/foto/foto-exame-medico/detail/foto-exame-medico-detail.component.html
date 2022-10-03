@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="fotoExameMedico">
+      <h2 data-cy="fotoExameMedicoDetailsHeading">
+        <span jhiTranslate="hunterappApp.fotoFotoExameMedico.detail.title">Foto Exame Medico</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ fotoExameMedico.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.fotoFotoExameMedico.foto">Foto</span></dt>
+        <dd>
+          <div *ngIf="fotoExameMedico.foto">
+            <a (click)="openFile(fotoExameMedico.foto, fotoExameMedico.fotoContentType)">
+              <img
+                [src]="'data:' + fotoExameMedico.fotoContentType + ';base64,' + fotoExameMedico.foto"
+                style="max-width: 100%"
+                alt="fotoExameMedico image"
+              />
+            </a>
+            {{ fotoExameMedico.fotoContentType }}, {{ byteSize(fotoExameMedico.foto) }}
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.fotoFotoExameMedico.exameMedico">Exame Medico</span></dt>
+        <dd>
+          <div *ngIf="fotoExameMedico.exameMedico">
+            <a [routerLink]="['/exame-medico', fotoExameMedico.exameMedico?.id, 'view']">{{ fotoExameMedico.exameMedico?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/foto-exame-medico', fotoExameMedico.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

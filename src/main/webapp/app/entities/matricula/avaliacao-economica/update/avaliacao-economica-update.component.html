@@ -1,0 +1,773 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-avaliacao-economica-heading"
+        data-cy="AvaliacaoEconomicaCreateUpdateHeading"
+        jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.home.createOrEditLabel"
+      >
+        Create or edit a Avaliacao Economica
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.trabalhoOuEstagio" for="field_trabalhoOuEstagio"
+            >Trabalho Ou Estagio</label
+          >
+          <select
+            class="form-control"
+            name="trabalhoOuEstagio"
+            formControlName="trabalhoOuEstagio"
+            id="field_trabalhoOuEstagio"
+            data-cy="trabalhoOuEstagio"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('trabalhoOuEstagio')!.invalid &&
+              (editForm.get('trabalhoOuEstagio')!.dirty || editForm.get('trabalhoOuEstagio')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('trabalhoOuEstagio')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.vinculoEmpregaticio"
+            for="field_vinculoEmpregaticio"
+            >Vinculo Empregaticio</label
+          >
+          <select
+            class="form-control"
+            name="vinculoEmpregaticio"
+            formControlName="vinculoEmpregaticio"
+            id="field_vinculoEmpregaticio"
+            data-cy="vinculoEmpregaticio"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.cargoFuncao" for="field_cargoFuncao"
+            >Cargo Funcao</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="cargoFuncao"
+            id="field_cargoFuncao"
+            data-cy="cargoFuncao"
+            formControlName="cargoFuncao"
+          />
+          <div *ngIf="editForm.get('cargoFuncao')!.invalid && (editForm.get('cargoFuncao')!.dirty || editForm.get('cargoFuncao')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('cargoFuncao')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 50 }"
+            >
+              This field cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.contribuiRendaFamiliar"
+            for="field_contribuiRendaFamiliar"
+            >Contribui Renda Familiar</label
+          >
+          <select
+            class="form-control"
+            name="contribuiRendaFamiliar"
+            formControlName="contribuiRendaFamiliar"
+            id="field_contribuiRendaFamiliar"
+            data-cy="contribuiRendaFamiliar"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('contribuiRendaFamiliar')!.invalid &&
+              (editForm.get('contribuiRendaFamiliar')!.dirty || editForm.get('contribuiRendaFamiliar')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('contribuiRendaFamiliar')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.apoioFinanceiroFamiliar"
+            for="field_apoioFinanceiroFamiliar"
+            >Apoio Financeiro Familiar</label
+          >
+          <select
+            class="form-control"
+            name="apoioFinanceiroFamiliar"
+            formControlName="apoioFinanceiroFamiliar"
+            id="field_apoioFinanceiroFamiliar"
+            data-cy="apoioFinanceiroFamiliar"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('apoioFinanceiroFamiliar')!.invalid &&
+              (editForm.get('apoioFinanceiroFamiliar')!.dirty || editForm.get('apoioFinanceiroFamiliar')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('apoioFinanceiroFamiliar')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.estudaAtualmente" for="field_estudaAtualmente"
+            >Estuda Atualmente</label
+          >
+          <select
+            class="form-control"
+            name="estudaAtualmente"
+            formControlName="estudaAtualmente"
+            id="field_estudaAtualmente"
+            data-cy="estudaAtualmente"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('estudaAtualmente')!.invalid &&
+              (editForm.get('estudaAtualmente')!.dirty || editForm.get('estudaAtualmente')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('estudaAtualmente')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.escolaAtual" for="field_escolaAtual"
+            >Escola Atual</label
+          >
+          <select class="form-control" name="escolaAtual" formControlName="escolaAtual" id="field_escolaAtual" data-cy="escolaAtual">
+            <option [ngValue]="null">{{ 'hunterappApp.Escola.null' | translate }}</option>
+            <option *ngFor="let escola of escolaValues" [value]="escola">{{ 'hunterappApp.Escola.' + escola | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.estudouAnteriormente"
+            for="field_estudouAnteriormente"
+            >Estudou Anteriormente</label
+          >
+          <select
+            class="form-control"
+            name="estudouAnteriormente"
+            formControlName="estudouAnteriormente"
+            id="field_estudouAnteriormente"
+            data-cy="estudouAnteriormente"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('estudouAnteriormente')!.invalid &&
+              (editForm.get('estudouAnteriormente')!.dirty || editForm.get('estudouAnteriormente')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('estudouAnteriormente')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.escolaAnterior" for="field_escolaAnterior"
+            >Escola Anterior</label
+          >
+          <select
+            class="form-control"
+            name="escolaAnterior"
+            formControlName="escolaAnterior"
+            id="field_escolaAnterior"
+            data-cy="escolaAnterior"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.Escola.null' | translate }}</option>
+            <option *ngFor="let escola of escolaValues" [value]="escola">{{ 'hunterappApp.Escola.' + escola | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.concluiAnoEscolarAnterior"
+            for="field_concluiAnoEscolarAnterior"
+            >Conclui Ano Escolar Anterior</label
+          >
+          <select
+            class="form-control"
+            name="concluiAnoEscolarAnterior"
+            formControlName="concluiAnoEscolarAnterior"
+            id="field_concluiAnoEscolarAnterior"
+            data-cy="concluiAnoEscolarAnterior"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('concluiAnoEscolarAnterior')!.invalid &&
+              (editForm.get('concluiAnoEscolarAnterior')!.dirty || editForm.get('concluiAnoEscolarAnterior')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('concluiAnoEscolarAnterior')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.repetente" for="field_repetente"
+            >Repetente</label
+          >
+          <select class="form-control" name="repetente" formControlName="repetente" id="field_repetente" data-cy="repetente">
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.dificuldadeAprendizado"
+            for="field_dificuldadeAprendizado"
+            >Dificuldade Aprendizado</label
+          >
+          <select
+            class="form-control"
+            name="dificuldadeAprendizado"
+            formControlName="dificuldadeAprendizado"
+            id="field_dificuldadeAprendizado"
+            data-cy="dificuldadeAprendizado"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.dificuldadeDisciplina"
+            for="field_dificuldadeDisciplina"
+            >Dificuldade Disciplina</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="dificuldadeDisciplina"
+            id="field_dificuldadeDisciplina"
+            data-cy="dificuldadeDisciplina"
+            formControlName="dificuldadeDisciplina"
+          />
+          <div
+            *ngIf="
+              editForm.get('dificuldadeDisciplina')!.invalid &&
+              (editForm.get('dificuldadeDisciplina')!.dirty || editForm.get('dificuldadeDisciplina')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dificuldadeDisciplina')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 150 }"
+            >
+              This field cannot be longer than 150 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.moraCom" for="field_moraCom">Mora Com</label>
+          <select class="form-control" name="moraCom" formControlName="moraCom" id="field_moraCom" data-cy="moraCom">
+            <option [ngValue]="null">{{ 'hunterappApp.Moradia.null' | translate }}</option>
+            <option *ngFor="let moradia of moradiaValues" [value]="moradia">{{ 'hunterappApp.Moradia.' + moradia | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('moraCom')!.invalid && (editForm.get('moraCom')!.dirty || editForm.get('moraCom')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('moraCom')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.pais" for="field_pais">Pais</label>
+          <select class="form-control" name="pais" formControlName="pais" id="field_pais" data-cy="pais">
+            <option [ngValue]="null">{{ 'hunterappApp.Pais.null' | translate }}</option>
+            <option *ngFor="let pais of paisValues" [value]="pais">{{ 'hunterappApp.Pais.' + pais | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('pais')!.invalid && (editForm.get('pais')!.dirty || editForm.get('pais')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('pais')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.situacaoMoradia" for="field_situacaoMoradia"
+            >Situacao Moradia</label
+          >
+          <select
+            class="form-control"
+            name="situacaoMoradia"
+            formControlName="situacaoMoradia"
+            id="field_situacaoMoradia"
+            data-cy="situacaoMoradia"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SituacaoMoradia.null' | translate }}</option>
+            <option *ngFor="let situacaoMoradia of situacaoMoradiaValues" [value]="situacaoMoradia">
+              {{ 'hunterappApp.SituacaoMoradia.' + situacaoMoradia | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('situacaoMoradia')!.invalid &&
+              (editForm.get('situacaoMoradia')!.dirty || editForm.get('situacaoMoradia')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('situacaoMoradia')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.tipoMoradia" for="field_tipoMoradia"
+            >Tipo Moradia</label
+          >
+          <select class="form-control" name="tipoMoradia" formControlName="tipoMoradia" id="field_tipoMoradia" data-cy="tipoMoradia">
+            <option [ngValue]="null">{{ 'hunterappApp.TipoMoradia.null' | translate }}</option>
+            <option *ngFor="let tipoMoradia of tipoMoradiaValues" [value]="tipoMoradia">
+              {{ 'hunterappApp.TipoMoradia.' + tipoMoradia | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('tipoMoradia')!.invalid && (editForm.get('tipoMoradia')!.dirty || editForm.get('tipoMoradia')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tipoMoradia')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.recebeBeneficioGoverno"
+            for="field_recebeBeneficioGoverno"
+            >Recebe Beneficio Governo</label
+          >
+          <select
+            class="form-control"
+            name="recebeBeneficioGoverno"
+            formControlName="recebeBeneficioGoverno"
+            id="field_recebeBeneficioGoverno"
+            data-cy="recebeBeneficioGoverno"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('recebeBeneficioGoverno')!.invalid &&
+              (editForm.get('recebeBeneficioGoverno')!.dirty || editForm.get('recebeBeneficioGoverno')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('recebeBeneficioGoverno')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.tipoBeneficio" for="field_tipoBeneficio"
+            >Tipo Beneficio</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="tipoBeneficio"
+            id="field_tipoBeneficio"
+            data-cy="tipoBeneficio"
+            formControlName="tipoBeneficio"
+          />
+          <div
+            *ngIf="
+              editForm.get('tipoBeneficio')!.invalid && (editForm.get('tipoBeneficio')!.dirty || editForm.get('tipoBeneficio')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tipoBeneficio')?.errors?.maxlength"
+              jhiTranslate="entity.validation.maxlength"
+              [translateValues]="{ max: 100 }"
+            >
+              This field cannot be longer than 100 characters.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.familiaExiste" for="field_familiaExiste"
+            >Familia Existe</label
+          >
+          <select
+            class="form-control"
+            name="familiaExiste"
+            formControlName="familiaExiste"
+            id="field_familiaExiste"
+            data-cy="familiaExiste"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.FamiliaExiste.null' | translate }}</option>
+            <option *ngFor="let familiaExiste of familiaExisteValues" [value]="familiaExiste">
+              {{ 'hunterappApp.FamiliaExiste.' + familiaExiste | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('familiaExiste')!.invalid && (editForm.get('familiaExiste')!.dirty || editForm.get('familiaExiste')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('familiaExiste')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.assitenciaMedica" for="field_assitenciaMedica"
+            >Assitencia Medica</label
+          >
+          <select
+            class="form-control"
+            name="assitenciaMedica"
+            formControlName="assitenciaMedica"
+            id="field_assitenciaMedica"
+            data-cy="assitenciaMedica"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.AssitenciaMedica.null' | translate }}</option>
+            <option *ngFor="let assitenciaMedica of assitenciaMedicaValues" [value]="assitenciaMedica">
+              {{ 'hunterappApp.AssitenciaMedica.' + assitenciaMedica | translate }}
+            </option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('assitenciaMedica')!.invalid &&
+              (editForm.get('assitenciaMedica')!.dirty || editForm.get('assitenciaMedica')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('assitenciaMedica')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temAlergia" for="field_temAlergia"
+            >Tem Alergia</label
+          >
+          <select class="form-control" name="temAlergia" formControlName="temAlergia" id="field_temAlergia" data-cy="temAlergia">
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('temAlergia')!.invalid && (editForm.get('temAlergia')!.dirty || editForm.get('temAlergia')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('temAlergia')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temProblemaSaude" for="field_temProblemaSaude"
+            >Tem Problema Saude</label
+          >
+          <select
+            class="form-control"
+            name="temProblemaSaude"
+            formControlName="temProblemaSaude"
+            id="field_temProblemaSaude"
+            data-cy="temProblemaSaude"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('temProblemaSaude')!.invalid &&
+              (editForm.get('temProblemaSaude')!.dirty || editForm.get('temProblemaSaude')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('temProblemaSaude')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.tomaMedicamento" for="field_tomaMedicamento"
+            >Toma Medicamento</label
+          >
+          <select
+            class="form-control"
+            name="tomaMedicamento"
+            formControlName="tomaMedicamento"
+            id="field_tomaMedicamento"
+            data-cy="tomaMedicamento"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('tomaMedicamento')!.invalid &&
+              (editForm.get('tomaMedicamento')!.dirty || editForm.get('tomaMedicamento')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('tomaMedicamento')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.teveFratura" for="field_teveFratura"
+            >Teve Fratura</label
+          >
+          <select class="form-control" name="teveFratura" formControlName="teveFratura" id="field_teveFratura" data-cy="teveFratura">
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div *ngIf="editForm.get('teveFratura')!.invalid && (editForm.get('teveFratura')!.dirty || editForm.get('teveFratura')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('teveFratura')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.teveCirurgia" for="field_teveCirurgia"
+            >Teve Cirurgia</label
+          >
+          <select class="form-control" name="teveCirurgia" formControlName="teveCirurgia" id="field_teveCirurgia" data-cy="teveCirurgia">
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="editForm.get('teveCirurgia')!.invalid && (editForm.get('teveCirurgia')!.dirty || editForm.get('teveCirurgia')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('teveCirurgia')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temDeficiencia" for="field_temDeficiencia"
+            >Tem Deficiencia</label
+          >
+          <select
+            class="form-control"
+            name="temDeficiencia"
+            formControlName="temDeficiencia"
+            id="field_temDeficiencia"
+            data-cy="temDeficiencia"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('temDeficiencia')!.invalid && (editForm.get('temDeficiencia')!.dirty || editForm.get('temDeficiencia')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('temDeficiencia')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temAcompanhamentoMedico"
+            for="field_temAcompanhamentoMedico"
+            >Tem Acompanhamento Medico</label
+          >
+          <select
+            class="form-control"
+            name="temAcompanhamentoMedico"
+            formControlName="temAcompanhamentoMedico"
+            id="field_temAcompanhamentoMedico"
+            data-cy="temAcompanhamentoMedico"
+          >
+            <option [ngValue]="null">{{ 'hunterappApp.SimNao.null' | translate }}</option>
+            <option *ngFor="let simNao of simNaoValues" [value]="simNao">{{ 'hunterappApp.SimNao.' + simNao | translate }}</option>
+          </select>
+          <div
+            *ngIf="
+              editForm.get('temAcompanhamentoMedico')!.invalid &&
+              (editForm.get('temAcompanhamentoMedico')!.dirty || editForm.get('temAcompanhamentoMedico')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('temAcompanhamentoMedico')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.dadosPessoais" for="field_dadosPessoais"
+            >Dados Pessoais 1</label
+          >
+          <select
+            class="form-control"
+            id="field_dadosPessoais"
+            data-cy="dadosPessoais"
+            name="dadosPessoais"
+            formControlName="dadosPessoais"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                dadosPessoaisOption.id === editForm.get('dadosPessoais')!.value?.id
+                  ? editForm.get('dadosPessoais')!.value
+                  : dadosPessoaisOption
+              "
+              *ngFor="let dadosPessoaisOption of dadosPessoaisSharedCollection; trackBy: trackDadosPessoaisById"
+            >
+              {{ dadosPessoaisOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011255",
+  "clientRootFolder": "controle",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "tipo_transacao",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "20"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "TipoTransacao",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

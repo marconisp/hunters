@@ -1,0 +1,15 @@
+export enum SituacaoMoradia {
+  PROPRIO = 'PROPRIO',
+
+  FINANCIADO = 'FINANCIADO',
+
+  FUNCIONAL = 'FUNCIONAL',
+
+  ALUGADO = 'ALUGADO',
+
+  CEDIDO = 'CEDIDO',
+
+  IRREGULAR = 'IRREGULAR',
+
+  INVADIDO = 'INVADIDO',
+}

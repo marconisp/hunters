@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "fotoFotoEntradaEstoque": {
+      "home": {
+        "title": "Foto Entrada Estoques",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Foto Entrada Estoque",
+        "createOrEditLabel": "Create or edit a Foto Entrada Estoque",
+        "notFound": "No Foto Entrada Estoques found"
+      },
+      "created": "A new Foto Entrada Estoque is created with identifier {{ param }}",
+      "updated": "A Foto Entrada Estoque is updated with identifier {{ param }}",
+      "deleted": "A Foto Entrada Estoque is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Foto Entrada Estoque {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Entrada Estoque"
+      },
+      "id": "ID",
+      "conteudo": "Conteudo",
+      "entradaEstoque": "Entrada Estoque"
+    }
+  }
+}

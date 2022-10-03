@@ -1,0 +1,184 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-estoque-heading" data-cy="EstoqueCreateUpdateHeading" jhiTranslate="hunterappApp.controleEstoque.home.createOrEditLabel">
+        Create or edit a Estoque
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.controleEstoque.data" for="field_data">Data</label>
+          <div class="input-group">
+            <input
+              id="field_data"
+              data-cy="data"
+              type="text"
+              class="form-control"
+              name="data"
+              ngbDatepicker
+              #dataDp="ngbDatepicker"
+              formControlName="data"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('data')!.invalid && (editForm.get('data')!.dirty || editForm.get('data')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('data')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.controleEstoque.qtde" for="field_qtde">Qtde</label>
+          <input type="number" class="form-control" name="qtde" id="field_qtde" data-cy="qtde" formControlName="qtde" />
+          <div *ngIf="editForm.get('qtde')!.invalid && (editForm.get('qtde')!.dirty || editForm.get('qtde')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('qtde')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('qtde')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.controleEstoque.valorUnitario" for="field_valorUnitario"
+            >Valor Unitario</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="valorUnitario"
+            id="field_valorUnitario"
+            data-cy="valorUnitario"
+            formControlName="valorUnitario"
+          />
+          <div
+            *ngIf="
+              editForm.get('valorUnitario')!.invalid && (editForm.get('valorUnitario')!.dirty || editForm.get('valorUnitario')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('valorUnitario')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('valorUnitario')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.controleEstoque.valorTotal" for="field_valorTotal">Valor Total</label>
+          <input
+            type="number"
+            class="form-control"
+            name="valorTotal"
+            id="field_valorTotal"
+            data-cy="valorTotal"
+            formControlName="valorTotal"
+          />
+          <div *ngIf="editForm.get('valorTotal')!.invalid && (editForm.get('valorTotal')!.dirty || editForm.get('valorTotal')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('valorTotal')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('valorTotal')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.controleEstoque.produto" for="field_produto">Produto</label>
+          <select class="form-control" id="field_produto" data-cy="produto" name="produto" formControlName="produto">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="produtoOption.id === editForm.get('produto')!.value?.id ? editForm.get('produto')!.value : produtoOption"
+              *ngFor="let produtoOption of produtosCollection; trackBy: trackProdutoById"
+            >
+              {{ produtoOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.controleEstoque.grupoProduto" for="field_grupoProduto">Grupo Produto</label>
+          <select class="form-control" id="field_grupoProduto" data-cy="grupoProduto" name="grupoProduto" formControlName="grupoProduto">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                grupoProdutoOption.id === editForm.get('grupoProduto')!.value?.id ? editForm.get('grupoProduto')!.value : grupoProdutoOption
+              "
+              *ngFor="let grupoProdutoOption of grupoProdutosCollection; trackBy: trackGrupoProdutoById"
+            >
+              {{ grupoProdutoOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.controleEstoque.subGrupoProduto" for="field_subGrupoProduto"
+            >Sub Grupo Produto</label
+          >
+          <select
+            class="form-control"
+            id="field_subGrupoProduto"
+            data-cy="subGrupoProduto"
+            name="subGrupoProduto"
+            formControlName="subGrupoProduto"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                subGrupoProdutoOption.id === editForm.get('subGrupoProduto')!.value?.id
+                  ? editForm.get('subGrupoProduto')!.value
+                  : subGrupoProdutoOption
+              "
+              *ngFor="let subGrupoProdutoOption of subGrupoProdutosCollection; trackBy: trackSubGrupoProdutoById"
+            >
+              {{ subGrupoProdutoOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

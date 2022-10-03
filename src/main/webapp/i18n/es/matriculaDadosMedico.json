@@ -1,0 +1,34 @@
+{
+  "hunterappApp": {
+    "matriculaDadosMedico": {
+      "home": {
+        "title": "Dados Medicos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Dados Medico",
+        "createOrEditLabel": "Crear o editar Dados Medico",
+        "notFound": "Ningún Dados Medicos encontrado"
+      },
+      "created": "Un nuevo Dados Medico ha sido creado con el identificador {{ param }}",
+      "updated": "Un Dados Medico ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Dados Medico ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Dados Medico {{ id }}?"
+      },
+      "detail": {
+        "title": "Dados Medico"
+      },
+      "id": "ID",
+      "data": "Data",
+      "peso": "Peso",
+      "altura": "Altura",
+      "pressao": "Pressao",
+      "coracao": "Coracao",
+      "medicacao": "Medicacao",
+      "obs": "Obs",
+      "vacina": "Vacina",
+      "alergia": "Alergia",
+      "doenca": "Doenca",
+      "dadosPessoais1": "Dados Pessoais 1"
+    }
+  }
+}

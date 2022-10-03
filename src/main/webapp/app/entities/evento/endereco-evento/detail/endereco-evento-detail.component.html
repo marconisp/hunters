@@ -1,0 +1,64 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="enderecoEvento">
+      <h2 data-cy="enderecoEventoDetailsHeading">
+        <span jhiTranslate="hunterappApp.eventoEnderecoEvento.detail.title">Endereco Evento</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ enderecoEvento.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEnderecoEvento.cep">Cep</span></dt>
+        <dd>
+          <span>{{ enderecoEvento.cep }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEnderecoEvento.logradouro">Logradouro</span></dt>
+        <dd>
+          <span>{{ enderecoEvento.logradouro }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEnderecoEvento.complemento">Complemento</span></dt>
+        <dd>
+          <span>{{ enderecoEvento.complemento }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEnderecoEvento.numero">Numero</span></dt>
+        <dd>
+          <span>{{ enderecoEvento.numero }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEnderecoEvento.bairro">Bairro</span></dt>
+        <dd>
+          <span>{{ enderecoEvento.bairro }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEnderecoEvento.cidade">Cidade</span></dt>
+        <dd>
+          <span>{{ enderecoEvento.cidade }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEnderecoEvento.uf">Uf</span></dt>
+        <dd>
+          <span>{{ enderecoEvento.uf }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.eventoEnderecoEvento.evento">Evento</span></dt>
+        <dd>
+          <div *ngIf="enderecoEvento.evento">
+            <a [routerLink]="['/evento', enderecoEvento.evento?.id, 'view']">{{ enderecoEvento.evento?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/endereco-evento', enderecoEvento.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

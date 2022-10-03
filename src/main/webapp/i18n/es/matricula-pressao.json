@@ -1,0 +1,10 @@
+{
+  "hunterappApp": {
+    "Pressao": {
+      "null": "",
+      "BAIXA": "BAIXA",
+      "NORMAL": "NORMAL",
+      "ALTA": "ALTA"
+    }
+  }
+}

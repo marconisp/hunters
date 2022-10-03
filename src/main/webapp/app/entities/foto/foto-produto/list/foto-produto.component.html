@@ -1,0 +1,115 @@
+<div>
+  <h2 id="page-heading" data-cy="FotoProdutoHeading">
+    <span jhiTranslate="hunterappApp.fotoFotoProduto.home.title">Foto Produtos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hunterappApp.fotoFotoProduto.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-foto-produto"
+        [routerLink]="['/foto-produto/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hunterappApp.fotoFotoProduto.home.createLabel"> Create a new Foto Produto </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="fotoProdutos?.length === 0">
+    <span jhiTranslate="hunterappApp.fotoFotoProduto.home.notFound">No fotoProdutos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="fotoProdutos && fotoProdutos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="conteudo">
+            <span jhiTranslate="hunterappApp.fotoFotoProduto.conteudo">Conteudo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="produto.id">
+            <span jhiTranslate="hunterappApp.fotoFotoProduto.produto">Produto</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fotoProduto of fotoProdutos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/foto-produto', fotoProduto.id, 'view']">{{ fotoProduto.id }}</a>
+          </td>
+          <td>
+            <a *ngIf="fotoProduto.conteudo" (click)="openFile(fotoProduto.conteudo, fotoProduto.conteudoContentType)">
+              <img
+                [src]="'data:' + fotoProduto.conteudoContentType + ';base64,' + fotoProduto.conteudo"
+                style="max-height: 30px"
+                alt="fotoProduto image"
+              />
+            </a>
+            <span *ngIf="fotoProduto.conteudo">{{ fotoProduto.conteudoContentType }}, {{ byteSize(fotoProduto.conteudo) }}</span>
+          </td>
+          <td>
+            <div *ngIf="fotoProduto.produto">
+              <a [routerLink]="['/produto', fotoProduto.produto?.id, 'view']">{{ fotoProduto.produto?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/foto-produto', fotoProduto.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/foto-produto', fotoProduto.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(fotoProduto)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="fotoProdutos && fotoProdutos.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

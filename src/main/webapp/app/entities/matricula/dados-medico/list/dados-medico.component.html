@@ -1,0 +1,154 @@
+<div>
+  <h2 id="page-heading" data-cy="DadosMedicoHeading">
+    <span jhiTranslate="hunterappApp.matriculaDadosMedico.home.title">Dados Medicos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hunterappApp.matriculaDadosMedico.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-dados-medico"
+        [routerLink]="['/dados-medico/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hunterappApp.matriculaDadosMedico.home.createLabel"> Create a new Dados Medico </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="dadosMedicos?.length === 0">
+    <span jhiTranslate="hunterappApp.matriculaDadosMedico.home.notFound">No dadosMedicos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="dadosMedicos && dadosMedicos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="data">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.data">Data</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="peso">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.peso">Peso</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="altura">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.altura">Altura</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pressao">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.pressao">Pressao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="coracao">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.coracao">Coracao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="medicacao">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.medicacao">Medicacao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="obs">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.obs">Obs</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="vacina.nome">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.vacina">Vacina</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="alergia.nome">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.alergia">Alergia</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="doenca.nome">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.doenca">Doenca</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dadosPessoais.id">
+            <span jhiTranslate="hunterappApp.matriculaDadosMedico.dadosPessoais">Dados Pessoais 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let dadosMedico of dadosMedicos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/dados-medico', dadosMedico.id, 'view']">{{ dadosMedico.id }}</a>
+          </td>
+          <td>{{ dadosMedico.data | formatMediumDate }}</td>
+          <td>{{ dadosMedico.peso }}</td>
+          <td>{{ dadosMedico.altura }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.Pressao.' + dadosMedico.pressao }}">{{ dadosMedico.pressao }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.Coracao.' + dadosMedico.coracao }}">{{ dadosMedico.coracao }}</td>
+          <td>{{ dadosMedico.medicacao }}</td>
+          <td>{{ dadosMedico.obs }}</td>
+          <td>
+            <div *ngIf="dadosMedico.vacina">
+              <a [routerLink]="['/vacina', dadosMedico.vacina?.id, 'view']">{{ dadosMedico.vacina?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="dadosMedico.alergia">
+              <a [routerLink]="['/alergia', dadosMedico.alergia?.id, 'view']">{{ dadosMedico.alergia?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="dadosMedico.doenca">
+              <a [routerLink]="['/doenca', dadosMedico.doenca?.id, 'view']">{{ dadosMedico.doenca?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="dadosMedico.dadosPessoais">
+              <a [routerLink]="['/dados-pessoais', dadosMedico.dadosPessoais?.id, 'view']">{{ dadosMedico.dadosPessoais?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/dados-medico', dadosMedico.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/dados-medico', dadosMedico.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(dadosMedico)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="dadosMedicos && dadosMedicos.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

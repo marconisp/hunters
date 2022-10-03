@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="matricula">
+      <h2 data-cy="matriculaDetailsHeading"><span jhiTranslate="hunterappApp.matriculaMatricula.detail.title">Matricula</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ matricula.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaMatricula.data">Data</span></dt>
+        <dd>
+          <span>{{ matricula.data | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaMatricula.obs">Obs</span></dt>
+        <dd>
+          <span>{{ matricula.obs }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaMatricula.turma">Turma</span></dt>
+        <dd>
+          <div *ngIf="matricula.turma">
+            <a [routerLink]="['/turma', matricula.turma?.id, 'view']">{{ matricula.turma?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaMatricula.dadosPessoais">Dados Pessoais 1</span></dt>
+        <dd>
+          <div *ngIf="matricula.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais', matricula.dadosPessoais?.id, 'view']">{{ matricula.dadosPessoais?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/matricula', matricula.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

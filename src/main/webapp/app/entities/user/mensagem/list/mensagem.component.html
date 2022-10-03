@@ -3,11 +3,12 @@
     <span jhiTranslate="hunterappApp.userMensagem.home.title">Mensagems</span>
 
     <div class="d-flex justify-content-end">
-      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
-        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+      <button class="btn btn-info me-2" [routerLink]="['/dados-pessoais']" [disabled]="isLoading">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
       </button>
 
       <button
+        *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_DIRETOR', 'ROLE_SECRETARIA']"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-mensagem"

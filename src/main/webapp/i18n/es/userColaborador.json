@@ -1,0 +1,32 @@
+{
+  "hunterappApp": {
+    "userColaborador": {
+      "home": {
+        "title": "Colaboradors",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Colaborador",
+        "createOrEditLabel": "Crear o editar Colaborador",
+        "notFound": "Ningún Colaboradors encontrado"
+      },
+      "created": "Un nuevo Colaborador ha sido creado con el identificador {{ param }}",
+      "updated": "Un Colaborador ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Colaborador ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Colaborador {{ id }}?"
+      },
+      "detail": {
+        "title": "Colaborador"
+      },
+      "id": "ID",
+      "dataCadastro": "Data Cadastro",
+      "dataAdmissao": "Data Admissao",
+      "dataRecisao": "Data Recisao",
+      "salario": "Salario",
+      "ativo": "Ativo",
+      "obs": "Obs",
+      "agendaColaborador": "Agenda Colaborador",
+      "tipoContratacao": "Tipo Contratacao",
+      "dadosPessoais1": "Dados Pessoais 1"
+    }
+  }
+}

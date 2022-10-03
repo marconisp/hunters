@@ -1,0 +1,13 @@
+{
+  "hunterappApp": {
+    "Moradia": {
+      "null": "",
+      "PAI": "PAI",
+      "MAE": "MAE",
+      "PARENTES": "PARENTES",
+      "AMIGOS": "AMIGOS",
+      "AVOS": "AVOS",
+      "OUTROS": "OUTROS"
+    }
+  }
+}

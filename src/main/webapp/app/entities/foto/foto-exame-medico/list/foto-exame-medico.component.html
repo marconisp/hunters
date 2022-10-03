@@ -1,0 +1,115 @@
+<div>
+  <h2 id="page-heading" data-cy="FotoExameMedicoHeading">
+    <span jhiTranslate="hunterappApp.fotoFotoExameMedico.home.title">Foto Exame Medicos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hunterappApp.fotoFotoExameMedico.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-foto-exame-medico"
+        [routerLink]="['/foto-exame-medico/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hunterappApp.fotoFotoExameMedico.home.createLabel"> Create a new Foto Exame Medico </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="fotoExameMedicos?.length === 0">
+    <span jhiTranslate="hunterappApp.fotoFotoExameMedico.home.notFound">No fotoExameMedicos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="fotoExameMedicos && fotoExameMedicos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="foto">
+            <span jhiTranslate="hunterappApp.fotoFotoExameMedico.foto">Foto</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="exameMedico.id">
+            <span jhiTranslate="hunterappApp.fotoFotoExameMedico.exameMedico">Exame Medico</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fotoExameMedico of fotoExameMedicos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/foto-exame-medico', fotoExameMedico.id, 'view']">{{ fotoExameMedico.id }}</a>
+          </td>
+          <td>
+            <a *ngIf="fotoExameMedico.foto" (click)="openFile(fotoExameMedico.foto, fotoExameMedico.fotoContentType)">
+              <img
+                [src]="'data:' + fotoExameMedico.fotoContentType + ';base64,' + fotoExameMedico.foto"
+                style="max-height: 30px"
+                alt="fotoExameMedico image"
+              />
+            </a>
+            <span *ngIf="fotoExameMedico.foto">{{ fotoExameMedico.fotoContentType }}, {{ byteSize(fotoExameMedico.foto) }}</span>
+          </td>
+          <td>
+            <div *ngIf="fotoExameMedico.exameMedico">
+              <a [routerLink]="['/exame-medico', fotoExameMedico.exameMedico?.id, 'view']">{{ fotoExameMedico.exameMedico?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/foto-exame-medico', fotoExameMedico.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/foto-exame-medico', fotoExameMedico.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(fotoExameMedico)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="fotoExameMedicos && fotoExameMedicos.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

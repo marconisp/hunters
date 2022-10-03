@@ -3,7 +3,7 @@ import { HttpResponse } from '@angular/common/http';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 import { IEndereco, Endereco } from '../endereco.model';
 import { EnderecoService } from '../service/endereco.service';
@@ -20,19 +20,13 @@ export class EnderecoUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    cep: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(10)]],
+    cep: [null, [Validators.minLength(8), Validators.maxLength(10)]],
     logradouro: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    complemento1: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    complemento2: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
+    complemento1: [null, [Validators.minLength(1), Validators.maxLength(50)]],
     numero: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(10)]],
     bairro: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     localidade: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
     uf: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(50)]],
-    unidade: [null, [Validators.required, Validators.minLength(1), Validators.maxLength(20)]],
-    ibge: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(20)]],
-    gia: [null, [Validators.required, Validators.minLength(10), Validators.maxLength(20)]],
-    latitude: [null, [Validators.required]],
-    longitude: [null, [Validators.required]],
   });
 
   constructor(protected enderecoService: EnderecoService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
@@ -84,16 +78,10 @@ export class EnderecoUpdateComponent implements OnInit {
       cep: endereco.cep,
       logradouro: endereco.logradouro,
       complemento1: endereco.complemento1,
-      complemento2: endereco.complemento2,
       numero: endereco.numero,
       bairro: endereco.bairro,
       localidade: endereco.localidade,
       uf: endereco.uf,
-      unidade: endereco.unidade,
-      ibge: endereco.ibge,
-      gia: endereco.gia,
-      latitude: endereco.latitude,
-      longitude: endereco.longitude,
     });
   }
 
@@ -104,16 +92,10 @@ export class EnderecoUpdateComponent implements OnInit {
       cep: this.editForm.get(['cep'])!.value,
       logradouro: this.editForm.get(['logradouro'])!.value,
       complemento1: this.editForm.get(['complemento1'])!.value,
-      complemento2: this.editForm.get(['complemento2'])!.value,
       numero: this.editForm.get(['numero'])!.value,
       bairro: this.editForm.get(['bairro'])!.value,
       localidade: this.editForm.get(['localidade'])!.value,
       uf: this.editForm.get(['uf'])!.value,
-      unidade: this.editForm.get(['unidade'])!.value,
-      ibge: this.editForm.get(['ibge'])!.value,
-      gia: this.editForm.get(['gia'])!.value,
-      latitude: this.editForm.get(['latitude'])!.value,
-      longitude: this.editForm.get(['longitude'])!.value,
     };
   }
 }

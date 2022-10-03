@@ -65,9 +65,6 @@ public class EnderecoServiceImpl implements EnderecoService {
                 if (endereco.getComplemento1() != null) {
                     existingEndereco.setComplemento1(endereco.getComplemento1());
                 }
-                if (endereco.getComplemento2() != null) {
-                    existingEndereco.setComplemento2(endereco.getComplemento2());
-                }
                 if (endereco.getNumero() != null) {
                     existingEndereco.setNumero(endereco.getNumero());
                 }

@@ -1,0 +1,26 @@
+{
+  "hunterappApp": {
+    "configDiaSemana": {
+      "home": {
+        "title": "Dia Semanas",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Dia Semana",
+        "createOrEditLabel": "Create or edit a Dia Semana",
+        "notFound": "No Dia Semanas found"
+      },
+      "created": "A new Dia Semana is created with identifier {{ param }}",
+      "updated": "A Dia Semana is updated with identifier {{ param }}",
+      "deleted": "A Dia Semana is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Dia Semana {{ id }}?"
+      },
+      "detail": {
+        "title": "Dia Semana"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "obs": "Obs",
+      "periodoDuracao": "Periodo Duracao"
+    }
+  }
+}

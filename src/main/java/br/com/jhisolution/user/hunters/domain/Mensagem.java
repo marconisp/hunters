@@ -40,6 +40,7 @@ public class Mensagem implements Serializable {
 
     @OneToOne(optional = false)
     @NotNull
+    @JoinColumn(unique = true)
     private TipoMensagem tipo;
 
     @ManyToOne

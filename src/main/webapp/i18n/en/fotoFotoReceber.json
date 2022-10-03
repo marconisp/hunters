@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "fotoFotoReceber": {
+      "home": {
+        "title": "Foto Recebers",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Foto Receber",
+        "createOrEditLabel": "Create or edit a Foto Receber",
+        "notFound": "No Foto Recebers found"
+      },
+      "created": "A new Foto Receber is created with identifier {{ param }}",
+      "updated": "A Foto Receber is updated with identifier {{ param }}",
+      "deleted": "A Foto Receber is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Foto Receber {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Receber"
+      },
+      "id": "ID",
+      "conteudo": "Conteudo",
+      "receber": "Receber"
+    }
+  }
+}

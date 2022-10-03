@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "fotoFotoReceber": {
+      "home": {
+        "title": "Foto Recebers",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Foto Receber",
+        "createOrEditLabel": "Criar ou editar Foto Receber",
+        "notFound": "Nenhum Foto Receber encontrado"
+      },
+      "created": "Um novo Foto Receber foi criado com o identificador {{ param }}",
+      "updated": "Um Foto Receber foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Foto Receber foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Foto Receber {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Receber"
+      },
+      "id": "ID",
+      "conteudo": "Conteudo",
+      "receber": "Receber"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="alergia">
+      <h2 data-cy="alergiaDetailsHeading"><span jhiTranslate="hunterappApp.matriculaAlergia.detail.title">Alergia</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ alergia.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAlergia.nome">Nome</span></dt>
+        <dd>
+          <span>{{ alergia.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAlergia.sintoma">Sintoma</span></dt>
+        <dd>
+          <span>{{ alergia.sintoma }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAlergia.precaucoes">Precaucoes</span></dt>
+        <dd>
+          <span>{{ alergia.precaucoes }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAlergia.socorro">Socorro</span></dt>
+        <dd>
+          <span>{{ alergia.socorro }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaAlergia.obs">Obs</span></dt>
+        <dd>
+          <span>{{ alergia.obs }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/alergia', alergia.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

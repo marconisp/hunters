@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
+import { MatSelectionListChange } from '@angular/material/list';
+
 import { IMensagem, Mensagem } from '../mensagem.model';
 import { MensagemService } from '../service/mensagem.service';
 import { ITipoMensagem } from 'app/entities/config/tipo-mensagem/tipo-mensagem.model';
@@ -15,12 +17,24 @@ import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/d
 @Component({
   selector: 'jhi-mensagem-update',
   templateUrl: './mensagem-update.component.html',
+  styleUrls: ['./mensagem-update.component.css'],
 })
 export class MensagemUpdateComponent implements OnInit {
   isSaving = false;
 
   tiposCollection: ITipoMensagem[] = [];
   dadosPessoais?: IDadosPessoais;
+
+  selectedOptions = [{ name: 'Boots', id: 1 }];
+  pessoas = [
+    { name: 'Carrots', id: 1, selected: false },
+    { name: 'Tomatoes', id: 2, selected: false },
+    { name: 'Onions', id: 3, selected: false },
+    { name: 'Apples', id: 4, selected: false },
+    { name: 'Avocados', id: 5, selected: false },
+    { name: 'teste1', id: 6, selected: false },
+    { name: 'teste2', id: 7, selected: false },
+  ];
 
   editForm = this.fb.group({
     id: [],
@@ -50,9 +64,16 @@ export class MensagemUpdateComponent implements OnInit {
     window.history.back();
   }
 
+  onListSelectionChange(ob: MatSelectionListChange): void {
+    //console.log("Selected Item: ");
+    //this.selectedOptions = ob.source.selectedOptions.selected.map(item => item.value);
+    //ob.source.selectedOptions.selected;
+  }
+
   save(): void {
     this.isSaving = true;
     const mensagem = this.createFromForm();
+    this.selectedOptions = this.editForm.get(['selectedOptions'])!.value;
     mensagem.dadosPessoais = this.dadosPessoais;
     if (mensagem.id !== undefined) {
       this.subscribeToSaveResponse(this.mensagemService.update(mensagem));

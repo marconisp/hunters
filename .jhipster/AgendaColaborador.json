@@ -1,0 +1,44 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011242",
+  "clientRootFolder": "user",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "agenda_colaborador",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "50"
+    },
+    {
+      "fieldName": "obs",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AgendaColaborador",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "periodoDuracao",
+      "otherEntityRelationshipName": "agendaColaborador",
+      "ownerSide": true,
+      "relationshipName": "periodoDuracao",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "colaborador",
+      "otherEntityRelationshipName": "agendaColaborador",
+      "relationshipName": "colaborador",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

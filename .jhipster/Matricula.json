@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011227",
+  "clientRootFolder": "matricula",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "matricula",
+  "fields": [
+    {
+      "fieldName": "data",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "obs",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Matricula",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "turma",
+      "otherEntityRelationshipName": "matricula",
+      "ownerSide": true,
+      "relationshipName": "turma",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "dadosPessoais1",
+      "otherEntityRelationshipName": "matricula",
+      "relationshipName": "dadosPessoais1",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

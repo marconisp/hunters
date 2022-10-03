@@ -1,0 +1,11 @@
+{
+  "hunterappApp": {
+    "StatusContaPagar": {
+      "null": "",
+      "VENCIDA": "VENCIDA",
+      "PAGA": "PAGA",
+      "AVENCER": "AVENCER",
+      "PAGA_VENCIDA": "PAGA_VENCIDA"
+    }
+  }
+}

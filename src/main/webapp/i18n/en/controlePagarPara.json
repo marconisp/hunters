@@ -1,0 +1,31 @@
+{
+  "hunterappApp": {
+    "controlePagarPara": {
+      "home": {
+        "title": "Pagar Paras",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Pagar Para",
+        "createOrEditLabel": "Create or edit a Pagar Para",
+        "notFound": "No Pagar Paras found"
+      },
+      "created": "A new Pagar Para is created with identifier {{ param }}",
+      "updated": "A Pagar Para is updated with identifier {{ param }}",
+      "deleted": "A Pagar Para is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Pagar Para {{ id }}?"
+      },
+      "detail": {
+        "title": "Pagar Para"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "cnpj": "Cnpj",
+      "documento": "Documento",
+      "banco": "Banco",
+      "agencia": "Agencia",
+      "conta": "Conta",
+      "pix": "Pix"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity DadosMedico.
+    -->
+    <changeSet id="20220916011231-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="vacina_id"
+                                 baseTableName="dados_medico"
+                                 constraintName="fk_dados_medico__vacina_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vacina"/>
+
+        <addForeignKeyConstraint baseColumnNames="alergia_id"
+                                 baseTableName="dados_medico"
+                                 constraintName="fk_dados_medico__alergia_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="alergia"/>
+
+        <addForeignKeyConstraint baseColumnNames="doenca_id"
+                                 baseTableName="dados_medico"
+                                 constraintName="fk_dados_medico__doenca_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doenca"/>
+
+        <addForeignKeyConstraint baseColumnNames="dados_pessoais_id"
+                                 baseTableName="dados_medico"
+                                 constraintName="fk_dados_medico__dados_pessoais1_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="dados_pessoais"/>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,27 @@
+{
+  "hunterappApp": {
+    "matriculaMatricula": {
+      "home": {
+        "title": "Matriculas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Matricula",
+        "createOrEditLabel": "Crear o editar Matricula",
+        "notFound": "Ningún Matriculas encontrado"
+      },
+      "created": "Un nuevo Matricula ha sido creado con el identificador {{ param }}",
+      "updated": "Un Matricula ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Matricula ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Matricula {{ id }}?"
+      },
+      "detail": {
+        "title": "Matricula"
+      },
+      "id": "ID",
+      "data": "Data",
+      "obs": "Obs",
+      "turma": "Turma",
+      "dadosPessoais1": "Dados Pessoais 1"
+    }
+  }
+}

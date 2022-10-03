@@ -1,0 +1,24 @@
+{
+  "hunterappApp": {
+    "controleTipoTransacao": {
+      "home": {
+        "title": "Tipo Transacaos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Tipo Transacao",
+        "createOrEditLabel": "Crear o editar Tipo Transacao",
+        "notFound": "Ningún Tipo Transacaos encontrado"
+      },
+      "created": "Un nuevo Tipo Transacao ha sido creado con el identificador {{ param }}",
+      "updated": "Un Tipo Transacao ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Tipo Transacao ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Tipo Transacao {{ id }}?"
+      },
+      "detail": {
+        "title": "Tipo Transacao"
+      },
+      "id": "ID",
+      "nome": "Nome"
+    }
+  }
+}

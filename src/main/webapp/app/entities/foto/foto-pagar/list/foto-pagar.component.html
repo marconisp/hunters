@@ -1,0 +1,110 @@
+<div>
+  <h2 id="page-heading" data-cy="FotoPagarHeading">
+    <span jhiTranslate="hunterappApp.fotoFotoPagar.home.title">Foto Pagars</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" [routerLink]="['/pagar']" [disabled]="isLoading">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-foto-pagar"
+        [routerLink]="['/foto-pagar/new/pagar', pagar?.id]"
+      >
+        <fa-icon icon="plus"></fa-icon>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="fotoPagars?.length === 0">
+    <span jhiTranslate="hunterappApp.fotoFotoPagar.home.notFound">No fotoPagars found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="fotoPagars && fotoPagars.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="conteudo">
+            <span jhiTranslate="hunterappApp.fotoFotoPagar.conteudo">Conteudo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pagar.id">
+            <span jhiTranslate="hunterappApp.fotoFotoPagar.pagar">Pagar</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fotoPagar of fotoPagars; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/foto-pagar', fotoPagar.id, 'view']">{{ fotoPagar.id }}</a>
+          </td>
+          <td>
+            <a *ngIf="fotoPagar.conteudo" (click)="openFile(fotoPagar.conteudo, fotoPagar.conteudoContentType)">
+              <img
+                [src]="'data:' + fotoPagar.conteudoContentType + ';base64,' + fotoPagar.conteudo"
+                style="max-height: 30px"
+                alt="fotoPagar image"
+              />
+            </a>
+            <span *ngIf="fotoPagar.conteudo">{{ fotoPagar.conteudoContentType }}, {{ byteSize(fotoPagar.conteudo) }}</span>
+          </td>
+          <td>
+            <div *ngIf="fotoPagar.pagar">
+              <a [routerLink]="['/pagar', fotoPagar.pagar?.id, 'view']">{{ fotoPagar.pagar?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/foto-pagar', fotoPagar.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/foto-pagar', fotoPagar.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+              </button>
+
+              <button type="submit" (click)="delete(fotoPagar)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="fotoPagars && fotoPagars.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

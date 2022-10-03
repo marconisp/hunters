@@ -1,0 +1,31 @@
+{
+  "hunterappApp": {
+    "controlePagarPara": {
+      "home": {
+        "title": "Pagar Paras",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Pagar Para",
+        "createOrEditLabel": "Criar ou editar Pagar Para",
+        "notFound": "Nenhum Pagar Para encontrado"
+      },
+      "created": "Um novo Pagar Para foi criado com o identificador {{ param }}",
+      "updated": "Um Pagar Para foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Pagar Para foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Pagar Para {{ id }}?"
+      },
+      "detail": {
+        "title": "Pagar Para"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "descricao": "Descricao",
+      "cnpj": "Cnpj",
+      "documento": "Documento",
+      "banco": "Banco",
+      "agencia": "Agencia",
+      "conta": "Conta",
+      "pix": "Pix"
+    }
+  }
+}

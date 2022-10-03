@@ -1,0 +1,25 @@
+{
+  "hunterappApp": {
+    "fotoFotoExameMedico": {
+      "home": {
+        "title": "Foto Exame Medicos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Foto Exame Medico",
+        "createOrEditLabel": "Criar ou editar Foto Exame Medico",
+        "notFound": "Nenhum Foto Exame Medico encontrado"
+      },
+      "created": "Um novo Foto Exame Medico foi criado com o identificador {{ param }}",
+      "updated": "Um Foto Exame Medico foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Foto Exame Medico foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Foto Exame Medico {{ id }}?"
+      },
+      "detail": {
+        "title": "Foto Exame Medico"
+      },
+      "id": "ID",
+      "foto": "Foto",
+      "exameMedico": "Exame Medico"
+    }
+  }
+}

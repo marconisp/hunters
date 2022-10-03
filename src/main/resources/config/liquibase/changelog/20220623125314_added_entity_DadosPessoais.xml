@@ -39,16 +39,16 @@
                 <constraints nullable="false" />
             </column>
             <column name="tipo_pessoa_id" type="bigint">
-                <constraints nullable="false" unique="false" />
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_dados_pessoais__tipo_pessoa_id" />
             </column>
             <column name="estado_civil_id" type="bigint">
-                <constraints nullable="false" unique="false" />
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_dados_pessoais__estado_civil_id" />
             </column>
             <column name="raca_id" type="bigint">
-                <constraints nullable="false" unique="false" />
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_dados_pessoais__raca_id" />
             </column>
             <column name="religiao_id" type="bigint">
-                <constraints nullable="false" unique="false" />
+                <constraints nullable="false" unique="true" uniqueConstraintName="ux_dados_pessoais__religiao_id" />
             </column>
             <column name="foto_id" type="bigint">
                 <constraints nullable="true" unique="true" uniqueConstraintName="ux_dados_pessoais__foto_id" />

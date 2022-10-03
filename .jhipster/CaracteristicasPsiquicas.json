@@ -1,0 +1,30 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011239",
+  "clientRootFolder": "matricula",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "caracteristicas_psiquicas",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength", "required"],
+      "fieldValidateRulesMaxlength": "50"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CaracteristicasPsiquicas",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "dadosPessoais1",
+      "otherEntityRelationshipName": "caracteristicasPsiquicas",
+      "relationshipName": "dadosPessoais1",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

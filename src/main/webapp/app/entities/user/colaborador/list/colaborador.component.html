@@ -1,0 +1,126 @@
+<div>
+  <h2 id="page-heading" data-cy="ColaboradorHeading">
+    <span jhiTranslate="hunterappApp.userColaborador.home.title">Colaboradors</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hunterappApp.userColaborador.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-colaborador"
+        [routerLink]="['/colaborador/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hunterappApp.userColaborador.home.createLabel"> Create a new Colaborador </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="colaboradors?.length === 0">
+    <span jhiTranslate="hunterappApp.userColaborador.home.notFound">No colaboradors found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="colaboradors && colaboradors.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dataCadastro">
+            <span jhiTranslate="hunterappApp.userColaborador.dataCadastro">Data Cadastro</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dataAdmissao">
+            <span jhiTranslate="hunterappApp.userColaborador.dataAdmissao">Data Admissao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dataRecisao">
+            <span jhiTranslate="hunterappApp.userColaborador.dataRecisao">Data Recisao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="salario">
+            <span jhiTranslate="hunterappApp.userColaborador.salario">Salario</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="ativo">
+            <span jhiTranslate="hunterappApp.userColaborador.ativo">Ativo</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="obs">
+            <span jhiTranslate="hunterappApp.userColaborador.obs">Obs</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dadosPessoais.id">
+            <span jhiTranslate="hunterappApp.userColaborador.dadosPessoais">Dados Pessoais 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let colaborador of colaboradors; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/colaborador', colaborador.id, 'view']">{{ colaborador.id }}</a>
+          </td>
+          <td>{{ colaborador.dataCadastro | formatMediumDate }}</td>
+          <td>{{ colaborador.dataAdmissao | formatMediumDate }}</td>
+          <td>{{ colaborador.dataRecisao | formatMediumDate }}</td>
+          <td>{{ colaborador.salario }}</td>
+          <td>{{ colaborador.ativo }}</td>
+          <td>{{ colaborador.obs }}</td>
+          <td>
+            <div *ngIf="colaborador.dadosPessoais">
+              <a [routerLink]="['/dados-pessoais', colaborador.dadosPessoais?.id, 'view']">{{ colaborador.dadosPessoais?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/colaborador', colaborador.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/colaborador', colaborador.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(colaborador)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="colaboradors && colaboradors.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

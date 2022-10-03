@@ -1,0 +1,264 @@
+<div>
+  <h2 id="page-heading" data-cy="AvaliacaoEconomicaHeading">
+    <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.home.title">Avaliacao Economicas</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-avaliacao-economica"
+        [routerLink]="['/avaliacao-economica/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.home.createLabel"> Create a new Avaliacao Economica </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="avaliacaoEconomicas?.length === 0">
+    <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.home.notFound">No avaliacaoEconomicas found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="avaliacaoEconomicas && avaliacaoEconomicas.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="loadPage()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="trabalhoOuEstagio">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.trabalhoOuEstagio">Trabalho Ou Estagio</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="vinculoEmpregaticio">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.vinculoEmpregaticio">Vinculo Empregaticio</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="cargoFuncao">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.cargoFuncao">Cargo Funcao</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="contribuiRendaFamiliar">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.contribuiRendaFamiliar">Contribui Renda Familiar</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="apoioFinanceiroFamiliar">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.apoioFinanceiroFamiliar">Apoio Financeiro Familiar</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="estudaAtualmente">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.estudaAtualmente">Estuda Atualmente</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="escolaAtual">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.escolaAtual">Escola Atual</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="estudouAnteriormente">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.estudouAnteriormente">Estudou Anteriormente</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="escolaAnterior">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.escolaAnterior">Escola Anterior</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="concluiAnoEscolarAnterior">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.concluiAnoEscolarAnterior">Conclui Ano Escolar Anterior</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="repetente">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.repetente">Repetente</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dificuldadeAprendizado">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.dificuldadeAprendizado">Dificuldade Aprendizado</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dificuldadeDisciplina">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.dificuldadeDisciplina">Dificuldade Disciplina</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="moraCom">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.moraCom">Mora Com</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="pais">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.pais">Pais</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="situacaoMoradia">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.situacaoMoradia">Situacao Moradia</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tipoMoradia">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.tipoMoradia">Tipo Moradia</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="recebeBeneficioGoverno">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.recebeBeneficioGoverno">Recebe Beneficio Governo</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tipoBeneficio">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.tipoBeneficio">Tipo Beneficio</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="familiaExiste">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.familiaExiste">Familia Existe</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="assitenciaMedica">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.assitenciaMedica">Assitencia Medica</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="temAlergia">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temAlergia">Tem Alergia</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="temProblemaSaude">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temProblemaSaude">Tem Problema Saude</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="tomaMedicamento">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.tomaMedicamento">Toma Medicamento</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="teveFratura">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.teveFratura">Teve Fratura</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="teveCirurgia">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.teveCirurgia">Teve Cirurgia</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="temDeficiencia">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temDeficiencia">Tem Deficiencia</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="temAcompanhamentoMedico">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.temAcompanhamentoMedico">Tem Acompanhamento Medico</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dadosPessoais.id">
+            <span jhiTranslate="hunterappApp.matriculaAvaliacaoEconomica.dadosPessoais">Dados Pessoais</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let avaliacaoEconomica of avaliacaoEconomicas; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/avaliacao-economica', avaliacaoEconomica.id, 'view']">{{ avaliacaoEconomica.id }}</a>
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.trabalhoOuEstagio }}">
+            {{ avaliacaoEconomica.trabalhoOuEstagio }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.vinculoEmpregaticio }}">
+            {{ avaliacaoEconomica.vinculoEmpregaticio }}
+          </td>
+          <td>{{ avaliacaoEconomica.cargoFuncao }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.contribuiRendaFamiliar }}">
+            {{ avaliacaoEconomica.contribuiRendaFamiliar }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.apoioFinanceiroFamiliar }}">
+            {{ avaliacaoEconomica.apoioFinanceiroFamiliar }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.estudaAtualmente }}">
+            {{ avaliacaoEconomica.estudaAtualmente }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.Escola.' + avaliacaoEconomica.escolaAtual }}">{{ avaliacaoEconomica.escolaAtual }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.estudouAnteriormente }}">
+            {{ avaliacaoEconomica.estudouAnteriormente }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.Escola.' + avaliacaoEconomica.escolaAnterior }}">{{ avaliacaoEconomica.escolaAnterior }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.concluiAnoEscolarAnterior }}">
+            {{ avaliacaoEconomica.concluiAnoEscolarAnterior }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.repetente }}">{{ avaliacaoEconomica.repetente }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.dificuldadeAprendizado }}">
+            {{ avaliacaoEconomica.dificuldadeAprendizado }}
+          </td>
+          <td>{{ avaliacaoEconomica.dificuldadeDisciplina }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.Moradia.' + avaliacaoEconomica.moraCom }}">{{ avaliacaoEconomica.moraCom }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.Pais.' + avaliacaoEconomica.pais }}">{{ avaliacaoEconomica.pais }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SituacaoMoradia.' + avaliacaoEconomica.situacaoMoradia }}">
+            {{ avaliacaoEconomica.situacaoMoradia }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.TipoMoradia.' + avaliacaoEconomica.tipoMoradia }}">{{ avaliacaoEconomica.tipoMoradia }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.recebeBeneficioGoverno }}">
+            {{ avaliacaoEconomica.recebeBeneficioGoverno }}
+          </td>
+          <td>{{ avaliacaoEconomica.tipoBeneficio }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.FamiliaExiste.' + avaliacaoEconomica.familiaExiste }}">
+            {{ avaliacaoEconomica.familiaExiste }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.AssitenciaMedica.' + avaliacaoEconomica.assitenciaMedica }}">
+            {{ avaliacaoEconomica.assitenciaMedica }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.temAlergia }}">{{ avaliacaoEconomica.temAlergia }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.temProblemaSaude }}">
+            {{ avaliacaoEconomica.temProblemaSaude }}
+          </td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.tomaMedicamento }}">{{ avaliacaoEconomica.tomaMedicamento }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.teveFratura }}">{{ avaliacaoEconomica.teveFratura }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.teveCirurgia }}">{{ avaliacaoEconomica.teveCirurgia }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.temDeficiencia }}">{{ avaliacaoEconomica.temDeficiencia }}</td>
+          <td jhiTranslate="{{ 'hunterappApp.SimNao.' + avaliacaoEconomica.temAcompanhamentoMedico }}">
+            {{ avaliacaoEconomica.temAcompanhamentoMedico }}
+          </td>
+          <td>
+            <div *ngIf="avaliacaoEconomica.dadosPessoais">
+              <a [routerLink]="['/dados-pessoais', avaliacaoEconomica.dadosPessoais?.id, 'view']">{{
+                avaliacaoEconomica.dadosPessoais?.id
+              }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/avaliacao-economica', avaliacaoEconomica.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/avaliacao-economica', avaliacaoEconomica.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(avaliacaoEconomica)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="avaliacaoEconomicas && avaliacaoEconomicas.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

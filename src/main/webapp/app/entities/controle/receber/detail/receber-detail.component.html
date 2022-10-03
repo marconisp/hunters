@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="receber">
+      <h2 data-cy="receberDetailsHeading"><span jhiTranslate="hunterappApp.controleReceber.detail.title">Receber</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ receber.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleReceber.data">Data</span></dt>
+        <dd>
+          <span>{{ receber.data | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleReceber.valor">Valor</span></dt>
+        <dd>
+          <span>{{ receber.valor }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleReceber.status">Status</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.StatusContaReceber.' + receber.status }}">{{ receber.status }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleReceber.obs">Obs</span></dt>
+        <dd>
+          <span>{{ receber.obs }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleReceber.tipoReceber">Tipo Receber</span></dt>
+        <dd>
+          <div *ngIf="receber.tipoReceber">
+            <a [routerLink]="['/tipo-receber', receber.tipoReceber?.id, 'view']">{{ receber.tipoReceber?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleReceber.receberDe">Receber De</span></dt>
+        <dd>
+          <div *ngIf="receber.receberDe">
+            <a [routerLink]="['/receber-de', receber.receberDe?.id, 'view']">{{ receber.receberDe?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleReceber.tipoTransacao">Tipo Transacao</span></dt>
+        <dd>
+          <div *ngIf="receber.tipoTransacao">
+            <a [routerLink]="['/tipo-transacao', receber.tipoTransacao?.id, 'view']">{{ receber.tipoTransacao?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.controleReceber.dadosPessoais">Dados Pessoais</span></dt>
+        <dd>
+          <div *ngIf="receber.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais', receber.dadosPessoais?.id, 'view']">{{ receber.dadosPessoais?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/receber', receber.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

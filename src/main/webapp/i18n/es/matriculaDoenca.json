@@ -1,0 +1,28 @@
+{
+  "hunterappApp": {
+    "matriculaDoenca": {
+      "home": {
+        "title": "Doencas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Doenca",
+        "createOrEditLabel": "Crear o editar Doenca",
+        "notFound": "Ningún Doencas encontrado"
+      },
+      "created": "Un nuevo Doenca ha sido creado con el identificador {{ param }}",
+      "updated": "Un Doenca ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Doenca ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Doenca {{ id }}?"
+      },
+      "detail": {
+        "title": "Doenca"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "sintoma": "Sintoma",
+      "precaucoes": "Precaucoes",
+      "socorro": "Socorro",
+      "obs": "Obs"
+    }
+  }
+}

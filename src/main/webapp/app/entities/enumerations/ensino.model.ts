@@ -1,0 +1,7 @@
+export enum Ensino {
+  FUNDAMENTAL1 = 'FUNDAMENTAL1',
+
+  FUNDAMENTAL2 = 'FUNDAMENTAL2',
+
+  MEDIO = 'MEDIO',
+}

@@ -1,0 +1,9 @@
+export enum StatusContaReceber {
+  VENCIDA = 'VENCIDA',
+
+  RECEBIDA = 'RECEBIDA',
+
+  ARECEBER = 'ARECEBER',
+
+  RECEBIDA_VENCIDA = 'RECEBIDA_VENCIDA',
+}

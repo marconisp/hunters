@@ -1,0 +1,80 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="dadosMedico">
+      <h2 data-cy="dadosMedicoDetailsHeading"><span jhiTranslate="hunterappApp.matriculaDadosMedico.detail.title">Dados Medico</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ dadosMedico.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.data">Data</span></dt>
+        <dd>
+          <span>{{ dadosMedico.data | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.peso">Peso</span></dt>
+        <dd>
+          <span>{{ dadosMedico.peso }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.altura">Altura</span></dt>
+        <dd>
+          <span>{{ dadosMedico.altura }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.pressao">Pressao</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.Pressao.' + dadosMedico.pressao }}">{{ dadosMedico.pressao }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.coracao">Coracao</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'hunterappApp.Coracao.' + dadosMedico.coracao }}">{{ dadosMedico.coracao }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.medicacao">Medicacao</span></dt>
+        <dd>
+          <span>{{ dadosMedico.medicacao }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.obs">Obs</span></dt>
+        <dd>
+          <span>{{ dadosMedico.obs }}</span>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.vacina">Vacina</span></dt>
+        <dd>
+          <div *ngIf="dadosMedico.vacina">
+            <a [routerLink]="['/vacina', dadosMedico.vacina?.id, 'view']">{{ dadosMedico.vacina?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.alergia">Alergia</span></dt>
+        <dd>
+          <div *ngIf="dadosMedico.alergia">
+            <a [routerLink]="['/alergia', dadosMedico.alergia?.id, 'view']">{{ dadosMedico.alergia?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.doenca">Doenca</span></dt>
+        <dd>
+          <div *ngIf="dadosMedico.doenca">
+            <a [routerLink]="['/doenca', dadosMedico.doenca?.id, 'view']">{{ dadosMedico.doenca?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="hunterappApp.matriculaDadosMedico.dadosPessoais">Dados Pessoais 1</span></dt>
+        <dd>
+          <div *ngIf="dadosMedico.dadosPessoais">
+            <a [routerLink]="['/dados-pessoais', dadosMedico.dadosPessoais?.id, 'view']">{{ dadosMedico.dadosPessoais?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/dados-medico', dadosMedico.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,75 @@
+{
+  "applications": "*",
+  "changelogDate": "20220916011251",
+  "clientRootFolder": "controle",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "receber",
+  "fields": [
+    {
+      "fieldName": "data",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "valor",
+      "fieldType": "Float",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "StatusContaReceber",
+      "fieldValues": "VENCIDA,RECEBIDA,ARECEBER,RECEBIDA_VENCIDA"
+    },
+    {
+      "fieldName": "obs",
+      "fieldType": "String",
+      "fieldValidateRules": ["maxlength"],
+      "fieldValidateRulesMaxlength": "100"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Receber",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tipoReceber",
+      "otherEntityRelationshipName": "receber",
+      "ownerSide": true,
+      "relationshipName": "tipoReceber",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "receberDe",
+      "otherEntityRelationshipName": "receber",
+      "ownerSide": true,
+      "relationshipName": "receberDe",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "nome",
+      "otherEntityName": "tipoTransacao",
+      "otherEntityRelationshipName": "receber",
+      "ownerSide": true,
+      "relationshipName": "tipoTransacao",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "fotoReceber",
+      "otherEntityRelationshipName": "receber",
+      "relationshipName": "fotoReceber",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "dadosPessoais1",
+      "otherEntityRelationshipName": "receber",
+      "relationshipName": "dadosPessoais1",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

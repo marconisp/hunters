@@ -1,0 +1,30 @@
+{
+  "hunterappApp": {
+    "controleEstoque": {
+      "home": {
+        "title": "Estoques",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Estoque",
+        "createOrEditLabel": "Create or edit a Estoque",
+        "notFound": "No Estoques found"
+      },
+      "created": "A new Estoque is created with identifier {{ param }}",
+      "updated": "A Estoque is updated with identifier {{ param }}",
+      "deleted": "A Estoque is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Estoque {{ id }}?"
+      },
+      "detail": {
+        "title": "Estoque"
+      },
+      "id": "ID",
+      "data": "Data",
+      "qtde": "Qtde",
+      "valorUnitario": "Valor Unitario",
+      "valorTotal": "Valor Total",
+      "produto": "Produto",
+      "grupoProduto": "Grupo Produto",
+      "subGrupoProduto": "Sub Grupo Produto"
+    }
+  }
+}

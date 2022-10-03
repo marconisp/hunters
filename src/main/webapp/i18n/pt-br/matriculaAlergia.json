@@ -1,0 +1,28 @@
+{
+  "hunterappApp": {
+    "matriculaAlergia": {
+      "home": {
+        "title": "Alergias",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Alergia",
+        "createOrEditLabel": "Criar ou editar Alergia",
+        "notFound": "Nenhum Alergia encontrado"
+      },
+      "created": "Um novo Alergia foi criado com o identificador {{ param }}",
+      "updated": "Um Alergia foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Alergia foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Alergia {{ id }}?"
+      },
+      "detail": {
+        "title": "Alergia"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "sintoma": "Sintoma",
+      "precaucoes": "Precaucoes",
+      "socorro": "Socorro",
+      "obs": "Obs"
+    }
+  }
+}
