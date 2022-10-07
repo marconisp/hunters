@@ -1,6 +1,13 @@
 {
   "hunterappApp": {
     "controlePagar": {
+      "report": {
+        "title": "Relatório de contas receber",
+        "dataInicio": "Data Início",
+        "dataFim": "Data Fim",
+        "emitir": "Emitir",
+        "pessoa": "Pessoa"
+      },
       "home": {
         "title": "Pagars",
         "refreshListLabel": "Atualizar lista",

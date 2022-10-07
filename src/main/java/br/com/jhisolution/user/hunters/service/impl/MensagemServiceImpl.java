@@ -1,6 +1,5 @@
 package br.com.jhisolution.user.hunters.service.impl;
 
-import br.com.jhisolution.user.hunters.domain.Aviso;
 import br.com.jhisolution.user.hunters.domain.DadosPessoais;
 import br.com.jhisolution.user.hunters.domain.Mensagem;
 import br.com.jhisolution.user.hunters.repository.DadosPessoaisRepository;

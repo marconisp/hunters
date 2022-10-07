@@ -1,6 +1,5 @@
 package br.com.jhisolution.user.hunters.service;
 
-import br.com.jhisolution.user.hunters.domain.Documento;
 import br.com.jhisolution.user.hunters.domain.Mensagem;
 import java.util.Optional;
 import org.springframework.data.domain.Page;

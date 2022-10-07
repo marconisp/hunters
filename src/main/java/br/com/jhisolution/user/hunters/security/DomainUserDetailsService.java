@@ -2,7 +2,8 @@ package br.com.jhisolution.user.hunters.security;
 
 import br.com.jhisolution.user.hunters.domain.User;
 import br.com.jhisolution.user.hunters.repository.UserRepository;
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator;
 import org.slf4j.Logger;

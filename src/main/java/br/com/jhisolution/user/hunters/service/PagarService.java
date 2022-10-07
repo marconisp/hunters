@@ -1,7 +1,11 @@
 package br.com.jhisolution.user.hunters.service;
 
 import br.com.jhisolution.user.hunters.domain.Pagar;
+import br.com.jhisolution.user.hunters.web.rest.dto.FiltroPagarDTO;
+import br.com.jhisolution.user.hunters.web.rest.dto.PagarDTO;
+import java.util.List;
 import java.util.Optional;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -63,4 +67,7 @@ public interface PagarService {
      * @param id the id of the entity.
      */
     void delete(Long id);
+
+    List<PagarDTO> findAllByDataInicialAndDataFinal(FiltroPagarDTO filtro);
+    Resource findAllByDataInicialAndDataFinalJasper(FiltroPagarDTO filtro);
 }

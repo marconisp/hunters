@@ -4,6 +4,7 @@ import br.com.jhisolution.user.hunters.domain.Receber;
 import br.com.jhisolution.user.hunters.repository.ReceberRepository;
 import br.com.jhisolution.user.hunters.service.ReceberService;
 import br.com.jhisolution.user.hunters.web.rest.dto.FiltroReceberDTO;
+import br.com.jhisolution.user.hunters.web.rest.dto.ReceberDTO;
 import br.com.jhisolution.user.hunters.web.rest.dto.RelatorioReceberDTO;
 import br.com.jhisolution.user.hunters.web.rest.errors.BadRequestAlertException;
 import io.jsonwebtoken.io.IOException;
@@ -205,10 +206,10 @@ public class ReceberResource {
     }
 
     @PostMapping("/recebers/report/periodo")
-    public ResponseEntity<RelatorioReceberDTO> getContasReceber(@Valid @RequestBody FiltroReceberDTO filtro) throws URISyntaxException {
+    public ResponseEntity<List<ReceberDTO>> getContasReceber(@Valid @RequestBody FiltroReceberDTO filtro) throws URISyntaxException {
         log.debug("REST request to get a list of Recebers period - initial:{} to final:{}", filtro.getDataInicio(), filtro.getDataFim());
-        RelatorioReceberDTO dto = receberService.findAllByDataInicialAndDataFinal(filtro);
-        return ResponseEntity.ok().body(dto);
+        List<ReceberDTO> lista = receberService.findAllByDataInicialAndDataFinal(filtro);
+        return ResponseEntity.ok().body(lista);
     }
 
     @PostMapping("/recebers/report/periodo/jasper")

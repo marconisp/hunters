@@ -3,23 +3,37 @@ package br.com.jhisolution.user.hunters.web.rest;
 import br.com.jhisolution.user.hunters.domain.Pagar;
 import br.com.jhisolution.user.hunters.repository.PagarRepository;
 import br.com.jhisolution.user.hunters.service.PagarService;
+import br.com.jhisolution.user.hunters.web.rest.dto.FiltroPagarDTO;
+import br.com.jhisolution.user.hunters.web.rest.dto.PagarDTO;
 import br.com.jhisolution.user.hunters.web.rest.errors.BadRequestAlertException;
+import io.jsonwebtoken.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.PaginationUtil;
@@ -186,5 +200,42 @@ public class PagarResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @PostMapping("/pagars/report/periodo")
+    public ResponseEntity<List<PagarDTO>> getContasReceber(@Valid @RequestBody FiltroPagarDTO filtro) throws URISyntaxException {
+        log.debug("REST request to get a list of Pagars period - initial:{} to final:{}", filtro.getDataInicio(), filtro.getDataFim());
+        List<PagarDTO> lista = pagarService.findAllByDataInicialAndDataFinal(filtro);
+        return ResponseEntity.ok().body(lista);
+    }
+
+    @PostMapping("/pagars/report/periodo/jasper")
+    public ResponseEntity<Resource> getContasReceberJasper(@Valid @RequestBody FiltroPagarDTO filtro, HttpServletRequest request)
+        throws URISyntaxException, IOException, java.io.IOException {
+        log.debug("***************************************************************************************");
+        log.debug("REST request to get a list of Recebers period - initial:{} to final:{}", filtro.getDataInicio(), filtro.getDataFim());
+        log.debug("***************************************************************************************");
+        // Load file as Resource
+        Resource resource = pagarService.findAllByDataInicialAndDataFinalJasper(filtro);
+        // Try to determine file's content type
+        String contentType = null;
+        try {
+            contentType = request.getServletContext().getMimeType(resource.getFile().getAbsolutePath());
+        } catch (IOException ex) {
+            log.info("Could not determine file type.");
+        }
+
+        // Fallback to the default content type if type could not be determined
+        if (contentType == null) {
+            contentType = "application/octet-stream";
+        }
+
+        return ResponseEntity
+            .ok()
+            .contentType(MediaType.parseMediaType(contentType))
+            .contentLength(resource.getFile().length())
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + resource.getFilename())
+            .headers(HeaderUtil.createAlert(applicationName, "Orders exported successfully", resource.toString()))
+            .body(resource);
     }
 }

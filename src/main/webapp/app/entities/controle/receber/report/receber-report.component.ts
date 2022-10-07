@@ -16,6 +16,8 @@ import { ReceberDeService } from 'app/entities/controle/receber-de/service/receb
 import { ITipoTransacao } from 'app/entities/controle/tipo-transacao/tipo-transacao.model';
 import { TipoTransacaoService } from 'app/entities/controle/tipo-transacao/service/tipo-transacao.service';
 import { StatusContaReceber } from 'app/entities/enumerations/status-conta-receber.model';
+import { IDadosPessoais } from 'app/entities/user/dados-pessoais/dados-pessoais.model';
+import { DadosPessoaisService } from 'app/entities/user/dados-pessoais/service/dados-pessoais.service';
 
 @Component({
   selector: 'jhi-receber-report',
@@ -27,6 +29,7 @@ export class ReceberReportComponent implements OnInit {
   tipoRecebersCollection: ITipoReceber[] = [];
   receberDesCollection: IReceberDe[] = [];
   tipoTransacaosCollection: ITipoTransacao[] = [];
+  dadosPessoaisSharedCollection: IDadosPessoais[] = [];
 
   editForm = this.fb.group({
     dataInicio: [null, [Validators.required]],
@@ -35,6 +38,7 @@ export class ReceberReportComponent implements OnInit {
     tipoReceber: [],
     receberDe: [],
     tipoTransacao: [],
+    dadosPessoais: [],
   });
 
   constructor(
@@ -43,6 +47,7 @@ export class ReceberReportComponent implements OnInit {
     protected tipoTransacaoService: TipoTransacaoService,
     protected receberService: ReceberService,
     protected activatedRoute: ActivatedRoute,
+    protected dadosPessoaisService: DadosPessoaisService,
     protected fb: FormBuilder
   ) {}
 
@@ -55,6 +60,10 @@ export class ReceberReportComponent implements OnInit {
   }
 
   trackTipoTransacaoById(_index: number, item: ITipoTransacao): number {
+    return item.id!;
+  }
+
+  trackDadosPessoaisById(_index: number, item: IDadosPessoais): number {
     return item.id!;
   }
 
@@ -74,6 +83,7 @@ export class ReceberReportComponent implements OnInit {
     filtro.transacao = this.editForm.get(['tipoTransacao'])!.value;
     filtro.tipoReceber = this.editForm.get(['tipoReceber'])!.value;
     filtro.receberDe = this.editForm.get(['receberDe'])!.value;
+    filtro.dadosPessoais = this.editForm.get(['dadosPessoais'])!.value;
 
     this.receberService.print(filtro).subscribe(res => {
       this.isPrinting = false;
@@ -152,5 +162,15 @@ export class ReceberReportComponent implements OnInit {
         )
       )
       .subscribe((tipoTransacaos: ITipoTransacao[]) => (this.tipoTransacaosCollection = tipoTransacaos));
+
+    this.dadosPessoaisService
+      .query()
+      .pipe(map((res: HttpResponse<IDadosPessoais[]>) => res.body ?? []))
+      .pipe(
+        map((dadosPessoais: IDadosPessoais[]) =>
+          this.dadosPessoaisService.addDadosPessoaisToCollectionIfMissing(dadosPessoais, this.editForm.get('dadosPessoais')!.value)
+        )
+      )
+      .subscribe((dadosPessoais: IDadosPessoais[]) => (this.dadosPessoaisSharedCollection = dadosPessoais));
   }
 }

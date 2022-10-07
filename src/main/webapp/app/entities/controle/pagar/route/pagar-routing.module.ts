@@ -6,6 +6,7 @@ import { PagarComponent } from '../list/pagar.component';
 import { PagarDetailComponent } from '../detail/pagar-detail.component';
 import { PagarUpdateComponent } from '../update/pagar-update.component';
 import { PagarRoutingResolveService } from './pagar-routing-resolve.service';
+import { PagarReportComponent } from '../report/pagar-report.component';
 
 const pagarRoute: Routes = [
   {
@@ -38,6 +39,11 @@ const pagarRoute: Routes = [
     resolve: {
       pagar: PagarRoutingResolveService,
     },
+    canActivate: [UserRouteAccessService],
+  },
+  {
+    path: 'report',
+    component: PagarReportComponent,
     canActivate: [UserRouteAccessService],
   },
 ];

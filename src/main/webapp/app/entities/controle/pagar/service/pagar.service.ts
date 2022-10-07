@@ -9,6 +9,7 @@ import { DATE_FORMAT } from 'app/config/input.constants';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
 import { createRequestOption } from 'app/core/request/request-util';
 import { IPagar, getPagarIdentifier } from '../pagar.model';
+import { IFiltroPagar } from '../filtroPagar.model';
 
 export type EntityResponseType = HttpResponse<IPagar>;
 export type EntityArrayResponseType = HttpResponse<IPagar[]>;
@@ -57,6 +58,11 @@ export class PagarService {
     return this.http.delete(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
+  print(filtro: IFiltroPagar): Observable<HttpResponse<any>> {
+    const copy = this.convertDateIncioFimFromClient(filtro);
+    return this.http.post(`${this.resourceUrl}/report/periodo/jasper`, copy, { observe: 'response', responseType: 'blob' });
+  }
+
   addPagarToCollectionIfMissing(pagarCollection: IPagar[], ...pagarsToCheck: (IPagar | null | undefined)[]): IPagar[] {
     const pagars: IPagar[] = pagarsToCheck.filter(isPresent);
     if (pagars.length > 0) {
@@ -72,6 +78,13 @@ export class PagarService {
       return [...pagarsToAdd, ...pagarCollection];
     }
     return pagarCollection;
+  }
+
+  protected convertDateIncioFimFromClient(filtro: IFiltroPagar): IFiltroPagar {
+    return Object.assign({}, filtro, {
+      dataInicio: filtro.dataInicio?.isValid() ? filtro.dataInicio.format(DATE_FORMAT) : undefined,
+      dataFim: filtro.dataFim?.isValid() ? filtro.dataFim.format(DATE_FORMAT) : undefined,
+    });
   }
 
   protected convertDateFromClient(pagar: IPagar): IPagar {

@@ -1,13 +1,13 @@
 package br.com.jhisolution.user.hunters.service.impl;
 
+//import com.google.gson.Gson;
+
 import br.com.jhisolution.user.hunters.domain.Receber;
 import br.com.jhisolution.user.hunters.report.util.ReportExporter;
 import br.com.jhisolution.user.hunters.repository.ReceberRepository;
 import br.com.jhisolution.user.hunters.service.ReceberService;
 import br.com.jhisolution.user.hunters.web.rest.dto.FiltroReceberDTO;
 import br.com.jhisolution.user.hunters.web.rest.dto.ReceberDTO;
-import br.com.jhisolution.user.hunters.web.rest.dto.RelatorioReceberDTO;
-import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -117,13 +117,13 @@ public class ReceberServiceImpl implements ReceberService {
 
     @Override
     @Transactional(readOnly = true)
-    public RelatorioReceberDTO findAllByDataInicialAndDataFinal(FiltroReceberDTO filtro) {
+    public List<ReceberDTO> findAllByDataInicialAndDataFinal(FiltroReceberDTO filtro) {
         log.debug("Request to get all Recebers by data início e data fim");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/YYY");
 
         List<ReceberDTO> lista = receberRepository
-            .findAllByDataInicialAndDataFinal(filtro.getDataInicio(), filtro.getDataFim())
+            .findAllByCriteria(filtro)
             .stream()
             .map(obj ->
                 ReceberDTO.getInstance(
@@ -133,17 +133,19 @@ public class ReceberServiceImpl implements ReceberService {
                     obj.getStatus().toString(),
                     Objects.nonNull(obj.getTipoReceber()) ? obj.getTipoReceber().getNome() : "",
                     Objects.nonNull(obj.getReceberDe()) ? obj.getReceberDe().getNome() : "",
-                    Objects.nonNull(obj.getTipoTransacao()) ? obj.getTipoTransacao().getNome() : ""
+                    Objects.nonNull(obj.getDadosPessoais()) ? obj.getDadosPessoais().getNome() : "",
+                    Objects.nonNull(obj.getTipoTransacao()) ? obj.getTipoTransacao().getNome() : "",
+                    false
                 )
             )
             .collect(Collectors.toList());
-        return RelatorioReceberDTO.getInstance(filtro.getDataInicio(), filtro.getDataFim(), lista);
+        return lista;
     }
 
     @Override
     @Transactional(readOnly = true)
     public Resource findAllByDataInicialAndDataFinalJasper(FiltroReceberDTO filtro) {
-        Gson gson = new Gson();
+        //Gson gson = new Gson();
         log.debug(
             "Request to get jasper report of dataInicial: {}, dataFinal: {}, tipo: {}",
             filtro.getDataInicio(),
@@ -156,12 +158,12 @@ public class ReceberServiceImpl implements ReceberService {
             JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
             //JRSaver.saveObject(jasperReport, "report_receber.jasper");
 
-            RelatorioReceberDTO dto = this.findAllByDataInicialAndDataFinal(filtro);
+            List<ReceberDTO> lista = this.findAllByDataInicialAndDataFinal(filtro);
             //String strJson = Objects.nonNull(dto)? gson.toJson(dto) : "";
             //log.debug("String JSON utilizada: {}", strJson);
             //InputStream stream = new ByteArrayInputStream(strJson.getBytes());
             //JsonDataSource dataSource = new JsonDataSource(stream);
-            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(dto.getRecebers());
+            JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(lista);
 
             Map<String, Object> parameters = new HashMap<>();
             //parameters.put("userName", "Dhaval's Orders");

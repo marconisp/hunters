@@ -1,0 +1,145 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="print()" [formGroup]="editForm">
+      <h2 id="jhi-pagar-heading" data-cy="PagarCreateUpdateHeading" jhiTranslate="hunterappApp.controlePagar.report.title">
+        Relatorio de contas Receber
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.controlePagar.report.dataInicio" for="field_data_inicio">Data Inicio</label>
+          <div class="input-group">
+            <input
+              id="field_data_inicio"
+              data-cy="dataInicio"
+              type="text"
+              class="form-control"
+              name="dataInicio"
+              ngbDatepicker
+              #dataDpInicio="ngbDatepicker"
+              formControlName="dataInicio"
+              placeholder="dd/mm/yyyy"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataDpInicio.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('dataInicio')!.invalid && (editForm.get('dataInicio')!.dirty || editForm.get('dataInicio')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dataInicio')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="hunterappApp.controlePagar.report.dataFim" for="field_data_fim">Data Fim</label>
+          <div class="input-group">
+            <input
+              id="field_data_fim"
+              data-cy="dataFim"
+              type="text"
+              class="form-control"
+              name="dataFim"
+              ngbDatepicker
+              #dataDpFim="ngbDatepicker"
+              formControlName="dataFim"
+              placeholder="dd/mm/yyyy"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dataDpFim.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('dataFim')!.invalid && (editForm.get('dataFim')!.dirty || editForm.get('dataFim')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('dataFim')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="hunterappApp.controlePagar.pagarPara" for="field_pagarPara">Pagar Para</label>
+        <select class="form-control" id="field_pagarPara" data-cy="pagarPara" name="pagarPara" formControlName="pagarPara">
+          <option [ngValue]="null"></option>
+          <option
+            [ngValue]="pagarParaOption.id === editForm.get('pagarPara')!.value?.id ? editForm.get('pagarPara')!.value : pagarParaOption"
+            *ngFor="let pagarParaOption of pagarParaCollection; trackBy: trackPagarParaById"
+          >
+            {{ pagarParaOption.nome }}
+          </option>
+        </select>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="hunterappApp.controlePagar.report.pessoa" for="field_dadosPessoais">Pessoa</label>
+        <select class="form-control" id="field_dadosPessoais" data-cy="dadosPessoais" name="dadosPessoais" formControlName="dadosPessoais">
+          <option [ngValue]="null"></option>
+          <option
+            [ngValue]="
+              dadosPessoaisOption.id === editForm.get('dadosPessoais')!.value?.id
+                ? editForm.get('dadosPessoais')!.value
+                : dadosPessoaisOption
+            "
+            *ngFor="let dadosPessoaisOption of dadosPessoaisSharedCollection; trackBy: trackDadosPessoaisById"
+          >
+            {{ dadosPessoaisOption.nome }}
+          </option>
+        </select>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="hunterappApp.controlePagar.tipoPagar" for="field_tipoPagar">Tipo Pagar</label>
+        <select class="form-control" id="field_tipoPagar" data-cy="tipoPagar" name="tipoPagar" formControlName="tipoPagar">
+          <option [ngValue]="null"></option>
+          <option
+            [ngValue]="tipoPagarOption.id === editForm.get('tipoPagar')!.value?.id ? editForm.get('tipoPagar')!.value : tipoPagarOption"
+            *ngFor="let tipoPagarOption of tipoPagarCollection; trackBy: trackTipoPagarById"
+          >
+            {{ tipoPagarOption.nome }}
+          </option>
+        </select>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="hunterappApp.controlePagar.tipoTransacao" for="field_tipoTransacao">Tipo Transacao</label>
+        <select class="form-control" id="field_tipoTransacao" data-cy="tipoTransacao" name="tipoTransacao" formControlName="tipoTransacao">
+          <option [ngValue]="null"></option>
+          <option
+            [ngValue]="
+              tipoTransacaoOption.id === editForm.get('tipoTransacao')!.value?.id
+                ? editForm.get('tipoTransacao')!.value
+                : tipoTransacaoOption
+            "
+            *ngFor="let tipoTransacaoOption of tipoTransacaosCollection; trackBy: trackTipoTransacaoById"
+          >
+            {{ tipoTransacaoOption.nome }}
+          </option>
+        </select>
+      </div>
+
+      <div class="row mb-3">
+        <label class="form-label" jhiTranslate="hunterappApp.controlePagar.status" for="field_status">Status</label>
+        <select class="form-control" name="status" formControlName="status" id="field_status" data-cy="status">
+          <option [ngValue]="null">{{ 'hunterappApp.StatusContaPagar.null' | translate }}</option>
+          <option *ngFor="let statusContaPagar of statusContaPagarValues" [value]="statusContaPagar">
+            {{ 'hunterappApp.StatusContaPagar.' + statusContaPagar | translate }}
+          </option>
+        </select>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" [disabled]="isPrinting" class="btn btn-primary">
+          <fa-icon icon="newspaper"></fa-icon>&nbsp;<span jhiTranslate="hunterappApp.controlePagar.report.emitir">Emitir</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

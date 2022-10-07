@@ -118,7 +118,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
      */
     private void initH2Console(ServletContext servletContext) {
         log.debug("Initialize H2 console");
-        H2ConfigurationHelper.initH2Console(servletContext);
+        //H2ConfigurationHelper.initH2Console(servletContext);
     }
     /*
     @Bean

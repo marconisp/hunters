@@ -8,14 +8,26 @@ public class ReceberDTO {
     private String status;
     private String tipoReceber;
     private String receberDe;
+    private String pessoaReceber;
     private String tipoTransacao;
+    private Boolean tratada;
 
     public ReceberDTO() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    public ReceberDTO(Long id, String data, Float valor, String status, String tipoReceber, String receberDe, String tipoTransacao) {
+    public ReceberDTO(
+        Long id,
+        String data,
+        Float valor,
+        String status,
+        String tipoReceber,
+        String receberDe,
+        String pessoaReceber,
+        String tipoTransacao,
+        Boolean tratada
+    ) {
         super();
         this.id = id;
         this.data = data;
@@ -23,7 +35,9 @@ public class ReceberDTO {
         this.status = status;
         this.tipoReceber = tipoReceber;
         this.receberDe = receberDe;
+        this.pessoaReceber = pessoaReceber;
         this.tipoTransacao = tipoTransacao;
+        this.tratada = tratada;
     }
 
     public static ReceberDTO getInstance(
@@ -33,9 +47,11 @@ public class ReceberDTO {
         String status,
         String tipoReceber,
         String receberDe,
-        String tipoTransacao
+        String pessoaReceber,
+        String tipoTransacao,
+        Boolean tratada
     ) {
-        return new ReceberDTO(id, data, valor, status, tipoReceber, receberDe, tipoTransacao);
+        return new ReceberDTO(id, data, valor, status, tipoReceber, receberDe, pessoaReceber, tipoTransacao, tratada);
     }
 
     public Long getId() {
@@ -86,11 +102,27 @@ public class ReceberDTO {
         this.receberDe = receberDe;
     }
 
+    public String getPessoaReceber() {
+        return pessoaReceber;
+    }
+
+    public void setPessoaReceber(String pessoaReceber) {
+        this.pessoaReceber = pessoaReceber;
+    }
+
     public String getTipoTransacao() {
         return tipoTransacao;
     }
 
     public void setTipoTransacao(String tipoTransacao) {
         this.tipoTransacao = tipoTransacao;
+    }
+
+    public Boolean getTratada() {
+        return tratada;
+    }
+
+    public void setTratada(Boolean tratada) {
+        this.tratada = tratada;
     }
 }

@@ -1,5 +1,10 @@
 package br.com.jhisolution.user.hunters.web.rest.dto;
 
+import br.com.jhisolution.user.hunters.domain.DadosPessoais;
+import br.com.jhisolution.user.hunters.domain.ReceberDe;
+import br.com.jhisolution.user.hunters.domain.TipoReceber;
+import br.com.jhisolution.user.hunters.domain.TipoTransacao;
+import br.com.jhisolution.user.hunters.domain.enumeration.StatusContaReceber;
 import java.time.LocalDate;
 
 public class FiltroReceberDTO {
@@ -7,24 +12,31 @@ public class FiltroReceberDTO {
     private LocalDate dataInicio;
     private LocalDate dataFim;
     private String tipo;
-    private String transacao;
-    private String tipoReceber;
-    private String receberDe;
-    private String status;
+    private TipoTransacao transacao;
+    private TipoReceber tipoReceber;
+    private ReceberDe receberDe;
+    private StatusContaReceber status;
+    private DadosPessoais dadosPessoais;
 
     public FiltroReceberDTO() {
         super();
-        // TODO Auto-generated constructor stub
+    }
+
+    public FiltroReceberDTO(LocalDate dataInicio, LocalDate dataFim) {
+        super();
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
     }
 
     public FiltroReceberDTO(
         LocalDate dataInicio,
         LocalDate dataFim,
         String tipo,
-        String transacao,
-        String tipoReceber,
-        String receberDe,
-        String status
+        TipoTransacao transacao,
+        TipoReceber tipoReceber,
+        ReceberDe receberDe,
+        StatusContaReceber status,
+        DadosPessoais dadosPessoais
     ) {
         super();
         this.dataInicio = dataInicio;
@@ -34,18 +46,11 @@ public class FiltroReceberDTO {
         this.tipoReceber = tipoReceber;
         this.receberDe = receberDe;
         this.status = status;
+        this.dadosPessoais = dadosPessoais;
     }
 
-    public static FiltroReceberDTO getInstance(
-        LocalDate dataInicio,
-        LocalDate dataFim,
-        String tipo,
-        String transacao,
-        String tipoReceber,
-        String receberDe,
-        String status
-    ) {
-        return new FiltroReceberDTO(dataInicio, dataFim, tipo, transacao, tipoReceber, receberDe, status);
+    public static FiltroReceberDTO getInstance(LocalDate dataInicio, LocalDate dataFim) {
+        return new FiltroReceberDTO(dataInicio, dataFim);
     }
 
     public LocalDate getDataInicio() {
@@ -72,35 +77,43 @@ public class FiltroReceberDTO {
         this.tipo = tipo;
     }
 
-    public String getTransacao() {
+    public TipoTransacao getTransacao() {
         return transacao;
     }
 
-    public void setTransacao(String transacao) {
+    public void setTransacao(TipoTransacao transacao) {
         this.transacao = transacao;
     }
 
-    public String getTipoReceber() {
+    public TipoReceber getTipoReceber() {
         return tipoReceber;
     }
 
-    public void setTipoReceber(String tipoReceber) {
+    public void setTipoReceber(TipoReceber tipoReceber) {
         this.tipoReceber = tipoReceber;
     }
 
-    public String getReceberDe() {
+    public ReceberDe getReceberDe() {
         return receberDe;
     }
 
-    public void setReceberDe(String receberDe) {
+    public void setReceberDe(ReceberDe receberDe) {
         this.receberDe = receberDe;
     }
 
-    public String getStatus() {
+    public StatusContaReceber getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusContaReceber status) {
         this.status = status;
+    }
+
+    public DadosPessoais getDadosPessoais() {
+        return dadosPessoais;
+    }
+
+    public void setDadosPessoais(DadosPessoais dadosPessoais) {
+        this.dadosPessoais = dadosPessoais;
     }
 }

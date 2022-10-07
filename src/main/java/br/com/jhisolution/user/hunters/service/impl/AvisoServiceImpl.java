@@ -2,7 +2,6 @@ package br.com.jhisolution.user.hunters.service.impl;
 
 import br.com.jhisolution.user.hunters.domain.Aviso;
 import br.com.jhisolution.user.hunters.domain.DadosPessoais;
-import br.com.jhisolution.user.hunters.domain.Endereco;
 import br.com.jhisolution.user.hunters.repository.AvisoRepository;
 import br.com.jhisolution.user.hunters.repository.DadosPessoaisRepository;
 import br.com.jhisolution.user.hunters.service.AvisoService;

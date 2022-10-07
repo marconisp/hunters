@@ -1,13 +1,13 @@
 package br.com.jhisolution.user.hunters.config;
 
-import br.com.jhisolution.user.hunters.security.*;
-import br.com.jhisolution.user.hunters.security.jwt.*;
+import br.com.jhisolution.user.hunters.security.AuthoritiesConstants;
+import br.com.jhisolution.user.hunters.security.jwt.JWTConfigurer;
+import br.com.jhisolution.user.hunters.security.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;

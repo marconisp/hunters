@@ -2,7 +2,8 @@ package br.com.jhisolution.user.hunters.service;
 
 import br.com.jhisolution.user.hunters.domain.Receber;
 import br.com.jhisolution.user.hunters.web.rest.dto.FiltroReceberDTO;
-import br.com.jhisolution.user.hunters.web.rest.dto.RelatorioReceberDTO;
+import br.com.jhisolution.user.hunters.web.rest.dto.ReceberDTO;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -67,6 +68,6 @@ public interface ReceberService {
      */
     void delete(Long id);
 
-    RelatorioReceberDTO findAllByDataInicialAndDataFinal(FiltroReceberDTO filtro);
+    List<ReceberDTO> findAllByDataInicialAndDataFinal(FiltroReceberDTO filtro);
     Resource findAllByDataInicialAndDataFinalJasper(FiltroReceberDTO filtro);
 }
